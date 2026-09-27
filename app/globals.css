@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #172519;
+  --foreground: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* =========================
+   ANIMACIÓN LOGO FECCA
+========================= */
+
+@keyframes feccaFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(1deg);
+  }
+}
+
+.fecca-logo-float {
+  animation: feccaFloat 5s ease-in-out infinite;
+  will-change: transform;
+}
