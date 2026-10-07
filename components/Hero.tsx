@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 
 export default function Hero() {
@@ -14,11 +15,11 @@ export default function Hero() {
       {/* Línea decorativa lateral */}
       <div className="absolute left-0 top-0 h-full w-px bg-white/5" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pb-20 pt-32 sm:px-6 sm:pb-20 sm:pt-36 lg:grid-cols-[1.35fr_0.65fr] lg:px-8 lg:pb-20 lg:pt-28">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pb-20 pt-32 sm:px-6 sm:pb-20 sm:pt-36 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16 lg:px-8 lg:pb-20 lg:pt-28">
         {/* =========================
             CONTENIDO
         ========================== */}
-        <div className="min-w-0">
+        <div className="relative z-20 min-w-0">
           {/* Badge */}
           <div className="mb-6 inline-flex max-w-full items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 sm:mb-7 sm:gap-3 sm:px-4">
             <span className="h-2 w-2 shrink-0 rounded-full bg-[#6ce17c]" />
@@ -29,7 +30,7 @@ export default function Hero() {
           </div>
 
           {/* Título */}
-          <h1 className="text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl lg:text-[4rem]">
             <span className="block lg:whitespace-nowrap">
               La Federación de Clubes
             </span>
@@ -56,7 +57,6 @@ export default function Hero() {
               className="inline-flex w-full items-center justify-center rounded-full bg-[#6ce17c] px-6 py-4 text-center text-sm font-bold text-[#142317] transition duration-300 hover:-translate-y-0.5 hover:bg-[#7bea89] hover:shadow-[0_10px_35px_rgba(108,225,124,0.18)] sm:w-auto sm:px-7 sm:py-3.5"
             >
               Beneficios para tu club
-
               <span className="ml-2">→</span>
             </a>
 
@@ -100,27 +100,27 @@ export default function Hero() {
         ========================== */}
         <div className="relative hidden min-h-[520px] items-center justify-center lg:flex">
           {/* Glow verde */}
-          <div className="absolute h-[520px] w-[520px] -translate-y-32 translate-x-16 rounded-full bg-[#6ce17c]/10 blur-[110px]" />
+          <div className="pointer-events-none absolute right-[-90px] top-[-20px] h-[520px] w-[520px] rounded-full bg-[#6ce17c]/10 blur-[110px]" />
 
           {/* Glow dorado */}
-          <div className="absolute h-[340px] w-[340px] -translate-y-32 translate-x-16 rounded-full bg-[#d8c47f]/10 blur-[90px]" />
+          <div className="pointer-events-none absolute right-[-40px] top-[30px] h-[340px] w-[340px] rounded-full bg-[#d8c47f]/10 blur-[90px]" />
 
           {/* Mancha de luz secundaria */}
-          <div className="absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#6ce17c]/10 blur-[70px]" />
+          <div className="pointer-events-none absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#6ce17c]/10 blur-[70px]" />
 
-          {/* Posición del logo */}
-          <div className="relative z-10 -translate-y-32 translate-x-16">
-            <div className="fecca-logo-float">
-              <Image
-                src="/images/logo/logo-fecca.png"
-                alt="Federación de Clubes Cannábicos de Argentina"
-                width={407}
-                height={291}
-                priority
-                className="h-auto w-[540px] max-w-none drop-shadow-[0_30px_50px_rgba(0,0,0,0.35)]"
-              />
-            </div>
-          </div>
+         {/* Logo protagonista - posición ajustada */}
+<div className="relative z-10 -translate-y-20 translate-x-20 xl:-translate-y-24 xl:translate-x-28">
+  <div className="fecca-logo-float">
+    <Image
+      src="/images/logo/logo-fecca.svg"
+      alt="Federación de Clubes Cannábicos de Argentina"
+      width={407}
+      height={291}
+      priority
+      className="h-auto w-[360px] max-w-none drop-shadow-[0_30px_50px_rgba(0,0,0,0.35)] xl:w-[400px]"
+    />
+  </div>
+</div>
         </div>
       </div>
     </section>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -46,9 +47,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* =========================
-          NAVBAR
-      ========================== */}
+      {/* NAVBAR */}
       <header className="absolute left-0 top-0 z-50 w-full">
         <nav className="mx-auto max-w-7xl px-5 py-5 sm:px-6 md:py-6 lg:px-8">
           <div className="flex items-center justify-between">
@@ -60,7 +59,7 @@ export default function Navbar() {
               aria-label="Ir al inicio"
             >
               <Image
-                src="/images/logo/logo-fecca.png"
+                src="/images/logo/logo-fecca.svg"
                 alt="FECCA"
                 width={110}
                 height={80}
@@ -69,9 +68,7 @@ export default function Navbar() {
               />
             </a>
 
-            {/* =========================
-                MENÚ DESKTOP
-            ========================== */}
+            {/* MENÚ DESKTOP */}
             <div className="hidden items-center gap-8 md:flex">
               <a
                 href="#institucional"
@@ -109,9 +106,7 @@ export default function Navbar() {
               </a>
             </div>
 
-            {/* =========================
-                HAMBURGUESA MOBILE
-            ========================== */}
+            {/* HAMBURGUESA MOBILE */}
             <button
               type="button"
               onClick={() => setMenuAbierto(true)}
@@ -129,9 +124,7 @@ export default function Navbar() {
         </nav>
       </header>
 
-      {/* =========================
-          BACKDROP MOBILE
-      ========================== */}
+      {/* BACKDROP MOBILE */}
       <div
         aria-hidden="true"
         onClick={cerrarMenu}
@@ -142,9 +135,7 @@ export default function Navbar() {
         }`}
       />
 
-      {/* =========================
-          DRAWER MOBILE
-      ========================== */}
+      {/* DRAWER MOBILE */}
       <aside
         aria-hidden={!menuAbierto}
         className={`fixed bottom-0 right-0 top-0 z-[90] flex w-[84%] max-w-[340px] flex-col overflow-y-auto border-l border-white/10 bg-[#101d13] shadow-[-25px_0_70px_rgba(0,0,0,0.4)] transition-transform duration-300 ease-out md:hidden ${
@@ -155,12 +146,10 @@ export default function Navbar() {
         <div className="pointer-events-none absolute -right-32 -top-20 h-[300px] w-[300px] rounded-full bg-[#6ce17c]/10 blur-[100px]" />
 
         <div className="relative z-10 flex min-h-full flex-col px-6 pb-7 pt-5">
-          {/* =========================
-              CABECERA DRAWER
-          ========================== */}
+          {/* CABECERA DRAWER */}
           <div className="flex items-center justify-between border-b border-white/10 pb-5">
             <Image
-              src="/images/logo/logo-fecca.png"
+              src="/images/logo/logo-fecca.svg"
               alt="FECCA"
               width={100}
               height={72}
@@ -177,9 +166,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* =========================
-              LINKS
-          ========================== */}
+          {/* LINKS */}
           <nav className="mt-8">
             <a
               href="#institucional"
@@ -214,9 +201,7 @@ export default function Navbar() {
             </a>
           </nav>
 
-          {/* =========================
-              CTA
-          ========================== */}
+          {/* CTA */}
           <div className="mt-auto pt-10">
             <div className="mb-5">
               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#d8c47f]">
@@ -234,7 +219,6 @@ export default function Navbar() {
               className="flex w-full items-center justify-between rounded-full bg-[#6ce17c] px-6 py-4 text-sm font-bold text-[#172519] transition hover:bg-[#7bea89]"
             >
               Sumá tu club
-
               <span>→</span>
             </a>
           </div>
