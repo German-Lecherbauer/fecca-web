@@ -7,7 +7,7 @@ export default function ExpoBanner() {
   return (
     <section
       id="expo-cannabis"
-      className="relative z-20 -mt-5 overflow-hidden rounded-t-[18px] bg-[#f3f0e7] py-10 sm:py-14 lg:py-16"
+      className="relative z-20 -mt-5 overflow-hidden rounded-t-[18px] bg-[#f3f0e7] py-12 sm:py-16 lg:py-20"
     >
       <style>{`
         @keyframes expoEntrada {
@@ -51,9 +51,10 @@ export default function ExpoBanner() {
       `}</style>
 
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
         {/* ENCABEZADO */}
 
-        <div className="mb-4 flex items-center gap-3 sm:mb-6">
+        <div className="mb-5 flex items-center gap-3 sm:mb-8">
           <span className="h-2 w-2 rounded-full bg-[#537247]" />
 
           <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#537247] sm:text-xs">
@@ -61,7 +62,7 @@ export default function ExpoBanner() {
           </span>
         </div>
 
-        <div className="mb-4 sm:mb-6">
+        <div className="mb-8 sm:mb-10">
           <h2 className="text-[1.75rem] font-semibold tracking-tight text-[#172519] sm:text-4xl lg:text-5xl">
             Expo Cannabis 2026
           </h2>
@@ -82,6 +83,7 @@ export default function ExpoBanner() {
             className="expo-banner group mx-auto block w-full max-w-[1100px]"
           >
             <div className="expo-flotar">
+
               {/* DESKTOP */}
 
               <div className="hidden transition-transform duration-500 group-hover:scale-[1.015] md:block">
@@ -110,22 +112,25 @@ export default function ExpoBanner() {
                   className="block h-auto w-full rounded-2xl"
                 />
               </div>
+
             </div>
           </a>
         </div>
 
         {/* INFORMACIÓN INFERIOR */}
 
-        <div className="mt-4 flex flex-col gap-3 border-t border-[#172519]/10 pt-4 sm:mt-6 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:pt-5">
+        <div className="mt-8 flex flex-col gap-3 border-t border-[#172519]/10 pt-5 sm:mt-10 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:pt-6">
           <p className="text-xs text-[#172519]/65 sm:text-sm">
             Salud, industria, cultivo y cultura.
           </p>
+
+          {/* BOTÓN VISIBLE SOLO EN DESKTOP */}
 
           <a
             href={ENTRADAS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex w-fit items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-[#537247] transition hover:text-[#172519] sm:text-xs"
+            className="group hidden w-fit items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-[#537247] transition hover:text-[#172519] sm:inline-flex sm:text-xs"
           >
             Conseguí tu entrada
 
@@ -137,6 +142,7 @@ export default function ExpoBanner() {
             </span>
           </a>
         </div>
+
       </div>
     </section>
   );
