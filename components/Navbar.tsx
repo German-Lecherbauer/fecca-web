@@ -2,10 +2,21 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const enlaces = [
+  { href: "#institucional", texto: "Institucional" },
+  { href: "#clubes", texto: "Clubes" },
+  { href: "#herramientas", texto: "Herramientas" },
+  { href: "#beneficios", texto: "Beneficios" },
+  { href: "#contacto", texto: "Contacto" },
+];
 
 export default function Navbar() {
   const [menuAbierto, setMenuAbierto] = useState(false);
+
+  const botonMenuRef = useRef<HTMLButtonElement>(null);
+  const botonCerrarRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,9 +38,12 @@ export default function Navbar() {
     const overflowAnterior = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
+    botonCerrarRef.current?.focus();
+
     const cerrarConEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setMenuAbierto(false);
+        botonMenuRef.current?.focus();
       }
     };
 
@@ -45,18 +59,32 @@ export default function Navbar() {
     setMenuAbierto(false);
   };
 
+  const cerrarYDevolverFoco = () => {
+    setMenuAbierto(false);
+    botonMenuRef.current?.focus();
+  };
+
+  const enlaceDesktop =
+    "text-sm font-medium text-white/85 transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]";
+
+  const enlaceMobile =
+    "block border-b border-white/10 py-5 text-base font-medium text-white/85 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D0BC84]";
+
   return (
     <>
       {/* NAVBAR */}
       <header className="absolute left-0 top-0 z-50 w-full">
-        <nav className="mx-auto max-w-7xl px-5 py-5 sm:px-6 md:py-6 lg:px-8">
+        <nav
+          aria-label="Navegación principal"
+          className="mx-auto max-w-7xl px-5 py-5 sm:px-6 md:py-6 lg:px-8"
+        >
           <div className="flex items-center justify-between">
-            {/* Logo */}
+            {/* LOGO */}
             <a
               href="#inicio"
               onClick={cerrarMenu}
-              className="flex items-center"
-              aria-label="Ir al inicio"
+              aria-label="FECCA - Ir al inicio"
+              className="flex min-h-11 items-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]"
             >
               <Image
                 src="/images/logo/logo-fecca.svg"
@@ -69,85 +97,73 @@ export default function Navbar() {
             </a>
 
             {/* MENÚ DESKTOP */}
-            <div className="hidden items-center gap-8 md:flex">
-              <a
-                href="#institucional"
-                className="text-sm font-medium text-white/80 transition hover:text-white"
-              >
-                Institucional
-              </a>
-
-              <a
-                href="#clubes"
-                className="text-sm font-medium text-white/80 transition hover:text-white"
-              >
-                Clubes
-              </a>
-
-              <a
-                href="#beneficios"
-                className="text-sm font-medium text-white/80 transition hover:text-white"
-              >
-                Beneficios
-              </a>
+            <div className="hidden items-center gap-5 lg:gap-7 md:flex">
+              {enlaces.map((enlace) => (
+                <a
+                  key={enlace.href}
+                  href={enlace.href}
+                  className={enlaceDesktop}
+                >
+                  {enlace.texto}
+                </a>
+              ))}
 
               <a
                 href="#contacto"
-                className="text-sm font-medium text-white/80 transition hover:text-white"
-              >
-                Contacto
-              </a>
-
-              <a
-                href="#contacto"
-                className="rounded-full border border-[#d8c47f] px-5 py-2.5 text-sm font-semibold text-[#e6d79c] transition hover:bg-[#d8c47f] hover:text-[#172519]"
+                className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg border border-[#D0BC84] px-5 text-base font-semibold text-[#D0BC84] transition-colors hover:bg-[#D0BC84] hover:text-[#283524] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
               >
                 Sumá tu club
               </a>
             </div>
 
-            {/* HAMBURGUESA MOBILE */}
+            {/* BOTÓN MENÚ MÓVIL */}
             <button
+              ref={botonMenuRef}
               type="button"
               onClick={() => setMenuAbierto(true)}
               aria-label="Abrir menú"
+              aria-controls="menu-mobile"
               aria-expanded={menuAbierto}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white transition hover:bg-white/[0.08] md:hidden"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg border border-white/20 px-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84] md:hidden"
             >
-              <div className="flex flex-col gap-[5px]">
-                <span className="h-px w-5 bg-current" />
-                <span className="h-px w-5 bg-current" />
-                <span className="h-px w-5 bg-current" />
-              </div>
+              <span>Menú</span>
+
+              <span aria-hidden="true" className="flex flex-col gap-1">
+                <span className="h-px w-4 bg-current" />
+                <span className="h-px w-4 bg-current" />
+                <span className="h-px w-4 bg-current" />
+              </span>
             </button>
           </div>
         </nav>
       </header>
 
-      {/* BACKDROP MOBILE */}
+      {/* FONDO OSCURO DEL MENÚ MÓVIL */}
       <div
         aria-hidden="true"
-        onClick={cerrarMenu}
-        className={`fixed inset-0 z-[80] bg-black/55 backdrop-blur-[2px] transition-opacity duration-300 md:hidden ${
+        onClick={cerrarYDevolverFoco}
+        className={`fixed inset-0 z-[80] bg-black/60 backdrop-blur-[2px] transition-opacity duration-300 md:hidden ${
           menuAbierto
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
         }`}
       />
 
-      {/* DRAWER MOBILE */}
+      {/* DRAWER MÓVIL */}
       <aside
+        id="menu-mobile"
+        role="dialog"
+        aria-modal={menuAbierto ? true : undefined}
+        aria-label="Menú de navegación"
         aria-hidden={!menuAbierto}
-        className={`fixed bottom-0 right-0 top-0 z-[90] flex w-[84%] max-w-[340px] flex-col overflow-y-auto border-l border-white/10 bg-[#101d13] shadow-[-25px_0_70px_rgba(0,0,0,0.4)] transition-transform duration-300 ease-out md:hidden ${
+        inert={!menuAbierto}
+        className={`fixed bottom-0 right-0 top-0 z-[90] flex w-[84%] max-w-[340px] flex-col overflow-y-auto border-l border-white/10 bg-[#283524] shadow-[-25px_0_70px_rgba(0,0,0,0.4)] transition-transform duration-300 ease-out md:hidden ${
           menuAbierto ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Glow */}
-        <div className="pointer-events-none absolute -right-32 -top-20 h-[300px] w-[300px] rounded-full bg-[#6ce17c]/10 blur-[100px]" />
-
-        <div className="relative z-10 flex min-h-full flex-col px-6 pb-7 pt-5">
+        <div className="relative flex min-h-full flex-col px-6 pb-7 pt-5">
           {/* CABECERA DRAWER */}
-          <div className="flex items-center justify-between border-b border-white/10 pb-5">
+          <div className="flex items-center justify-between border-b border-white/15 pb-5">
             <Image
               src="/images/logo/logo-fecca.svg"
               alt="FECCA"
@@ -157,58 +173,38 @@ export default function Navbar() {
             />
 
             <button
+              ref={botonCerrarRef}
               type="button"
-              onClick={cerrarMenu}
+              onClick={cerrarYDevolverFoco}
               aria-label="Cerrar menú"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-xl text-white/60 transition hover:border-white/25 hover:bg-white/5 hover:text-white"
+              className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/20 text-2xl text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D0BC84]"
             >
               ×
             </button>
           </div>
 
-          {/* LINKS */}
-          <nav className="mt-8">
-            <a
-              href="#institucional"
-              onClick={cerrarMenu}
-              className="block border-b border-white/10 py-5 text-base font-medium text-white/75 transition hover:text-white"
-            >
-              Institucional
-            </a>
-
-            <a
-              href="#clubes"
-              onClick={cerrarMenu}
-              className="block border-b border-white/10 py-5 text-base font-medium text-white/75 transition hover:text-white"
-            >
-              Clubes
-            </a>
-
-            <a
-              href="#beneficios"
-              onClick={cerrarMenu}
-              className="block border-b border-white/10 py-5 text-base font-medium text-white/75 transition hover:text-white"
-            >
-              Beneficios
-            </a>
-
-            <a
-              href="#contacto"
-              onClick={cerrarMenu}
-              className="block border-b border-white/10 py-5 text-base font-medium text-white/75 transition hover:text-white"
-            >
-              Contacto
-            </a>
+          {/* ENLACES MÓVILES */}
+          <nav aria-label="Navegación móvil" className="mt-8">
+            {enlaces.map((enlace) => (
+              <a
+                key={enlace.href}
+                href={enlace.href}
+                onClick={cerrarMenu}
+                className={enlaceMobile}
+              >
+                {enlace.texto}
+              </a>
+            ))}
           </nav>
 
-          {/* CTA */}
+          {/* CTA MÓVIL */}
           <div className="mt-auto pt-10">
-            <div className="mb-5">
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#d8c47f]">
+            <div className="mb-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#D0BC84]">
                 Federación nacional
               </p>
 
-              <p className="mt-2 text-xs leading-5 text-white/35">
+              <p className="mt-2 text-sm leading-6 text-white/80">
                 Más de 200 clubes forman parte de la red federal de FECCA.
               </p>
             </div>
@@ -216,10 +212,9 @@ export default function Navbar() {
             <a
               href="#contacto"
               onClick={cerrarMenu}
-              className="flex w-full items-center justify-between rounded-full bg-[#6ce17c] px-6 py-4 text-sm font-bold text-[#172519] transition hover:bg-[#7bea89]"
+              className="flex min-h-12 w-full items-center justify-center rounded-lg bg-[#D0BC84] px-5 text-base font-semibold text-[#283524] transition-colors hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               Sumá tu club
-              <span>→</span>
             </a>
           </div>
         </div>

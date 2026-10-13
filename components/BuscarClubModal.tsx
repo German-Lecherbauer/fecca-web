@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, type FormEvent } from "react";
 
 type BuscarClubModalProps = {
   abierto: boolean;
@@ -33,17 +34,23 @@ export default function BuscarClubModal({
 
   if (!abierto) return null;
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Temporal hasta definir con FECCA
-    // dónde se reciben estos formularios.
+    // Pendiente: conectar el formulario al sistema de envío
+    // que defina FECCA.
     console.log("Formulario Buscar Club enviado");
   };
 
+  const inputClassName =
+    "w-full min-w-0 rounded-lg border border-white/15 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition-colors duration-200 placeholder:text-white/45 focus:border-[#8DA783] focus:bg-white/[0.08] sm:text-sm";
+
+  const labelClassName =
+    "mb-2 block text-xs font-semibold uppercase tracking-[0.12em] text-white/60";
+
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#07100a]/80 p-3 backdrop-blur-sm sm:p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#07100a]/80 p-3 backdrop-blur-sm sm:p-4"
       onMouseDown={onClose}
     >
       <div
@@ -51,60 +58,61 @@ export default function BuscarClubModal({
         aria-modal="true"
         aria-labelledby="buscar-club-title"
         onMouseDown={(event) => event.stopPropagation()}
-        className="relative max-h-[calc(100dvh-24px)] w-full max-w-3xl overflow-x-hidden overflow-y-auto overscroll-contain rounded-2xl border border-white/10 bg-[#172519] shadow-[0_30px_100px_rgba(0,0,0,0.5)] sm:max-h-[92dvh] sm:rounded-3xl"
+        className="relative max-h-[calc(100dvh-24px)] w-full max-w-3xl overflow-x-hidden overflow-y-auto overscroll-contain rounded-xl border border-white/15 bg-[#172519] shadow-[0_30px_100px_rgba(0,0,0,0.5)] sm:max-h-[92dvh]"
       >
-        {/* Glow */}
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[300px] w-[300px] rounded-full bg-[#6ce17c]/10 blur-[90px] sm:-right-32 sm:-top-32 sm:h-[350px] sm:w-[350px] sm:blur-[100px]" />
+        {/* Decoración sutil */}
+        <div className="pointer-events-none absolute -right-32 -top-32 h-[300px] w-[300px] rounded-full bg-[#4D6645]/15 blur-[100px]" />
 
         {/* Cerrar */}
         <button
           type="button"
           onClick={onClose}
           aria-label="Cerrar formulario"
-          className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#172519]/70 text-lg text-white/60 backdrop-blur-md transition hover:border-white/30 hover:bg-white/5 hover:text-white sm:right-6 sm:top-6 sm:h-11 sm:w-11 sm:text-xl"
+          className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-xl text-white/70 transition-colors duration-200 hover:border-white/30 hover:bg-white/10 hover:text-white sm:right-6 sm:top-6"
         >
           ×
         </button>
 
-        <div className="relative z-10 p-5 pt-16 sm:p-7 sm:pt-20 md:p-10 md:pt-10 lg:p-12">
-          {/* =========================
-              ENCABEZADO
-          ========================== */}
+        <div className="relative z-10 p-5 pt-16 sm:p-8 sm:pt-16 md:p-10 lg:p-12">
+          {/* ENCABEZADO */}
           <div className="max-w-2xl">
-            <div className="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
-              <span className="h-2 w-2 shrink-0 rounded-full bg-[#6ce17c]" />
+            <div className="mb-5 flex items-center gap-3">
+              <span
+                aria-hidden="true"
+                className="h-2 w-2 shrink-0 rounded-full bg-[#8DA783]"
+              />
 
-              <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 sm:text-xs sm:tracking-[0.18em]">
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
                 Red federal FECCA
               </span>
             </div>
 
             <h2
               id="buscar-club-title"
-              className="max-w-xl pr-2 text-[1.75rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-3xl md:text-4xl"
+              className="max-w-xl text-[1.8rem] font-semibold leading-[1.12] tracking-[-0.04em] text-white sm:text-3xl md:text-4xl"
             >
               ¿Estás buscando un club{" "}
-              <span className="text-[#d8c47f]">al cual pertenecer?</span>
+              <span className="text-[#d8c47f]">
+                al cual pertenecer?
+              </span>
             </h2>
 
-            <p className="mt-4 max-w-xl text-sm leading-6 text-white/50 md:text-base">
-              Envianos tu localidad y tus datos de contacto para ayudarte a
-              encontrar un club de la red.
+            <p className="mt-4 max-w-xl text-sm leading-7 text-white/65 sm:text-base">
+              Envianos tu localidad y tus datos de contacto para
+              ayudarte a encontrar un club de la red.
             </p>
           </div>
 
-          <div className="my-6 h-px bg-white/10 sm:my-8" />
+          <div className="my-7 h-px bg-white/15 sm:my-9" />
 
-          {/* =========================
-              FORMULARIO
-          ========================== */}
+          {/* FORMULARIO */}
           <form onSubmit={handleSubmit}>
             <div className="grid gap-5 md:grid-cols-2 md:gap-6">
               {/* Nombre */}
               <div className="md:col-span-2">
                 <label
                   htmlFor="buscar-nombre"
-                  className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45 sm:text-xs"
+                  className={labelClassName}
                 >
                   Nombre
                 </label>
@@ -116,7 +124,7 @@ export default function BuscarClubModal({
                   required
                   autoComplete="name"
                   placeholder="Tu nombre"
-                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
+                  className={inputClassName}
                 />
               </div>
 
@@ -124,7 +132,7 @@ export default function BuscarClubModal({
               <div className="min-w-0">
                 <label
                   htmlFor="buscar-telefono"
-                  className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45 sm:text-xs"
+                  className={labelClassName}
                 >
                   Teléfono de contacto
                 </label>
@@ -137,7 +145,7 @@ export default function BuscarClubModal({
                   autoComplete="tel"
                   inputMode="tel"
                   placeholder="11 1234 5678"
-                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
+                  className={inputClassName}
                 />
               </div>
 
@@ -145,7 +153,7 @@ export default function BuscarClubModal({
               <div className="min-w-0">
                 <label
                   htmlFor="buscar-email"
-                  className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45 sm:text-xs"
+                  className={labelClassName}
                 >
                   Email
                 </label>
@@ -158,7 +166,7 @@ export default function BuscarClubModal({
                   autoComplete="email"
                   inputMode="email"
                   placeholder="nombre@email.com"
-                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
+                  className={inputClassName}
                 />
               </div>
 
@@ -166,7 +174,7 @@ export default function BuscarClubModal({
               <div className="min-w-0">
                 <label
                   htmlFor="buscar-localidad"
-                  className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45 sm:text-xs"
+                  className={labelClassName}
                 >
                   Localidad
                 </label>
@@ -177,7 +185,7 @@ export default function BuscarClubModal({
                   type="text"
                   required
                   placeholder="Tu localidad"
-                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
+                  className={inputClassName}
                 />
               </div>
 
@@ -185,7 +193,7 @@ export default function BuscarClubModal({
               <div className="min-w-0">
                 <label
                   htmlFor="buscar-provincia"
-                  className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45 sm:text-xs"
+                  className={labelClassName}
                 >
                   Provincia
                 </label>
@@ -196,29 +204,23 @@ export default function BuscarClubModal({
                   type="text"
                   required
                   placeholder="Tu provincia"
-                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
+                  className={inputClassName}
                 />
               </div>
             </div>
 
-            {/* =========================
-                FOOTER
-            ========================== */}
-            <div className="mt-7 flex flex-col gap-5 border-t border-white/10 pt-6 sm:mt-8 sm:pt-7 md:flex-row md:items-center md:justify-between">
-              <p className="max-w-sm text-xs leading-5 text-white/30">
-                FECCA te ayudará a encontrar un club de la red de acuerdo a tu
-                localidad.
+            {/* PIE DEL FORMULARIO */}
+            <div className="mt-8 flex flex-col gap-6 border-t border-white/15 pt-7 md:flex-row md:items-center md:justify-between">
+              <p className="max-w-sm text-xs leading-6 text-white/50">
+                FECCA te ayudará a encontrar un club de la red
+                de acuerdo a tu localidad.
               </p>
 
               <button
                 type="submit"
-                className="group inline-flex w-full items-center justify-between gap-4 rounded-full bg-[#6ce17c] px-6 py-4 text-sm font-bold text-[#172519] transition duration-300 hover:-translate-y-0.5 hover:bg-[#7bea89] sm:px-8 md:w-auto md:justify-center"
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#4D6645] px-8 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#5D7954] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#8DA783] md:w-auto"
               >
                 Enviar solicitud
-
-                <span className="transition duration-300 group-hover:translate-x-1">
-                  →
-                </span>
               </button>
             </div>
           </form>

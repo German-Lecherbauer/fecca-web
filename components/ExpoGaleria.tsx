@@ -62,6 +62,7 @@ const fotos = [
 ];
 
 export default function ExpoGaleria() {
+  const [galeriaAbierta, setGaleriaAbierta] = useState(false);
   const [fotoActiva, setFotoActiva] = useState<number | null>(null);
   const [fotoMobile, setFotoMobile] = useState(0);
 
@@ -90,6 +91,7 @@ export default function ExpoGaleria() {
   const abrir = (index: number) => {
     disparadorRef.current =
       document.activeElement as HTMLButtonElement;
+
     setFotoActiva(index);
   };
 
@@ -152,168 +154,195 @@ export default function ExpoGaleria() {
     <>
       <section
         id="expo-galeria"
-        className="relative overflow-hidden bg-[#f3f0e7] pb-20 pt-0 sm:pb-24"
+        aria-labelledby="titulo-expo-galeria"
+        className="relative overflow-hidden bg-[#E8E7DC] pb-20 pt-0 sm:pb-24"
       >
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          {/* ENCABEZADO - SIN SEGUNDA RAYA */}
-          <div className="mb-8 flex flex-col gap-4 pt-8 sm:mb-10 sm:pt-10 md:flex-row md:items-end md:justify-between">
+          {/* ENCABEZADO DESPLEGABLE */}
+          <div className="flex flex-col gap-6 border-t border-[#283524]/15 pt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-10">
             <div>
               <div className="mb-4 flex items-center gap-3">
-                <span className="h-2 w-2 rounded-full bg-[#537247]" />
+                <span
+                  aria-hidden="true"
+                  className="h-2 w-2 rounded-full bg-[#4D6645]"
+                />
 
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#537247] sm:text-xs">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#4D6645]">
                   Ediciones anteriores
                 </span>
               </div>
 
-              <h2 className="text-4xl font-semibold leading-[1.08] tracking-[-0.045em] text-[#172519] sm:text-5xl lg:text-6xl">
-                Así se vivió
-                <span className="block text-[#537247]">
-                  Expo Cannabis.
-                </span>
+              <h2
+                id="titulo-expo-galeria"
+                className="text-3xl font-semibold tracking-tight text-[#283524] sm:text-4xl"
+              >
+                Así se vivió Expo Cannabis
               </h2>
             </div>
 
-          </div>
-
-          {/* MOSAICO DESKTOP */}
-          <div className="hidden auto-rows-[220px] grid-cols-4 gap-4 md:grid lg:auto-rows-[245px]">
-            {fotos.map((foto, index) => (
-              <button
-                key={foto.src}
-                type="button"
-                onClick={() => abrir(index)}
-                aria-label={`Ampliar fotografía: ${foto.titulo}`}
-                className={`group relative cursor-zoom-in overflow-hidden rounded-[20px] bg-[#172519] text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#537247] ${foto.clase}`}
-              >
-                <Image
-                  src={foto.src}
-                  alt={foto.alt}
-                  fill
-                  sizes={
-                    index === 0
-                      ? "(max-width: 1024px) 50vw, 50vw"
-                      : "25vw"
-                  }
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.18em] text-white/65">
-                    Expo Cannabis
-                  </span>
-
-                  <p className="text-base font-semibold text-white">
-                    {foto.titulo}
-                  </p>
-                </div>
-
-                <span className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-black/25 text-xl text-white opacity-0 backdrop-blur-sm transition group-hover:opacity-100">
-                  +
-                </span>
-              </button>
-            ))}
-          </div>
-
-          {/* CARRUSEL MOBILE: UNA FOTO POR VEZ */}
-          <div className="md:hidden">
-            <div
-              ref={carruselRef}
-              onScroll={actualizarFotoMobile}
-              className="flex snap-x snap-mandatory gap-0 overflow-x-auto overscroll-x-contain rounded-[20px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            {/* BOTÓN VERDE, SIN FLECHA */}
+            <button
+              type="button"
+              aria-expanded={galeriaAbierta}
+              aria-controls="contenido-galeria-expo"
+              onClick={() => setGaleriaAbierta((actual) => !actual)}
+              className="inline-flex min-h-12 w-fit shrink-0 items-center justify-center rounded-lg bg-[#4D6645] px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#3D5337] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
             >
+              {galeriaAbierta ? "Ocultar galería" : "Ver galería"}
+            </button>
+          </div>
+
+          {/* CONTENIDO OCULTO INICIALMENTE */}
+          <div
+            id="contenido-galeria-expo"
+            hidden={!galeriaAbierta}
+            className={galeriaAbierta ? "pt-10" : "hidden"}
+          >
+            {/* MOSAICO DESKTOP */}
+            <div className="hidden auto-rows-[220px] grid-cols-4 gap-4 md:grid lg:auto-rows-[245px]">
               {fotos.map((foto, index) => (
                 <button
                   key={foto.src}
                   type="button"
                   onClick={() => abrir(index)}
                   aria-label={`Ampliar fotografía: ${foto.titulo}`}
-                  className="group relative aspect-[4/5] w-full min-w-full shrink-0 snap-start overflow-hidden bg-[#172519] text-left"
+                  className={`group relative cursor-zoom-in overflow-hidden rounded-[20px] bg-[#283524] text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#4D6645] ${foto.clase}`}
                 >
                   <Image
                     src={foto.src}
                     alt={foto.alt}
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
+                    sizes={
+                      index === 0
+                        ? "(max-width: 1024px) 50vw, 50vw"
+                        : "25vw"
+                    }
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
                   <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.16em] text-white/65">
+                    <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.18em] text-white/65">
                       Expo Cannabis
                     </span>
 
-                    <p className="text-lg font-semibold text-white">
+                    <p className="text-base font-semibold text-white">
                       {foto.titulo}
                     </p>
                   </div>
+
+                  <span
+                    aria-hidden="true"
+                    className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-black/25 text-xl text-white opacity-0 backdrop-blur-sm transition group-hover:opacity-100 group-focus-visible:opacity-100"
+                  >
+                    +
+                  </span>
                 </button>
               ))}
             </div>
 
-            {/* INDICADOR Y NAVEGACIÓN */}
-            <div className="mt-5 flex items-center justify-between gap-4">
-              <p className="text-xs text-[#172519]/50">
-                Deslizá para explorar
-              </p>
+            {/* CARRUSEL MÓVIL */}
+            <div className="md:hidden">
+              <div
+                ref={carruselRef}
+                onScroll={actualizarFotoMobile}
+                className="flex snap-x snap-mandatory gap-0 overflow-x-auto overscroll-x-contain rounded-[20px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
+                {fotos.map((foto, index) => (
+                  <button
+                    key={foto.src}
+                    type="button"
+                    onClick={() => abrir(index)}
+                    aria-label={`Ampliar fotografía: ${foto.titulo}`}
+                    className="group relative aspect-[4/5] w-full min-w-full shrink-0 snap-start overflow-hidden bg-[#283524] text-left"
+                  >
+                    <Image
+                      src={foto.src}
+                      alt={foto.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
 
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() =>
-                    irAFoto(Math.max(0, fotoMobile - 1))
-                  }
-                  disabled={fotoMobile === 0}
-                  aria-label="Foto anterior"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[#172519]/15 text-lg text-[#172519] transition hover:bg-[#172519]/5 disabled:cursor-not-allowed disabled:opacity-30"
-                >
-                  ←
-                </button>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
 
-                <span className="min-w-10 text-center text-xs font-semibold tabular-nums text-[#172519]/65">
-                  {fotoMobile + 1} / {fotos.length}
-                </span>
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.16em] text-white/65">
+                        Expo Cannabis
+                      </span>
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    irAFoto(
-                      Math.min(fotos.length - 1, fotoMobile + 1)
-                    )
-                  }
-                  disabled={fotoMobile === fotos.length - 1}
-                  aria-label="Foto siguiente"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-[#172519]/15 text-lg text-[#172519] transition hover:bg-[#172519]/5 disabled:cursor-not-allowed disabled:opacity-30"
-                >
-                  →
-                </button>
+                      <p className="text-lg font-semibold text-white">
+                        {foto.titulo}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* CONTROLES DEL CARRUSEL */}
+              <div className="mt-5 flex items-center justify-between gap-4">
+                <p className="text-xs text-[#283524]/65">
+                  Deslizá para explorar
+                </p>
+
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      irAFoto(Math.max(0, fotoMobile - 1))
+                    }
+                    disabled={fotoMobile === 0}
+                    aria-label="Foto anterior"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#283524]/20 text-lg text-[#283524] transition hover:bg-[#283524]/5 disabled:cursor-not-allowed disabled:opacity-30"
+                  >
+                    ←
+                  </button>
+
+                  <span className="min-w-10 text-center text-xs font-semibold tabular-nums text-[#283524]/75">
+                    {fotoMobile + 1} / {fotos.length}
+                  </span>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      irAFoto(
+                        Math.min(fotos.length - 1, fotoMobile + 1)
+                      )
+                    }
+                    disabled={fotoMobile === fotos.length - 1}
+                    aria-label="Foto siguiente"
+                    className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#283524]/20 text-lg text-[#283524] transition hover:bg-[#283524]/5 disabled:cursor-not-allowed disabled:opacity-30"
+                  >
+                    →
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* CIERRE - SIN TEXTO DE NUEVE MOMENTOS */}
-          <div className="mt-8 flex justify-end border-t border-[#172519]/10 pt-6">
-            <a
-              href="https://expocannabis.com.ar/entradas/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] text-[#537247] transition hover:text-[#172519]"
-            >
-              Expo Cannabis 2026
+            {/* ENLACE AL EVENTO */}
+            <div className="mt-8 flex justify-end border-t border-[#283524]/15 pt-6">
+              <a
+                href="https://expocannabis.com.ar/entradas/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] text-[#4D6645] transition hover:text-[#283524]"
+              >
+                Expo Cannabis 2026
 
-              <span className="transition-transform duration-300 group-hover:translate-x-1">
-                ↗
-              </span>
-            </a>
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                >
+                  ↗
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* LIGHTBOX */}
+      {/* VISOR AMPLIADO */}
       {fotoActiva !== null && (
         <div
           role="dialog"
@@ -322,7 +351,6 @@ export default function ExpoGaleria() {
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 px-4 py-20 backdrop-blur-md"
           onClick={cerrar}
         >
-          {/* CERRAR */}
           <button
             ref={cerrarRef}
             type="button"
@@ -333,7 +361,6 @@ export default function ExpoGaleria() {
             ×
           </button>
 
-          {/* ANTERIOR */}
           <button
             type="button"
             onClick={(event) => {
@@ -346,7 +373,6 @@ export default function ExpoGaleria() {
             ‹
           </button>
 
-          {/* FOTO AMPLIADA */}
           <div
             className="relative h-full max-h-[75vh] w-full max-w-6xl"
             onClick={(event) => event.stopPropagation()}
@@ -361,7 +387,6 @@ export default function ExpoGaleria() {
             />
           </div>
 
-          {/* SIGUIENTE */}
           <button
             type="button"
             onClick={(event) => {
@@ -374,7 +399,6 @@ export default function ExpoGaleria() {
             ›
           </button>
 
-          {/* PIE DEL LIGHTBOX */}
           <div className="absolute bottom-6 left-1/2 w-full -translate-x-1/2 px-6 text-center">
             <p className="text-sm font-semibold text-white">
               {fotos[fotoActiva].titulo}

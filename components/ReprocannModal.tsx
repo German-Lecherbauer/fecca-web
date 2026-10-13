@@ -279,9 +279,6 @@ export default function ReprocannModal({
               >
                 Enviar consulta
 
-                <span className="transition duration-300 group-hover:translate-x-1">
-                  →
-                </span>
               </button>
             </div>
           </form>

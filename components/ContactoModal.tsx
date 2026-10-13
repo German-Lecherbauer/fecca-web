@@ -1,6 +1,8 @@
+
 "use client";
 
 import { useEffect } from "react";
+import type { FormEvent } from "react";
 
 type ContactoModalProps = {
   abierto: boolean;
@@ -33,11 +35,11 @@ export default function ContactoModal({
 
   if (!abierto) return null;
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // Temporal hasta conectar el formulario
-    // con el backend / servicio de correo.
+    // con el backend o servicio de correo.
     console.log("Formulario de contacto enviado");
   };
 
@@ -67,9 +69,7 @@ export default function ContactoModal({
         </button>
 
         <div className="relative z-10 p-5 pt-16 sm:p-7 sm:pt-20 md:p-10 md:pt-10 lg:p-12">
-          {/* =========================
-              ENCABEZADO
-          ========================== */}
+          {/* ENCABEZADO */}
           <div>
             <div className="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
               <span className="h-2 w-2 shrink-0 rounded-full bg-[#6ce17c]" />
@@ -93,9 +93,7 @@ export default function ContactoModal({
 
           <div className="my-6 h-px bg-white/10 sm:my-8" />
 
-          {/* =========================
-              FORMULARIO
-          ========================== */}
+          {/* FORMULARIO */}
           <form onSubmit={handleSubmit}>
             <div className="grid gap-5 sm:gap-6">
               {/* Nombre */}
@@ -159,9 +157,7 @@ export default function ContactoModal({
               </div>
             </div>
 
-            {/* =========================
-                FOOTER
-            ========================== */}
+            {/* FOOTER */}
             <div className="mt-7 flex flex-col gap-5 border-t border-white/10 pt-6 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-7">
               <div>
                 <p className="text-xs font-semibold text-white/45">
@@ -173,15 +169,12 @@ export default function ContactoModal({
                 </p>
               </div>
 
+              {/* Botón sin flecha */}
               <button
                 type="submit"
-                className="group inline-flex w-full items-center justify-between gap-4 rounded-full bg-[#6ce17c] px-6 py-4 text-sm font-bold text-[#172519] transition duration-300 hover:-translate-y-0.5 hover:bg-[#7bea89] sm:w-auto sm:justify-center sm:px-8"
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#6ce17c] px-8 py-4 text-sm font-bold text-[#172519] transition duration-300 hover:-translate-y-0.5 hover:bg-[#7bea89] sm:w-auto"
               >
                 Enviar mensaje
-
-                <span className="transition duration-300 group-hover:translate-x-1">
-                  →
-                </span>
               </button>
             </div>
           </form>

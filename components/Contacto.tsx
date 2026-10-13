@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -10,166 +11,141 @@ export default function Contacto() {
     <>
       <section
         id="contacto"
-        className="relative z-20 -mt-5 overflow-hidden rounded-t-[18px] bg-[#f3f0e7] py-20 text-[#172519] sm:py-24 lg:py-28"
+        aria-labelledby="titulo-contacto"
+        className="relative overflow-hidden bg-[#F1EFE7] py-20 text-[#283524] sm:py-24 lg:py-28"
       >
-        {/* Decoración */}
-        <div className="absolute -left-64 bottom-0 h-[400px] w-[400px] rounded-full bg-[#6ce17c]/10 blur-[110px] sm:-left-48 sm:h-[500px] sm:w-[500px] sm:blur-[140px]" />
+        {/* DECORACIÓN */}
+        <div className="pointer-events-none absolute -bottom-48 -left-48 h-[420px] w-[420px] rounded-full bg-[#4D6645]/10 blur-[120px]" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          {/* =========================
-              ENCABEZADO
-          ========================== */}
-          <div className="grid gap-6 sm:gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-10">
-            <div>
-              <div className="mb-4 flex items-center gap-3 sm:mb-6">
-                <span className="h-2 w-2 shrink-0 rounded-full bg-[#45c95a]" />
+          {/* ENCABEZADO */}
+          <div>
+            <div className="mb-5 flex items-center gap-3">
+              <span
+                aria-hidden="true"
+                className="h-2 w-2 shrink-0 rounded-full bg-[#4D6645]"
+              />
 
-                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#172519]/50 sm:text-xs sm:tracking-[0.2em]">
-                  Escribinos
-                </span>
-              </div>
-
-              <h2 className="max-w-3xl text-[2.35rem] font-semibold leading-[1.04] tracking-[-0.045em] sm:text-4xl md:text-5xl lg:text-6xl">
-                Tu club también puede
-                <span className="block text-[#537247]">
-                  ser parte de la red.
-                </span>
-              </h2>
+              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4D6645]">
+                Escribinos
+              </span>
             </div>
 
-            <p className="max-w-lg text-[15px] leading-7 text-[#172519]/60 sm:text-base md:text-lg">
-              Ponete en contacto con FECCA para conocer más sobre la Federación,
-              resolver consultas o sumar tu club a la red federal.
-            </p>
+            <h2
+              id="titulo-contacto"
+              className="text-[2.3rem] font-semibold leading-[1.12] tracking-[-0.045em] sm:text-4xl md:text-[2.7rem] lg:text-[3rem] xl:whitespace-nowrap"
+            >
+              Tu club también puede{" "}
+              <span className="text-[#4D6645]">
+                ser parte de la red.
+              </span>
+            </h2>
           </div>
 
-          <div className="my-9 h-px bg-[#172519]/10 sm:my-12 lg:my-14" />
+          <div className="my-10 h-px w-full bg-[#283524]/15 sm:my-12 lg:my-14" />
 
-          {/* =========================
-              CONTACTO PRINCIPAL
-          ========================== */}
-          <div className="grid overflow-hidden rounded-2xl border border-[#172519]/10 bg-white/45 sm:rounded-3xl lg:grid-cols-[1fr_0.7fr]">
-            {/* Contacto general */}
-            <div className="p-6 sm:p-8 md:p-12 lg:p-14">
-              <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#172519]/40 sm:text-xs sm:tracking-[0.2em]">
+          {/* TARJETAS PRINCIPALES */}
+          <div className="grid gap-5 lg:grid-cols-2">
+            {/* CONTACTO GENERAL */}
+            <div className="flex h-full flex-col rounded-xl border border-[#283524]/15 bg-white/50 p-7 sm:p-9 lg:p-12">
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4D6645]">
                 Contacto general
               </span>
 
-              <h3 className="mt-5 max-w-2xl text-[1.7rem] font-semibold leading-tight tracking-[-0.03em] sm:mt-6 sm:text-3xl md:text-4xl">
+              <h3 className="mt-6 max-w-xl text-[1.7rem] font-semibold leading-tight tracking-tight sm:text-3xl">
                 ¿Querés comunicarte con la Federación?
               </h3>
 
-              <p className="mt-4 max-w-xl text-sm leading-6 text-[#172519]/55 sm:mt-5 sm:text-base sm:leading-7">
+              <p className="mt-5 max-w-xl text-base leading-7 text-[#283524]/75">
                 Escribinos y contanos en qué podemos ayudarte.
               </p>
 
-              <button
-                type="button"
-                onClick={() => setModalContacto(true)}
-                className="group mt-7 inline-flex w-full items-center justify-between gap-4 rounded-full bg-[#172519] px-6 py-4 text-sm font-bold text-white transition duration-300 hover:-translate-y-1 hover:bg-[#223727] sm:mt-10 sm:w-auto sm:justify-center sm:px-7"
-              >
-                Escribinos
-
-                <span className="transition duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-              </button>
+              <div className="mt-auto pt-9">
+                <button
+                  type="button"
+                  onClick={() => setModalContacto(true)}
+                  className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#4D6645] px-8 py-3 text-base font-semibold text-white transition-colors duration-300 hover:bg-[#3D5337] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524] sm:w-auto"
+                >
+                  Escribinos
+                </button>
+              </div>
             </div>
 
-            {/* =========================
-                CLUBES FEDERADOS
-            ========================== */}
-            <a
-              href="#clubes"
-              aria-label="Ver clubes federados"
-              className="group flex flex-col justify-between border-t border-[#172519]/10 bg-[#e9e5d9]/60 p-6 transition duration-300 hover:bg-[#e4dfd1] sm:p-8 md:p-12 lg:border-l lg:border-t-0 lg:p-14"
-            >
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#172519]/40 sm:text-xs sm:tracking-[0.2em]">
-                  Sumate
-                </span>
+            {/* CLUBES FEDERADOS - TARJETA INFORMATIVA */}
+            <div className="flex h-full flex-col rounded-xl border border-[#283524]/15 bg-[#E8E7DC] p-7 sm:p-9 lg:p-12">
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4D6645]">
+                Sumate
+              </span>
 
-                <p className="mt-5 max-w-sm text-xl font-semibold leading-snug tracking-[-0.02em] sm:mt-6 sm:text-2xl">
-                  Más de 200 clubes ya forman parte de FECCA.
+              <h3 className="mt-6 max-w-xl text-[1.7rem] font-semibold leading-tight tracking-tight sm:text-3xl">
+                Más de 200 clubes ya forman parte de FECCA.
+              </h3>
+
+              <div className="mt-auto pt-9">
+                <p className="text-5xl font-semibold tracking-[-0.05em] text-[#4D6645]">
+                  +200
+                </p>
+
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#283524]/65">
+                  Clubes federados
+                </p>
+
+                <p className="mt-4 text-sm leading-6 text-[#283524]/70">
+                  Una red federal de organizaciones que crece
+                  y se fortalece en todo el país.
                 </p>
               </div>
-
-              <div className="mt-10 flex items-end justify-between gap-5 sm:mt-14 lg:mt-16">
-                <div>
-                  <p className="text-4xl font-semibold tracking-[-0.05em] text-[#537247] sm:text-5xl">
-                    +200
-                  </p>
-
-                  <p className="mt-2 text-[10px] font-semibold uppercase leading-4 tracking-[0.14em] text-[#172519]/40 sm:text-xs sm:tracking-[0.16em]">
-                    Clubes federados
-                  </p>
-                </div>
-
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#172519]/15 text-lg transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-[#172519] group-hover:text-white sm:h-14 sm:w-14 sm:text-xl">
-                  ↗
-                </span>
-              </div>
-            </a>
+            </div>
           </div>
 
-          {/* =========================
-              CONTACTOS SECUNDARIOS
-          ========================== */}
-          <div className="mt-4 grid gap-4 sm:mt-5 sm:gap-5 md:grid-cols-2">
-            {/* Salud y Educación */}
-            <a
-              href="mailto:salud@fecca.com.ar"
-              className="group flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-[#172519]/10 bg-white/30 p-5 transition duration-300 hover:-translate-y-0.5 hover:bg-white/60 sm:p-6"
-            >
-              <div className="min-w-0">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#172519]/35 sm:text-xs sm:tracking-[0.18em]">
-                  Salud y Educación
-                </p>
-
-                <p className="mt-2 break-all text-sm font-semibold sm:break-normal sm:text-base">
-                  salud@fecca.com.ar
-                </p>
-              </div>
-
-              <span className="shrink-0 transition duration-300 group-hover:translate-x-1">
-                →
-              </span>
-            </a>
-
-            {/* Institucional */}
+          {/* INSTITUCIONAL - ANCHO COMPLETO */}
+          <div className="mt-5">
             <a
               href="/documentos/institucional-fecca.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex min-w-0 items-center justify-between gap-4 rounded-2xl border border-[#172519]/10 bg-white/30 p-5 transition duration-300 hover:-translate-y-0.5 hover:bg-white/60 sm:p-6"
+              className="group flex w-full flex-col justify-between gap-5 rounded-xl border border-[#283524]/15 bg-white/40 p-6 transition-colors duration-300 hover:bg-white/75 sm:flex-row sm:items-center sm:p-8"
             >
-              <div className="min-w-0">
-                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#172519]/35 sm:text-xs sm:tracking-[0.18em]">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4D6645]">
                   Institucional
                 </p>
 
-                <p className="mt-2 text-sm font-semibold sm:text-base">
+                <h3 className="mt-3 text-xl font-semibold tracking-tight text-[#283524] sm:text-2xl">
                   Conocé más sobre FECCA
+                </h3>
+
+                <p className="mt-2 text-sm leading-6 text-[#283524]/70">
+                  Accedé al documento institucional de la Federación.
                 </p>
               </div>
 
-              <div className="flex shrink-0 items-center gap-3">
-                <span className="hidden text-xs font-semibold uppercase tracking-[0.12em] text-[#172519]/35 sm:block">
-                  Ver PDF
-                </span>
+              <span className="inline-flex shrink-0 items-center text-sm font-semibold text-[#4D6645] underline decoration-[#4D6645]/40 underline-offset-4 transition-colors group-hover:text-[#283524]">
+                Ver documento institucional (PDF)
+              </span>
+            </a>
+          </div>
 
-                <span className="transition duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  ↗
-                </span>
-              </div>
+          {/* LINKTREE OFICIAL */}
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end sm:gap-5">
+            <p className="text-sm text-[#283524]/70">
+              Encontrá todos nuestros canales oficiales:
+            </p>
+
+            <a
+              href="https://linktr.ee/fecca.oficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visitar Linktree oficial de FECCA"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#4D6645] px-7 py-3 text-sm font-semibold text-[#F1EFE7] transition-colors duration-300 hover:bg-[#3D5337] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524] sm:w-auto"
+            >
+              Linktree de FECCA
             </a>
           </div>
         </div>
       </section>
 
-      {/* =========================
-          MODAL DE CONTACTO
-      ========================== */}
+      {/* MODAL DE CONTACTO */}
       <ContactoModal
         abierto={modalContacto}
         onClose={() => setModalContacto(false)}

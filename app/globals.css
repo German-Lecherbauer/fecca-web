@@ -1,8 +1,15 @@
+
 @import "tailwindcss";
 
 :root {
-  --background: #172519;
+  --background: #283524;
   --foreground: #ffffff;
+}
+
+/* Fuentes oficiales FECCA */
+@theme inline {
+  --font-sans: var(--font-inter), Arial, sans-serif;
+  --font-heading: var(--font-be-vietnam-pro), Arial, sans-serif;
 }
 
 * {
@@ -11,35 +18,63 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 110px;
 }
 
 body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+
+/* Títulos institucionales */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-be-vietnam-pro), Arial, sans-serif;
+  font-weight: 600;
+}
+
+/* Elementos interactivos */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
 
 a {
   text-decoration: none;
 }
 
-/* =========================
-   ANIMACIÓN LOGO FECCA
-========================= */
-
-@keyframes feccaFloat {
+/* Animación suave del logo FECCA */
+@keyframes feccaLogoPulse {
   0%,
   100% {
-    transform: translateY(0) rotate(-1deg);
+    transform: scale(1);
   }
 
   50% {
-    transform: translateY(-18px) rotate(1deg);
+    transform: scale(1.025);
   }
 }
 
-.fecca-logo-float {
-  animation: feccaFloat 5s ease-in-out infinite;
-  will-change: transform;
+.fecca-logo-pulse {
+  transform-origin: center;
+  animation: feccaLogoPulse 5s ease-in-out infinite;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fecca-logo-pulse {
+    animation: none;
+  }
 }
