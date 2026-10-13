@@ -87,7 +87,7 @@ export default function Hero() {
           <div className="pointer-events-none absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#4D6645]/20 blur-[70px]" />
 
           {/* Logo 48 px más abajo que antes */}
-          <div className="relative z-10 -translate-y-8 translate-x-20 xl:-translate-y-12 xl:translate-x-28">
+          <div className="relative z-10 -translate-y-8 translate-x-28 xl:-translate-y-12 xl:translate-x-36">
             <div className="fecca-logo-pulse">
               <Image
                 src="/images/logo/logo-fecca.svg"
