@@ -180,7 +180,7 @@ export default function ExpoGaleria() {
               </h2>
             </div>
 
-            {/* BOTÓN VERDE, SIN FLECHA */}
+            {/* BOTÓN PARA MOSTRAR U OCULTAR LA GALERÍA */}
             <button
               type="button"
               aria-expanded={galeriaAbierta}
@@ -242,7 +242,7 @@ export default function ExpoGaleria() {
               ))}
             </div>
 
-            {/* CARRUSEL MÓVIL */}
+            {/* CARRUSEL MOBILE */}
             <div className="md:hidden">
               <div
                 ref={carruselRef}
@@ -318,25 +318,6 @@ export default function ExpoGaleria() {
                   </button>
                 </div>
               </div>
-            </div>
-
-            {/* ENLACE AL EVENTO */}
-            <div className="mt-8 flex justify-end border-t border-[#283524]/15 pt-6">
-              <a
-                href="https://expocannabis.com.ar/entradas/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] text-[#4D6645] transition hover:text-[#283524]"
-              >
-                Expo Cannabis 2026
-
-                <span
-                  aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                >
-                  ↗
-                </span>
-              </a>
             </div>
           </div>
         </div>

@@ -248,8 +248,8 @@ export default function Beneficios() {
             </p>
           </div>
 
-          {/* GRILLA DE LOGOS */}
-          <div className="mx-auto grid max-w-[900px] grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 lg:gap-5">
+          {/* GRILLA DE LOGOS: 3 COLUMNAS EN TODOS LOS TAMAÑOS */}
+          <div className="mx-auto grid max-w-[900px] grid-cols-3 gap-2 sm:gap-4 lg:gap-5">
             {marcasAliadas.map((marca) => {
               const contenido = (
                 <div className="relative h-full w-full">
@@ -257,14 +257,14 @@ export default function Beneficios() {
                     src={marca.logo}
                     alt={`Logo de ${marca.nombre}`}
                     fill
-                    sizes="(max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 1024px) 33vw, 300px"
                     className="object-contain"
                   />
                 </div>
               );
 
               const clases =
-                "flex aspect-square min-w-0 items-center justify-center rounded-lg border border-[rgba(40,53,36,0.14)] bg-white p-6";
+                "flex aspect-square min-w-0 items-center justify-center rounded-lg border border-[rgba(40,53,36,0.14)] bg-white p-2 sm:p-4 lg:p-6";
 
               if (marca.web) {
                 return (

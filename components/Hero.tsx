@@ -31,6 +31,7 @@ export default function Hero() {
             </span>
           </h1>
 
+          {/* Subtítulo */}
           <p className="mt-7 max-w-2xl text-[16px] leading-[1.6] text-white/85 sm:mt-8 sm:text-lg">
             Unidos por una cultura cannábica responsable y sustentable.
           </p>
@@ -80,14 +81,15 @@ export default function Hero() {
 
         {/* LOGO PROTAGONISTA - ESCRITORIO */}
         <div className="relative hidden min-h-[520px] items-center justify-center lg:flex">
+          {/* Luces detrás del logo */}
           <div className="pointer-events-none absolute right-[-90px] top-[-20px] h-[520px] w-[520px] rounded-full bg-[#4D6645]/20 blur-[110px]" />
 
           <div className="pointer-events-none absolute right-[-40px] top-[30px] h-[340px] w-[340px] rounded-full bg-[#D0BC84]/10 blur-[90px]" />
 
           <div className="pointer-events-none absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#4D6645]/20 blur-[70px]" />
 
-          {/* Logo desplazado hacia la derecha */}
-          <div className="relative z-10 -translate-y-8 translate-x-40 xl:-translate-y-12 xl:translate-x-48">
+          {/* Logo reposicionado hacia la izquierda */}
+          <div className="relative z-10 -translate-y-8 translate-x-12 xl:-translate-y-12 xl:translate-x-16">
             <div className="fecca-logo-pulse">
               <Image
                 src="/images/logo/logo-fecca.svg"
