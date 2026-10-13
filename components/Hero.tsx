@@ -52,7 +52,7 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Métricas: se mantienen hasta confirmación */}
+          {/* Métricas */}
           <div className="mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-t border-white/15 pt-6 sm:mt-14 sm:flex sm:gap-12 sm:pt-7">
             <div>
               <p className="text-xl font-semibold text-white sm:text-2xl">
@@ -86,8 +86,8 @@ export default function Hero() {
 
           <div className="pointer-events-none absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#4D6645]/20 blur-[70px]" />
 
-          {/* Logo 48 px más abajo que antes */}
-          <div className="relative z-10 -translate-y-8 translate-x-28 xl:-translate-y-12 xl:translate-x-36">
+          {/* Logo desplazado hacia la derecha */}
+          <div className="relative z-10 -translate-y-8 translate-x-40 xl:-translate-y-12 xl:translate-x-48">
             <div className="fecca-logo-pulse">
               <Image
                 src="/images/logo/logo-fecca.svg"
