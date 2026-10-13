@@ -26,7 +26,7 @@ const INSTAGRAM_URL = "https://www.instagram.com/fecca.oficial/";
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 -mt-5 overflow-hidden rounded-t-[18px] bg-[#f3f0e7] text-[#172519]">
+    <footer className="relative z-20 overflow-hidden bg-[#E5E5DA] text-[#172519]">
       {/* DECORACIÓN */}
       <div className="pointer-events-none absolute -bottom-52 -left-52 h-[380px] w-[380px] rounded-full bg-[#537247]/10 blur-[110px] sm:-left-32 sm:h-[450px] sm:w-[450px] sm:blur-[130px]" />
 
@@ -51,8 +51,7 @@ export default function Footer() {
 
             <p className="mt-5 max-w-sm text-sm leading-7 text-[#172519]/65 sm:mt-7">
               Federación de Clubes Cannábicos de Argentina.
-              Una red federal de clubes, organizaciones y
-              comunidades.
+              Una red federal de clubes, organizaciones y comunidades.
             </p>
           </div>
 

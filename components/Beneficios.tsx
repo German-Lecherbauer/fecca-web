@@ -217,11 +217,9 @@ export default function Beneficios() {
       <section
         id="beneficios"
         aria-labelledby="titulo-beneficios"
-        className="relative overflow-hidden bg-[#283524] pb-20 text-white sm:pb-24 lg:pb-28"
+        className="relative overflow-hidden bg-[#172519] py-20 text-white sm:py-24 lg:py-28"
       >
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="mb-10 h-px w-full bg-white/15 sm:mb-14" />
-
           {/* ENCABEZADO DE MARCAS */}
           <div className="mb-8 flex flex-col gap-4 sm:mb-10 md:flex-row md:items-end md:justify-between">
             <div>

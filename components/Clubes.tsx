@@ -34,9 +34,7 @@ const clubes = Array.from(
 
 export default function Clubes() {
   const [paginaActual, setPaginaActual] = useState(1);
-  const [modalBuscarClub, setModalBuscarClub] =
-    useState(false);
-
+  const [modalBuscarClub, setModalBuscarClub] = useState(false);
   const [clubesPorPagina, setClubesPorPagina] =
     useState(CLUBES_DESKTOP);
 
@@ -58,10 +56,7 @@ export default function Clubes() {
     window.addEventListener("resize", actualizarCantidad);
 
     return () => {
-      window.removeEventListener(
-        "resize",
-        actualizarCantidad
-      );
+      window.removeEventListener("resize", actualizarCantidad);
     };
   }, []);
 
@@ -96,7 +91,7 @@ export default function Clubes() {
       <section
         id="clubes"
         aria-labelledby="titulo-clubes"
-        className="relative z-20 -mt-5 overflow-hidden rounded-t-[18px] bg-[#172519] py-20 text-white sm:py-24 lg:py-28"
+        className="relative z-20 overflow-hidden bg-[#283524] py-20 text-white sm:py-24 lg:py-28"
       >
         {/* Decoración */}
         <div className="pointer-events-none absolute -right-64 top-20 h-[380px] w-[380px] rounded-full bg-[#6ce17c]/10 blur-[100px] sm:-right-40 sm:h-[450px] sm:w-[450px] sm:blur-[120px]" />

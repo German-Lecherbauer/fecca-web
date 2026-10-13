@@ -17,7 +17,6 @@ export default function Hero() {
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-5 pb-20 pt-32 sm:px-6 sm:pb-20 sm:pt-36 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16 lg:px-8 lg:pb-20 lg:pt-28">
         {/* CONTENIDO PRINCIPAL */}
         <div className="relative z-20 min-w-0">
-          {/* Título */}
           <h1 className="text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl lg:text-[4rem]">
             <span className="block lg:whitespace-nowrap">
               La Federación de Clubes{" "}
@@ -32,7 +31,6 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Nuevo subtítulo solicitado por FECCA */}
           <p className="mt-7 max-w-2xl text-[16px] leading-[1.6] text-white/85 sm:mt-8 sm:text-lg">
             Unidos por una cultura cannábica responsable y sustentable.
           </p>
@@ -44,7 +42,6 @@ export default function Hero() {
               className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#D0BC84] px-6 text-center text-base font-semibold text-[#283524] transition-colors duration-300 hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto"
             >
               Beneficios para tu club
-            
             </a>
 
             <a
@@ -89,8 +86,8 @@ export default function Hero() {
 
           <div className="pointer-events-none absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#4D6645]/20 blur-[70px]" />
 
-          {/* Se conserva la posición original */}
-          <div className="relative z-10 -translate-y-20 translate-x-20 xl:-translate-y-24 xl:translate-x-28">
+          {/* Logo 48 px más abajo que antes */}
+          <div className="relative z-10 -translate-y-8 translate-x-20 xl:-translate-y-12 xl:translate-x-28">
             <div className="fecca-logo-pulse">
               <Image
                 src="/images/logo/logo-fecca.svg"
