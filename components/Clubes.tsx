@@ -234,9 +234,7 @@ export default function Clubes() {
                   className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#4D6645] px-7 py-3 text-base font-semibold text-white transition-colors duration-300 hover:bg-[#5D7954] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto sm:min-w-[210px]"
                 >
                   Buscar un club
-                  <span aria-hidden="true" className="ml-3">
-                    ↗
-                  </span>
+                  
                 </button>
               </div>
             </article>
@@ -269,9 +267,7 @@ export default function Clubes() {
                   className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#D0BC84] px-7 py-3 text-base font-semibold text-[#283524] transition-colors duration-300 hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto sm:min-w-[210px]"
                 >
                   Sumá tu club
-                  <span aria-hidden="true" className="ml-3">
-                    ↗
-                  </span>
+                  
                 </a>
               </div>
             </article>
