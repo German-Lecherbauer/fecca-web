@@ -17,20 +17,17 @@ const LOGOS_DISPONIBLES = [
   1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13,
 ];
 
-const clubes = Array.from(
-  { length: TOTAL_CLUBES },
-  (_, index) => {
-    const numero = index + 1;
+const clubes = Array.from({ length: TOTAL_CLUBES }, (_, index) => {
+  const numero = index + 1;
 
-    return {
-      id: numero,
-      nombre: `Club ${numero}`,
-      logo: LOGOS_DISPONIBLES.includes(numero)
-        ? `/images/clubes/FECCA${numero}.jpg`
-        : null,
-    };
-  }
-);
+  return {
+    id: numero,
+    nombre: `Club ${numero}`,
+    logo: LOGOS_DISPONIBLES.includes(numero)
+      ? `/images/clubes/FECCA${numero}.jpg`
+      : null,
+  };
+});
 
 export default function Clubes() {
   const [paginaActual, setPaginaActual] = useState(1);
@@ -180,11 +177,9 @@ export default function Clubes() {
                   <span className="text-sm font-bold text-white">
                     {paginaActual}
                   </span>
-
                   <span className="text-sm text-white/30">
                     /
                   </span>
-
                   <span className="text-sm text-white/50">
                     {totalPaginas}
                   </span>
@@ -203,62 +198,91 @@ export default function Clubes() {
             </>
           )}
 
-          {/* BUSCAR UN CLUB */}
+          {/* ACCIONES PRINCIPALES DE LA RED */}
           <div
-            className={`overflow-hidden rounded-xl border border-white/10 bg-[#223628] text-white ${
+            className={`grid gap-4 md:grid-cols-2 lg:gap-6 ${
               MOSTRAR_GRILLA_CLUBES
                 ? "mt-10 sm:mt-14"
                 : "mt-8"
             }`}
           >
-            <div className="grid lg:grid-cols-[1fr_auto] lg:items-center">
-              <div className="p-6 sm:p-8 md:p-10 lg:p-12">
-                <div className="mb-4 flex items-center gap-3">
-                  <span
-                    aria-hidden="true"
-                    className="h-2 w-2 shrink-0 rounded-full bg-[#6ce17c]"
-                  />
-
-                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/40 sm:text-xs">
-                    Red federal
-                  </span>
-                </div>
-
-                <h3 className="max-w-2xl text-[1.65rem] font-semibold leading-tight tracking-[-0.03em] sm:text-2xl md:text-3xl">
-                  ¿Estás buscando un club al cual pertenecer?
-                </h3>
-
-                <p className="mt-3 max-w-2xl text-sm leading-6 text-white/50 md:text-base">
-                  Dejanos tu localidad y tus datos de contacto
-                  para ayudarte a encontrar un club de la red.
-                </p>
+            {/* BUSCAR UN CLUB */}
+            <article className="flex h-full flex-col rounded-xl border border-white/10 bg-[#223628] p-6 transition-colors duration-300 hover:border-white/20 sm:p-8 lg:p-10">
+              <div className="mb-5 flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="h-2 w-2 shrink-0 rounded-full bg-[#6ce17c]"
+                />
+                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50 sm:text-xs">
+                  Para personas
+                </span>
               </div>
 
-              <div className="border-t border-white/10 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-12">
+              <h3 className="text-[1.65rem] font-semibold leading-tight tracking-[-0.03em] sm:text-2xl lg:text-3xl">
+                ¿Estás buscando un club?
+              </h3>
+
+              <p className="mt-4 max-w-lg text-sm leading-7 text-white/65 md:text-base">
+                Dejanos tu localidad y tus datos de contacto
+                para ayudarte a encontrar un club de la red.
+              </p>
+
+              <div className="mt-auto pt-8">
                 <button
                   type="button"
                   onClick={() => setModalBuscarClub(true)}
-                  className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#4D6645] px-8 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#5D7954] sm:w-auto"
+                  className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#4D6645] px-7 py-3 text-base font-semibold text-white transition-colors duration-300 hover:bg-[#5D7954] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto sm:min-w-[210px]"
                 >
                   Buscar un club
+                  <span aria-hidden="true" className="ml-3">
+                    ↗
+                  </span>
                 </button>
               </div>
-            </div>
+            </article>
+
+            {/* SUMAR UN CLUB */}
+            <article className="flex h-full flex-col rounded-xl border border-[#D0BC84]/30 bg-[#30402B] p-6 transition-colors duration-300 hover:border-[#D0BC84]/60 sm:p-8 lg:p-10">
+              <div className="mb-5 flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="h-2 w-2 shrink-0 rounded-full bg-[#D0BC84]"
+                />
+                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#D0BC84] sm:text-xs">
+                  Para organizaciones
+                </span>
+              </div>
+
+              <h3 className="text-[1.65rem] font-semibold leading-tight tracking-[-0.03em] sm:text-2xl lg:text-3xl">
+                ¿Querés sumar tu club a la red?
+              </h3>
+
+              <p className="mt-4 max-w-lg text-sm leading-7 text-white/65 md:text-base">
+                Formá parte de la Federación de Clubes
+                Cannábicos de Argentina y fortalecé
+                nuestra red federal.
+              </p>
+
+              <div className="mt-auto pt-8">
+                <a
+                  href="#contacto"
+                  className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#D0BC84] px-7 py-3 text-base font-semibold text-[#283524] transition-colors duration-300 hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto sm:min-w-[210px]"
+                >
+                  Sumá tu club
+                  <span aria-hidden="true" className="ml-3">
+                    ↗
+                  </span>
+                </a>
+              </div>
+            </article>
           </div>
 
           {/* PIE */}
-          <div className="mt-10 flex flex-col gap-6 border-t border-white/10 pt-7 sm:mt-12 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:pt-8">
-            <p className="max-w-xl text-sm leading-6 text-white/55">
+          <div className="mt-10 border-t border-white/10 pt-7 sm:mt-12 sm:pt-8">
+            <p className="text-sm leading-6 text-white/55">
               Una red construida por organizaciones de
               distintos puntos del país.
             </p>
-
-            <a
-              href="#contacto"
-              className="inline-flex w-fit items-center border-b border-[#d8c47f]/50 pb-1 text-sm font-semibold text-[#d8c47f] transition-colors duration-300 hover:border-white hover:text-white"
-            >
-              Sumá tu club a la red
-            </a>
           </div>
         </div>
       </section>

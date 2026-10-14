@@ -41,11 +41,11 @@ export default function Footer() {
               aria-label="Volver al inicio"
             >
               <Image
-                src="/images/logo/logo-fecca.svg"
+                src="/images/logo/logo-fecca-negro.svg"
                 alt="FECCA"
                 width={180}
                 height={130}
-                className="h-auto w-[145px] brightness-0 sm:w-[160px]"
+                className="h-auto w-[145px] sm:w-[160px]"
               />
             </a>
 

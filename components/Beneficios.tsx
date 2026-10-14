@@ -198,18 +198,6 @@ export default function Beneficios() {
               </a>
             </div>
           </div>
-
-          {/* CONTACTO DE LA COMISIÓN */}
-          <div className="mt-8 flex flex-col gap-3 text-sm text-white/70 sm:flex-row sm:items-center sm:justify-between">
-            <p>Comisión de Salud y Educación</p>
-
-            <a
-              href="mailto:salud@fecca.com.ar"
-              className="w-fit break-all text-[#D0BC84] transition-colors hover:text-white sm:break-normal"
-            >
-              salud@fecca.com.ar
-            </a>
-          </div>
         </div>
       </section>
 
@@ -242,10 +230,6 @@ export default function Beneficios() {
               </h2>
             </div>
 
-            <p className="max-w-md text-sm leading-6 text-white/65 sm:text-base">
-              Descuentos y ventajas para socios de FECCA con
-              marcas aliadas.
-            </p>
           </div>
 
           {/* GRILLA DE LOGOS: 3 COLUMNAS EN TODOS LOS TAMAÑOS */}
