@@ -31,6 +31,7 @@ type MarcaAliada = {
   web: string | null;
 };
 
+// Para sumar nuevas marcas, agregamos un objeto a este listado.
 const marcasAliadas: MarcaAliada[] = [
   {
     id: 1,
@@ -92,6 +93,46 @@ const marcasAliadas: MarcaAliada[] = [
 const WHATSAPP_REPROCANN =
   "https://wa.me/5491127831516?text=Hola.%20Les%20escribo%20para%20consultar%20respecto%20a%20los%20tr%C3%A1mites%20en%20REPROCANN.%20Mi%20nombre%20es%20";
 
+function TarjetaMarca({ marca }: { marca: MarcaAliada }) {
+  const clases =
+    "flex h-[94px] w-[168px] shrink-0 items-center justify-center rounded-xl border border-[#D0BC84]/20 bg-[#F1EFE8] px-4 py-3 transition-all duration-300 sm:h-[105px] sm:w-[190px] sm:px-5 sm:py-4";
+
+  const contenido = (
+    <div className="relative h-full w-full">
+      <Image
+        src={marca.logo}
+        alt={`Logo de ${marca.nombre}`}
+        fill
+        sizes="(max-width: 640px) 136px, 150px"
+        className="object-contain"
+      />
+    </div>
+  );
+
+  if (!marca.web) {
+    return (
+      <div
+        className={clases}
+        title={`${marca.nombre} - Enlace próximamente`}
+      >
+        {contenido}
+      </div>
+    );
+  }
+
+  return (
+    <a
+      href={marca.web}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Visitar ${marca.nombre}`}
+      className={`${clases} hover:-translate-y-1 hover:border-[#D0BC84] hover:bg-white hover:shadow-[0_12px_30px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]`}
+    >
+      {contenido}
+    </a>
+  );
+}
+
 export default function Beneficios() {
   return (
     <>
@@ -114,7 +155,6 @@ export default function Beneficios() {
                   aria-hidden="true"
                   className="h-2 w-2 shrink-0 rounded-full bg-[#D0BC84]"
                 />
-
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-white/75">
                   Comisión de Salud y Educación
                 </span>
@@ -171,7 +211,6 @@ export default function Beneficios() {
                   aria-hidden="true"
                   className="h-2 w-2 shrink-0 rounded-full bg-[#D0BC84]"
                 />
-
                 <span className="text-xs font-semibold uppercase tracking-[0.16em] text-white/70">
                   Acompañamiento FECCA
                 </span>
@@ -208,75 +247,93 @@ export default function Beneficios() {
         className="relative overflow-hidden bg-[#172519] py-20 text-white sm:py-24 lg:py-28"
       >
         <div className="relative z-10 mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          {/* ENCABEZADO DE MARCAS */}
-          <div className="mb-8 flex flex-col gap-4 sm:mb-10 md:flex-row md:items-end md:justify-between">
-            <div>
-              <div className="mb-4 flex items-center gap-3">
-                <span
-                  aria-hidden="true"
-                  className="h-2 w-2 shrink-0 rounded-full bg-[#D0BC84]"
-                />
-
-                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-white/65">
-                  Alianzas
-                </span>
-              </div>
-
-              <h2
-                id="titulo-beneficios"
-                className="text-3xl font-semibold tracking-tight text-white sm:text-4xl"
-              >
-                Beneficios para tu club
-              </h2>
+          {/* ENCABEZADO */}
+          <div className="mb-10">
+            <div className="mb-4 flex items-center gap-3">
+              <span
+                aria-hidden="true"
+                className="h-2 w-2 shrink-0 rounded-full bg-[#D0BC84]"
+              />
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-white/65">
+                Alianzas
+              </span>
             </div>
 
+            <h2
+              id="titulo-beneficios"
+              className="text-3xl font-semibold tracking-tight text-white sm:text-4xl"
+            >
+              Beneficios para tu club
+            </h2>
           </div>
 
-          {/* GRILLA DE LOGOS: 3 COLUMNAS EN TODOS LOS TAMAÑOS */}
-          <div className="mx-auto grid max-w-[900px] grid-cols-3 gap-2 sm:gap-4 lg:gap-5">
-            {marcasAliadas.map((marca) => {
-              const contenido = (
-                <div className="relative h-full w-full">
-                  <Image
-                    src={marca.logo}
-                    alt={`Logo de ${marca.nombre}`}
-                    fill
-                    sizes="(max-width: 1024px) 33vw, 300px"
-                    className="object-contain"
-                  />
+          {/* CONTENEDOR INSTITUCIONAL */}
+          <div className="rounded-2xl border border-[#D0BC84]/15 bg-[#223126] px-4 py-7 shadow-[0_16px_45px_rgba(0,0,0,0.12)] sm:px-6 sm:py-9">
+            {/* CARRUSEL INFINITO */}
+            <div
+             className="marcas-carrusel relative mx-auto w-full max-w-[1050px] overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_0.5%,black_99.5%,transparent)]"
+              aria-label="Marcas aliadas de FECCA"
+            >
+              <div className="marcas-pista flex w-max">
+                {/* Secuencia principal */}
+                <div className="flex shrink-0 gap-4 pr-4 sm:gap-5 sm:pr-5">
+                  {marcasAliadas.map((marca) => (
+                    <TarjetaMarca
+                      key={marca.id}
+                      marca={marca}
+                    />
+                  ))}
                 </div>
-              );
 
-              const clases =
-                "flex aspect-square min-w-0 items-center justify-center rounded-lg border border-[rgba(40,53,36,0.14)] bg-white p-2 sm:p-4 lg:p-6";
-
-              if (marca.web) {
-                return (
-                  <a
-                    key={marca.id}
-                    href={marca.web}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visitar ${marca.nombre}`}
-                    className={`${clases} transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.18)] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]`}
-                  >
-                    {contenido}
-                  </a>
-                );
-              }
-
-              return (
+                {/* Copia para el desplazamiento infinito */}
                 <div
-                  key={marca.id}
-                  className={clases}
-                  title={`${marca.nombre} - Enlace próximamente`}
+                  className="flex shrink-0 gap-4 pr-4 sm:gap-5 sm:pr-5"
+                  aria-hidden="true"
+                  inert
                 >
-                  {contenido}
+                  {marcasAliadas.map((marca) => (
+                    <TarjetaMarca
+                      key={`copia-${marca.id}`}
+                      marca={marca}
+                    />
+                  ))}
                 </div>
-              );
-            })}
+              </div>
+            </div>
           </div>
         </div>
+
+        <style jsx>{`
+          .marcas-pista {
+            animation: desplazar-marcas 38s linear infinite;
+            will-change: transform;
+          }
+
+          .marcas-carrusel:hover .marcas-pista,
+          .marcas-carrusel:focus-within .marcas-pista {
+            animation-play-state: paused;
+          }
+
+          @keyframes desplazar-marcas {
+            from {
+              transform: translateX(0);
+            }
+
+            to {
+              transform: translateX(-50%);
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .marcas-pista {
+              animation: none;
+            }
+
+            .marcas-carrusel {
+              overflow-x: auto;
+            }
+          }
+        `}</style>
       </section>
     </>
   );
