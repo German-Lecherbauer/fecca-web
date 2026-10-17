@@ -7,12 +7,32 @@ import type { FormEvent } from "react";
 type ContactoModalProps = {
   abierto: boolean;
   onClose: () => void;
+  tipo?: "general" | "prensa";
 };
 
 export default function ContactoModal({
   abierto,
   onClose,
+  tipo = "general",
 }: ContactoModalProps) {
+  const esPrensa = tipo === "prensa";
+
+  const destinatario = esPrensa
+    ? "prensa@fecca.com.ar"
+    : "info@fecca.com.ar";
+
+  const etiqueta = esPrensa
+    ? "Comunicación y Prensa"
+    : "Contacto general";
+
+  const titulo = esPrensa
+    ? "Contactá a Prensa."
+    : "Escribinos.";
+
+  const descripcion = esPrensa
+    ? "Completá el formulario para realizar consultas de prensa, entrevistas o solicitudes de información."
+    : "Completá el formulario y contanos en qué podemos ayudarte.";
+
   useEffect(() => {
     if (!abierto) return;
 
@@ -38,11 +58,13 @@ export default function ContactoModal({
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Temporal hasta conectar el formulario
-    // con el backend o servicio de correo.
+    // Temporal hasta conectar el formulario con Resend.
+    // No se envía ningún correo todavía.
     const formData = new FormData(event.currentTarget);
 
     console.log("Formulario de contacto:", {
+      tipo,
+      destinatario,
       nombre: formData.get("nombre"),
       email: formData.get("email"),
       asunto: formData.get("asunto"),
@@ -82,7 +104,7 @@ export default function ContactoModal({
               <span className="h-2 w-2 shrink-0 rounded-full bg-[#6ce17c]" />
 
               <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 sm:text-xs sm:tracking-[0.18em]">
-                Contacto general
+                {etiqueta}
               </span>
             </div>
 
@@ -90,11 +112,11 @@ export default function ContactoModal({
               id="contacto-modal-title"
               className="text-[1.8rem] font-semibold leading-tight tracking-[-0.04em] text-white sm:text-3xl md:text-4xl"
             >
-              Escribinos.
+              {titulo}
             </h2>
 
             <p className="mt-4 max-w-xl text-sm leading-6 text-white/50 md:text-base">
-              Completá el formulario y contanos en qué podemos ayudarte.
+              {descripcion}
             </p>
           </div>
 
@@ -159,7 +181,11 @@ export default function ContactoModal({
                   type="text"
                   required
                   maxLength={150}
-                  placeholder="Motivo de tu consulta"
+                  placeholder={
+                    esPrensa
+                      ? "Motivo de tu consulta de prensa"
+                      : "Motivo de tu consulta"
+                  }
                   className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
                 />
               </div>
@@ -192,11 +218,10 @@ export default function ContactoModal({
                 </p>
 
                 <p className="mt-1 text-xs text-white/30">
-                  info@fecca.com.ar
+                  {destinatario}
                 </p>
               </div>
 
-              {/* Botón sin flecha */}
               <button
                 type="submit"
                 className="inline-flex w-full items-center justify-center rounded-full bg-[#6ce17c] px-8 py-4 text-sm font-bold text-[#172519] transition duration-300 hover:-translate-y-0.5 hover:bg-[#7bea89] sm:w-auto"
