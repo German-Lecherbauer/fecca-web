@@ -40,7 +40,14 @@ export default function ContactoModal({
 
     // Temporal hasta conectar el formulario
     // con el backend o servicio de correo.
-    console.log("Formulario de contacto enviado");
+    const formData = new FormData(event.currentTarget);
+
+    console.log("Formulario de contacto:", {
+      nombre: formData.get("nombre"),
+      email: formData.get("email"),
+      asunto: formData.get("asunto"),
+      mensaje: formData.get("mensaje"),
+    });
   };
 
   return (
@@ -133,6 +140,26 @@ export default function ContactoModal({
                   autoComplete="email"
                   inputMode="email"
                   placeholder="nombre@email.com"
+                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
+                />
+              </div>
+
+              {/* Asunto obligatorio */}
+              <div className="min-w-0">
+                <label
+                  htmlFor="contacto-asunto"
+                  className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45 sm:text-xs"
+                >
+                  Asunto *
+                </label>
+
+                <input
+                  id="contacto-asunto"
+                  name="asunto"
+                  type="text"
+                  required
+                  maxLength={150}
+                  placeholder="Motivo de tu consulta"
                   className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
                 />
               </div>

@@ -8,7 +8,7 @@ export default function ExpoBanner() {
     <section
       id="expo-cannabis"
       aria-labelledby="titulo-expo"
-      className="relative overflow-hidden bg-[#E8E7DC] py-16 sm:py-20 lg:py-24"
+      className="relative overflow-hidden bg-[#E8E7DC] pb-0 pt-6 sm:pb-0 sm:pt-8 lg:pb-0 lg:pt-8"
     >
       <style>{`
         @keyframes expoEntrada {
@@ -53,9 +53,10 @@ export default function ExpoBanner() {
         }
       `}</style>
 
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+      {/* CONTENEDOR AMPLIADO A 1600 PX */}
+      <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-6 lg:px-8">
         {/* ENCABEZADO */}
-        <div className="mb-5 flex items-center gap-3 sm:mb-8">
+        <div className="mb-5 flex items-center gap-3 sm:mb-6">
           <span
             aria-hidden="true"
             className="h-2 w-2 rounded-full bg-[#4D6645]"
@@ -66,7 +67,7 @@ export default function ExpoBanner() {
           </span>
         </div>
 
-        <div className="mb-8 sm:mb-10">
+        <div className="mb-6 sm:mb-8">
           <h2
             id="titulo-expo"
             className="text-[1.75rem] font-semibold tracking-tight text-[#283524] sm:text-4xl lg:text-5xl"
@@ -80,13 +81,13 @@ export default function ExpoBanner() {
         </div>
 
         {/* BANNER CLICKEABLE */}
-        <div className="expo-entrada">
+        <div className="expo-entrada -mt-10 sm:-mt-12 lg:-mt-16">
           <a
             href={ENTRADAS_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Conseguir entradas para Expo Cannabis 2026"
-            className="expo-banner group mx-auto block w-full max-w-[1100px] rounded-lg focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
+            className="expo-banner group mx-auto block w-full max-w-[1400px] rounded-lg focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
           >
             <div className="expo-flotar">
               {/* IMAGEN DE ESCRITORIO */}
@@ -97,7 +98,7 @@ export default function ExpoBanner() {
                   width={2048}
                   height={255}
                   unoptimized
-                  sizes="(max-width: 1100px) 100vw, 1100px"
+                  sizes="(max-width: 1400px) 100vw, 1400px"
                   className="block h-auto w-full"
                 />
               </div>

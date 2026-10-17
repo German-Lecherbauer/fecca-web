@@ -30,7 +30,8 @@ export default function Footer() {
       {/* DECORACIÓN */}
       <div className="pointer-events-none absolute -bottom-52 -left-52 h-[380px] w-[380px] rounded-full bg-[#537247]/10 blur-[110px] sm:-left-32 sm:h-[450px] sm:w-[450px] sm:blur-[130px]" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-5 pb-7 pt-16 sm:px-6 sm:pb-8 sm:pt-20 lg:px-8">
+      {/* CONTENEDOR AMPLIADO A 1600 PX */}
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pb-7 pt-6 sm:px-6 sm:pb-8 sm:pt-8 lg:px-8 lg:pt-10">
         {/* CONTENIDO PRINCIPAL */}
         <div className="grid gap-12 sm:gap-14 lg:grid-cols-[1.1fr_0.8fr_1.1fr] lg:gap-16">
           {/* FECCA */}

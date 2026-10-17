@@ -99,8 +99,8 @@ export default function ExpoGaleria() {
     if (fotoActiva === null) return;
 
     const overflowAnterior = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
 
+    document.body.style.overflow = "hidden";
     cerrarRef.current?.focus();
 
     function manejarTeclado(event: KeyboardEvent) {
@@ -155,13 +155,14 @@ export default function ExpoGaleria() {
       <section
         id="expo-galeria"
         aria-labelledby="titulo-expo-galeria"
-        className="relative overflow-hidden bg-[#E8E7DC] pb-20 pt-0 sm:pb-24"
+        className="relative -mt-10 overflow-hidden bg-[#E8E7DC] pb-5 pt-0 sm:-mt-12 sm:pb-6 lg:-mt-14 lg:pb-7"
       >
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          {/* ENCABEZADO DESPLEGABLE */}
-          <div className="flex flex-col gap-6 border-t border-[#283524]/15 pt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-10">
+        {/* CONTENEDOR AMPLIADO A 1600 PX */}
+        <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-6 lg:px-8">
+          {/* ENCABEZADO */}
+          <div className="flex flex-col gap-4 border-t border-[#283524]/15 pt-4 sm:flex-row sm:items-center sm:justify-between sm:pt-5">
             <div>
-              <div className="mb-4 flex items-center gap-3">
+              <div className="mb-2 flex items-center gap-3">
                 <span
                   aria-hidden="true"
                   className="h-2 w-2 rounded-full bg-[#4D6645]"
@@ -185,7 +186,9 @@ export default function ExpoGaleria() {
               type="button"
               aria-expanded={galeriaAbierta}
               aria-controls="contenido-galeria-expo"
-              onClick={() => setGaleriaAbierta((actual) => !actual)}
+              onClick={() =>
+                setGaleriaAbierta((actual) => !actual)
+              }
               className="inline-flex min-h-12 w-fit shrink-0 items-center justify-center rounded-lg bg-[#4D6645] px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#3D5337] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
             >
               {galeriaAbierta ? "Ocultar galería" : "Ver galería"}
@@ -196,7 +199,7 @@ export default function ExpoGaleria() {
           <div
             id="contenido-galeria-expo"
             hidden={!galeriaAbierta}
-            className={galeriaAbierta ? "pt-10" : "hidden"}
+            className={galeriaAbierta ? "pt-6 sm:pt-8" : "hidden"}
           >
             {/* MOSAICO DESKTOP */}
             <div className="hidden auto-rows-[220px] grid-cols-4 gap-4 md:grid lg:auto-rows-[245px]">
@@ -307,10 +310,15 @@ export default function ExpoGaleria() {
                     type="button"
                     onClick={() =>
                       irAFoto(
-                        Math.min(fotos.length - 1, fotoMobile + 1)
+                        Math.min(
+                          fotos.length - 1,
+                          fotoMobile + 1
+                        )
                       )
                     }
-                    disabled={fotoMobile === fotos.length - 1}
+                    disabled={
+                      fotoMobile === fotos.length - 1
+                    }
                     aria-label="Foto siguiente"
                     className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#283524]/20 text-lg text-[#283524] transition hover:bg-[#283524]/5 disabled:cursor-not-allowed disabled:opacity-30"
                   >

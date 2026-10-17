@@ -1,4 +1,4 @@
-
+import Alianzas from "@/components/Alianzas";
 import Beneficios from "@/components/Beneficios";
 import Clubes from "@/components/Clubes";
 import Contacto from "@/components/Contacto";
@@ -21,6 +21,7 @@ export default function Home() {
         <ExpoGaleria />
         <Beneficios />
         <Clubes />
+        <Alianzas />
         <Contacto />
       </main>
 

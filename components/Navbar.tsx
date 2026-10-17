@@ -7,9 +7,13 @@ import { useEffect, useRef, useState } from "react";
 const enlaces = [
   { href: "#institucional", texto: "Institucional" },
   { href: "#clubes", texto: "Clubes" },
-  { href: "#herramientas", texto: "Herramientas" },
-  { href: "#beneficios", texto: "Beneficios" },
+  { href: "#herramientas", texto: "Beneficios" },
   { href: "#contacto", texto: "Contacto" },
+  {
+    href: "https://estudio4veinte.com/",
+    texto: "Sumá tu club",
+    externo: true,
+  },
 ];
 
 export default function Navbar() {
@@ -65,7 +69,7 @@ export default function Navbar() {
   };
 
   const enlaceDesktop =
-    "text-sm font-medium text-white/85 transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]";
+    "text-base font-medium text-white/85 transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]";
 
   const enlaceMobile =
     "block border-b border-white/10 py-5 text-base font-medium text-white/85 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D0BC84]";
@@ -73,10 +77,10 @@ export default function Navbar() {
   return (
     <>
       {/* NAVBAR */}
-      <header className="absolute left-0 top-0 z-50 w-full">
+      <header className="absolute left-0 top-0 z-50 w-full md:-translate-y-[15px]">
         <nav
           aria-label="Navegación principal"
-          className="mx-auto max-w-7xl px-5 py-5 sm:px-6 md:py-6 lg:px-8"
+          className="mx-auto w-full max-w-[1600px] px-5 py-5 sm:px-6 md:py-6 lg:px-8"
         >
           <div className="flex items-center justify-between">
             {/* LOGO */}
@@ -89,31 +93,26 @@ export default function Navbar() {
               <Image
                 src="/images/logo/logo-fecca.svg"
                 alt="FECCA"
-                width={110}
-                height={80}
+                width={140}
+                height={100}
                 priority
-                className="h-auto w-[78px] sm:w-[90px] md:w-[105px]"
+                className="h-auto w-[88px] sm:w-[105px] md:w-[125px]"
               />
             </a>
 
             {/* MENÚ DESKTOP */}
-            <div className="hidden items-center gap-5 lg:gap-7 md:flex">
+            <div className="hidden items-center gap-6 md:flex lg:gap-9">
               {enlaces.map((enlace) => (
                 <a
                   key={enlace.href}
                   href={enlace.href}
+                  target={enlace.externo ? "_blank" : undefined}
+                  rel={enlace.externo ? "noopener noreferrer" : undefined}
                   className={enlaceDesktop}
                 >
                   {enlace.texto}
                 </a>
               ))}
-
-              <a
-                href="#contacto"
-                className="inline-flex min-h-12 items-center justify-center whitespace-nowrap rounded-lg border border-[#D0BC84] px-5 text-base font-semibold text-[#D0BC84] transition-colors hover:bg-[#D0BC84] hover:text-[#283524] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-              >
-                Sumá tu club
-              </a>
             </div>
 
             {/* BOTÓN MENÚ MÓVIL */}
@@ -167,9 +166,9 @@ export default function Navbar() {
             <Image
               src="/images/logo/logo-fecca.svg"
               alt="FECCA"
-              width={100}
-              height={72}
-              className="h-auto w-[82px]"
+              width={110}
+              height={80}
+              className="h-auto w-[92px]"
             />
 
             <button
@@ -189,6 +188,8 @@ export default function Navbar() {
               <a
                 key={enlace.href}
                 href={enlace.href}
+                target={enlace.externo ? "_blank" : undefined}
+                rel={enlace.externo ? "noopener noreferrer" : undefined}
                 onClick={cerrarMenu}
                 className={enlaceMobile}
               >
@@ -197,25 +198,15 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* CTA MÓVIL */}
+          {/* INFORMACIÓN INSTITUCIONAL MÓVIL */}
           <div className="mt-auto pt-10">
-            <div className="mb-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#D0BC84]">
-                Federación nacional
-              </p>
+            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#D0BC84]">
+              Federación nacional
+            </p>
 
-              <p className="mt-2 text-sm leading-6 text-white/80">
-                Más de 200 clubes forman parte de la red federal de FECCA.
-              </p>
-            </div>
-
-            <a
-              href="#contacto"
-              onClick={cerrarMenu}
-              className="flex min-h-12 w-full items-center justify-center rounded-lg bg-[#D0BC84] px-5 text-base font-semibold text-[#283524] transition-colors hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
-            >
-              Sumá tu club
-            </a>
+            <p className="mt-2 text-sm leading-6 text-white/80">
+              Más de 200 clubes forman parte de la red federal de FECCA.
+            </p>
           </div>
         </div>
       </aside>

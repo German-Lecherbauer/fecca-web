@@ -4,15 +4,18 @@ export default function NuestraMision() {
     <section
       id="institucional"
       aria-labelledby="titulo-mision"
-      className="scroll-mt-24 bg-[#F1EFE8] px-5 py-20 text-[#283524] sm:px-6 sm:py-24 lg:px-8 lg:py-28"
+      className="scroll-mt-24 bg-[#F1EFE8] pb-8 pt-10 text-[#283524] sm:pb-10 sm:pt-12 lg:pb-10 lg:pt-10"
     >
-      <div className="mx-auto max-w-7xl">
-        <div className="max-w-[850px]">
+      {/* CONTENEDOR GENERAL DE 1600 PX */}
+      <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-6 lg:px-8">
+        {/* NUESTRA MISIÓN */}
+        <div>
           <div className="mb-5 flex items-center gap-3">
             <span
               aria-hidden="true"
               className="h-2 w-2 rounded-full bg-[#4D6645]"
             />
+
             <span className="text-sm font-semibold uppercase tracking-[0.14em] text-[#4D6645]">
               Institucional
             </span>
@@ -25,7 +28,8 @@ export default function NuestraMision() {
             Nuestra misión
           </h2>
 
-          <div className="space-y-7 text-[18px] leading-[1.6]">
+          {/* TEXTO CON ANCHO DE LECTURA CONTROLADO */}
+          <div className="max-w-[850px] space-y-7 text-[18px] leading-[1.6]">
             <p>
               Somos la Federación de Clubes Cannábicos de Argentina.
               Nacemos para reunir, acompañar y fortalecer a los clubes
@@ -63,6 +67,47 @@ export default function NuestraMision() {
               Este es nuestro punto de partida. No somos un club.
               Somos la red.
             </p>
+          </div>
+        </div>
+
+        {/* DOCUMENTO INSTITUCIONAL */}
+        <div className="mt-10 max-w-[850px]">
+          <a
+            href="/documentos/institucional-fecca.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex w-full flex-col justify-between gap-5 rounded-xl border border-[#283524]/15 bg-white/40 p-6 transition-colors duration-300 hover:bg-white/75 sm:flex-row sm:items-center sm:p-8"
+          >
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#4D6645]">
+                Institucional
+              </p>
+
+              <h3 className="mt-3 text-xl font-semibold tracking-tight text-[#283524] sm:text-2xl">
+                Conocé más sobre FECCA
+              </h3>
+
+              <p className="mt-2 text-sm leading-6 text-[#283524]/70">
+                Accedé al documento institucional de la Federación.
+              </p>
+            </div>
+
+            <span className="inline-flex shrink-0 items-center text-sm font-semibold text-[#4D6645] underline decoration-[#4D6645]/40 underline-offset-4 transition-colors group-hover:text-[#283524]">
+              Ver documento institucional (PDF)
+            </span>
+          </a>
+
+          {/* LINKTREE - FUERA DEL RECUADRO */}
+          <div className="mt-5 flex justify-end">
+            <a
+              href="https://linktr.ee/fecca.oficial"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visitar Linktree oficial de FECCA"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#4D6645] px-7 py-3 text-sm font-semibold text-[#F1EFE8] transition-colors duration-300 hover:bg-[#3D5337] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
+            >
+              Linktree de FECCA
+            </a>
           </div>
         </div>
       </div>
