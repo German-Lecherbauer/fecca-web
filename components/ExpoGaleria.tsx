@@ -155,7 +155,7 @@ export default function ExpoGaleria() {
       <section
         id="expo-galeria"
         aria-labelledby="titulo-expo-galeria"
-        className="relative -mt-10 overflow-hidden bg-[#E8E7DC] pb-5 pt-0 sm:-mt-12 sm:pb-6 lg:-mt-14 lg:pb-7"
+        className="relative mt-0 overflow-hidden bg-[#E8E7DC] pb-8 pt-6 sm:mt-0 sm:pb-8 sm:pt-8 lg:-mt-14 lg:pb-7 lg:pt-0"
       >
         {/* CONTENEDOR AMPLIADO A 1600 PX */}
         <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-6 lg:px-8">
@@ -388,7 +388,7 @@ export default function ExpoGaleria() {
             ›
           </button>
 
-          <div className="absolute bottom-6 left-1/2 w-full -translate-x-1/2 px-6 text-center">
+          <div className="pointer-events-none absolute bottom-6 left-1/2 w-full -translate-x-1/2 px-6 text-center">
             <p className="text-sm font-semibold text-white">
               {fotos[fotoActiva].titulo}
             </p>

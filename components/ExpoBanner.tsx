@@ -8,7 +8,7 @@ export default function ExpoBanner() {
     <section
       id="expo-cannabis"
       aria-labelledby="titulo-expo"
-      className="relative overflow-hidden bg-[#E8E7DC] pb-0 pt-6 sm:pb-0 sm:pt-8 lg:pb-0 lg:pt-8"
+      className="relative w-full overflow-hidden bg-[#E8E7DC] pt-8 sm:pt-10 lg:pt-12"
     >
       <style>{`
         @keyframes expoEntrada {
@@ -37,12 +37,14 @@ export default function ExpoBanner() {
           animation: expoEntrada 0.9s ease-out both;
         }
 
-        .expo-flotar {
-          animation: expoFlotar 5s ease-in-out infinite;
-        }
+        @media (min-width: 1024px) {
+          .expo-flotar {
+            animation: expoFlotar 5s ease-in-out infinite;
+          }
 
-        .expo-banner:hover .expo-flotar {
-          animation-play-state: paused;
+          .expo-banner:hover .expo-flotar {
+            animation-play-state: paused;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -53,13 +55,12 @@ export default function ExpoBanner() {
         }
       `}</style>
 
-      {/* CONTENEDOR AMPLIADO A 1600 PX */}
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-6 lg:px-8">
-        {/* ENCABEZADO */}
-        <div className="mb-5 flex items-center gap-3 sm:mb-6">
+        {/* ETIQUETA */}
+        <div className="mb-5 flex items-center gap-3">
           <span
             aria-hidden="true"
-            className="h-2 w-2 rounded-full bg-[#4D6645]"
+            className="h-2 w-2 shrink-0 rounded-full bg-[#4D6645]"
           />
 
           <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#4D6645] sm:text-xs">
@@ -67,31 +68,32 @@ export default function ExpoBanner() {
           </span>
         </div>
 
-        <div className="mb-6 sm:mb-8">
+        {/* ENCABEZADO */}
+        <div className="relative z-10 mb-6 sm:mb-8 lg:mb-6">
           <h2
             id="titulo-expo"
-            className="text-[1.75rem] font-semibold tracking-tight text-[#283524] sm:text-4xl lg:text-5xl"
+            className="text-[1.75rem] font-semibold leading-tight tracking-tight text-[#283524] sm:text-4xl lg:text-5xl"
           >
             Expo Cannabis 2026
           </h2>
 
-          <p className="mt-2 text-sm leading-6 text-[#283524]/75 sm:mt-3 sm:text-base">
+          <p className="mt-3 text-sm leading-6 text-[#283524]/75 sm:text-base">
             23, 24 y 25 de octubre · La Rural, Buenos Aires
           </p>
         </div>
 
-        {/* BANNER CLICKEABLE */}
-        <div className="expo-entrada -mt-10 sm:-mt-12 lg:-mt-16">
+        {/* BANNER */}
+        <div className="expo-entrada relative z-0 w-full pb-6 sm:pb-8 lg:pb-4">
           <a
             href={ENTRADAS_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Conseguir entradas para Expo Cannabis 2026"
-            className="expo-banner group mx-auto block w-full max-w-[1400px] rounded-lg focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
+            className="expo-banner group mx-auto block w-full max-w-[1400px] focus-visible:rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
           >
-            <div className="expo-flotar">
-              {/* IMAGEN DE ESCRITORIO */}
-              <div className="hidden transition-transform duration-500 group-hover:scale-[1.015] md:block">
+            <div className="expo-flotar w-full">
+              {/* BANNER DESKTOP */}
+              <div className="hidden w-full md:block">
                 <Image
                   src="/images/expo/expo-desktop.png"
                   alt="Expo Cannabis 2026. Conseguí tu entrada para el 23, 24 y 25 de octubre en La Rural."
@@ -99,19 +101,20 @@ export default function ExpoBanner() {
                   height={255}
                   unoptimized
                   sizes="(max-width: 1400px) 100vw, 1400px"
-                  className="block h-auto w-full"
+                  className="block h-auto w-full object-contain transition-transform duration-500 lg:group-hover:scale-[1.015]"
                 />
               </div>
 
-              {/* IMAGEN DE CELULAR */}
-              <div className="mx-auto w-full max-w-[340px] transition-transform duration-500 group-hover:scale-[1.015] md:hidden">
+              {/* BANNER MOBILE */}
+              <div className="mx-auto w-full max-w-[420px] md:hidden">
                 <Image
                   src="/images/expo/expo-mobile.png"
                   alt="Expo Cannabis 2026. 23, 24 y 25 de octubre en La Rural."
                   width={1080}
                   height={1350}
-                  sizes="(max-width: 640px) 100vw, 340px"
-                  className="block h-auto w-full rounded-2xl"
+                  unoptimized
+                  sizes="(max-width: 767px) calc(100vw - 40px), 420px"
+                  className="block h-auto w-full max-w-full rounded-2xl object-contain"
                 />
               </div>
             </div>
