@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 
 type ContactoModalProps = {
@@ -15,6 +15,10 @@ export default function ContactoModal({
   onClose,
   tipo = "general",
 }: ContactoModalProps) {
+  const [enviando, setEnviando] = useState(false);
+  const [estado, setEstado] = useState<"exito" | "error" | null>(null);
+  const [mensajeEstado, setMensajeEstado] = useState("");
+
   const esPrensa = tipo === "prensa";
 
   const destinatario = esPrensa
@@ -40,7 +44,7 @@ export default function ContactoModal({
     document.body.style.overflow = "hidden";
 
     const cerrarConEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === "Escape" && !enviando) {
         onClose();
       }
     };
@@ -51,31 +55,69 @@ export default function ContactoModal({
       document.body.style.overflow = overflowAnterior;
       window.removeEventListener("keydown", cerrarConEscape);
     };
-  }, [abierto, onClose]);
+  }, [abierto, onClose, enviando]);
 
-  if (!abierto) return null;
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Temporal hasta conectar el formulario con Resend.
-    // No se envía ningún correo todavía.
-    const formData = new FormData(event.currentTarget);
+    if (enviando) return;
 
-    console.log("Formulario de contacto:", {
-      tipo,
-      destinatario,
-      nombre: formData.get("nombre"),
-      email: formData.get("email"),
-      asunto: formData.get("asunto"),
-      mensaje: formData.get("mensaje"),
-    });
+    const formulario = event.currentTarget;
+    const formData = new FormData(formulario);
+
+    setEnviando(true);
+    setEstado(null);
+    setMensajeEstado("");
+
+    try {
+      const respuesta = await fetch("/api/contacto", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tipo,
+          nombre: formData.get("nombre"),
+          email: formData.get("email"),
+          asunto: formData.get("asunto"),
+          mensaje: formData.get("mensaje"),
+        }),
+      });
+
+      const resultado = await respuesta.json();
+
+      if (!respuesta.ok) {
+        throw new Error(
+          resultado.error || "No se pudo enviar el mensaje."
+        );
+      }
+
+      setEstado("exito");
+      setMensajeEstado(
+        "¡Tu mensaje fue enviado correctamente! Nos pondremos en contacto a la brevedad."
+      );
+
+      formulario.reset();
+    } catch (error) {
+      setEstado("error");
+      setMensajeEstado(
+        error instanceof Error
+          ? error.message
+          : "Ocurrió un error. Intentá nuevamente."
+      );
+    } finally {
+      setEnviando(false);
+    }
   };
+
+  if (!abierto) return null;
 
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-[#07100a]/80 p-3 backdrop-blur-sm sm:p-4"
-      onMouseDown={onClose}
+      onMouseDown={() => {
+        if (!enviando) onClose();
+      }}
     >
       <div
         role="dialog"
@@ -91,8 +133,9 @@ export default function ContactoModal({
         <button
           type="button"
           onClick={onClose}
+          disabled={enviando}
           aria-label="Cerrar formulario"
-          className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#172519]/70 text-lg text-white/60 backdrop-blur-md transition hover:border-white/30 hover:bg-white/5 hover:text-white sm:right-6 sm:top-6 sm:h-11 sm:w-11 sm:text-xl"
+          className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#172519]/70 text-lg text-white/60 backdrop-blur-md transition hover:border-white/30 hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-40 sm:right-6 sm:top-6 sm:h-11 sm:w-11 sm:text-xl"
         >
           ×
         </button>
@@ -139,9 +182,11 @@ export default function ContactoModal({
                   name="nombre"
                   type="text"
                   required
+                  maxLength={120}
                   autoComplete="name"
                   placeholder="Tu nombre"
-                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
+                  disabled={enviando}
+                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] disabled:opacity-50 sm:text-sm"
                 />
               </div>
 
@@ -159,14 +204,16 @@ export default function ContactoModal({
                   name="email"
                   type="email"
                   required
+                  maxLength={254}
                   autoComplete="email"
                   inputMode="email"
                   placeholder="nombre@email.com"
-                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
+                  disabled={enviando}
+                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] disabled:opacity-50 sm:text-sm"
                 />
               </div>
 
-              {/* Asunto obligatorio */}
+              {/* Asunto */}
               <div className="min-w-0">
                 <label
                   htmlFor="contacto-asunto"
@@ -186,7 +233,8 @@ export default function ContactoModal({
                       ? "Motivo de tu consulta de prensa"
                       : "Motivo de tu consulta"
                   }
-                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
+                  disabled={enviando}
+                  className="w-full min-w-0 rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] disabled:opacity-50 sm:text-sm"
                 />
               </div>
 
@@ -203,12 +251,29 @@ export default function ContactoModal({
                   id="contacto-mensaje"
                   name="mensaje"
                   required
+                  maxLength={5000}
                   rows={5}
                   placeholder="Escribí tu consulta..."
-                  className="w-full min-w-0 resize-none rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base leading-6 text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] sm:text-sm"
+                  disabled={enviando}
+                  className="w-full min-w-0 resize-none rounded-xl border border-white/10 bg-white/[0.05] px-4 py-3.5 text-base leading-6 text-white outline-none transition placeholder:text-white/20 focus:border-[#6ce17c]/60 focus:bg-white/[0.07] disabled:opacity-50 sm:text-sm"
                 />
               </div>
             </div>
+
+            {/* MENSAJE DE RESULTADO */}
+            {estado && (
+              <div
+                role="status"
+                aria-live="polite"
+                className={`mt-6 rounded-xl border px-4 py-3 text-sm leading-6 ${
+                  estado === "exito"
+                    ? "border-[#6ce17c]/30 bg-[#6ce17c]/10 text-[#a7f3b1]"
+                    : "border-red-400/30 bg-red-400/10 text-red-200"
+                }`}
+              >
+                {mensajeEstado}
+              </div>
+            )}
 
             {/* FOOTER */}
             <div className="mt-7 flex flex-col gap-5 border-t border-white/10 pt-6 sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-7">
@@ -224,9 +289,10 @@ export default function ContactoModal({
 
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center rounded-full bg-[#6ce17c] px-8 py-4 text-sm font-bold text-[#172519] transition duration-300 hover:-translate-y-0.5 hover:bg-[#7bea89] sm:w-auto"
+                disabled={enviando}
+                className="inline-flex w-full items-center justify-center rounded-full bg-[#6ce17c] px-8 py-4 text-sm font-bold text-[#172519] transition duration-300 hover:-translate-y-0.5 hover:bg-[#7bea89] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
               >
-                Enviar mensaje
+                {enviando ? "Enviando..." : "Enviar mensaje"}
               </button>
             </div>
           </form>

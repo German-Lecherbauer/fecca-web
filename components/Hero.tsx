@@ -14,8 +14,8 @@ export default function Hero() {
 
       <div className="absolute left-0 top-0 h-full w-px bg-white/5" />
 
-      {/* Contenedor principal más ancho */}
-      <div className="relative z-10 mx-auto grid w-full max-w-[1600px] items-center gap-10 px-5 pb-12 pt-36 sm:px-6 sm:pb-14 sm:pt-40 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16 lg:px-8 lg:pb-24 lg:pt-52">
+      {/* Contenedor principal */}
+      <div className="relative z-10 mx-auto grid w-full max-w-[1600px] items-center gap-10 px-5 pb-12 pt-36 sm:px-6 sm:pb-14 sm:pt-40 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-16 lg:px-8 lg:pb-24 lg:pt-52">
         {/* CONTENIDO PRINCIPAL */}
         <div className="relative z-20 min-w-0">
           <h1 className="text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl lg:text-[4rem]">
@@ -81,7 +81,7 @@ export default function Hero() {
         </div>
 
         {/* LOGO PROTAGONISTA - ESCRITORIO */}
-        <div className="relative hidden min-h-[420px] items-center justify-center lg:flex">
+        <div className="relative hidden min-h-[420px] min-w-0 items-center justify-center lg:flex">
           {/* Luces detrás del logo */}
           <div className="pointer-events-none absolute right-[-90px] top-[-20px] h-[520px] w-[520px] rounded-full bg-[#4D6645]/20 blur-[110px]" />
 
@@ -89,16 +89,16 @@ export default function Hero() {
 
           <div className="pointer-events-none absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#4D6645]/20 blur-[70px]" />
 
-          {/* Logo ajustado al nuevo ancho */}
-          <div className="relative z-10 -translate-y-8 translate-x-8 xl:-translate-y-12 xl:translate-x-12">
-            <div className="fecca-logo-pulse">
+          {/* Logo responsive, desplazado hacia la derecha */}
+          <div className="relative z-10 w-full max-w-[490px] -translate-y-8 lg:translate-x-6 xl:-translate-y-12 xl:translate-x-8">
+            <div className="fecca-logo-pulse w-full">
               <Image
                 src="/images/logo/logo-fecca.svg"
                 alt="Federación de Clubes Cannábicos de Argentina"
                 width={460}
                 height={329}
                 priority
-                className="h-auto w-[440px] max-w-none drop-shadow-[0_30px_50px_rgba(0,0,0,0.35)] xl:w-[490px]"
+                className="h-auto w-full max-w-full object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.35)]"
               />
             </div>
           </div>
