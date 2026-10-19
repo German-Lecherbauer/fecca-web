@@ -15,7 +15,7 @@ export default function Hero() {
       <div className="absolute left-0 top-0 h-full w-px bg-white/5" />
 
       {/* CONTENEDOR PRINCIPAL */}
-      <div className="relative z-10 mx-auto grid w-full max-w-[1200px] items-center gap-10 px-5 pb-14 pt-36 sm:px-6 sm:pb-16 sm:pt-40 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-8 lg:px-8 lg:pb-24 lg:pt-48">
+      <div className="relative z-10 mx-auto grid w-full max-w-[1200px] items-center gap-10 px-5 pb-14 pt-36 sm:px-6 sm:pb-16 sm:pt-40 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-14 lg:px-8 lg:pb-24 lg:pt-48">
         {/* CONTENIDO PRINCIPAL */}
         <div className="relative z-20 min-w-0">
           {/* TÍTULO PRINCIPAL */}
@@ -86,9 +86,9 @@ export default function Hero() {
 
           <div className="pointer-events-none absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#4D6645]/20 blur-[70px]" />
 
-          {/* LOGO MÁS GRANDE Y CENTRADO */}
+          {/* LOGO MÁS SEPARADO Y ELEVADO */}
           <div className="relative z-10 flex w-full items-center justify-center">
-            <div className="fecca-logo-pulse w-[115%] max-w-none shrink-0 lg:translate-x-2 xl:w-[120%] xl:translate-x-3">
+            <div className="fecca-logo-pulse w-[115%] max-w-none shrink-0 lg:translate-x-[35px] lg:-translate-y-[35px] xl:w-[120%] xl:translate-x-[45px]">
               <Image
                 src="/images/logo/logo-fecca.svg"
                 alt="Federación de Clubes Cannábicos de Argentina"
