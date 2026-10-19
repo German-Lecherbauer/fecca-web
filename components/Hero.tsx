@@ -89,8 +89,8 @@ export default function Hero() {
 
           <div className="pointer-events-none absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#4D6645]/20 blur-[70px]" />
 
-          {/* Logo desplazado a la derecha */}
-          <div className="relative z-10 w-full max-w-[380px] -translate-y-8 lg:translate-x-[60px] lg:-translate-y-12 xl:translate-x-[80px] xl:-translate-y-16">
+          {/* Logo con desplazamiento horizontal ajustado */}
+          <div className="relative z-10 w-full max-w-[380px] -translate-y-8 lg:translate-x-[30px] lg:-translate-y-12 xl:translate-x-[40px] xl:-translate-y-16">
             <div className="fecca-logo-pulse w-full">
               <Image
                 src="/images/logo/logo-fecca.svg"
