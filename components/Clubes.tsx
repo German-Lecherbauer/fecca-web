@@ -12,10 +12,22 @@ export default function Clubes() {
       <section
         id="clubes"
         aria-labelledby="titulo-clubes"
-        className="scroll-mt-24 bg-[#283524] pb-10 pt-2 text-white sm:pb-12 sm:pt-3 lg:pb-12 lg:pt-4"
+        className="scroll-mt-24 bg-[#283524] pb-10 pt-8 text-white sm:pb-12 sm:pt-10 lg:pb-12 lg:pt-12"
       >
         {/* CONTENEDOR ALINEADO CON EL HERO */}
         <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
+          {/* CORTE ESTÉTICO ENTRE ALIANZAS Y CLUBES */}
+          <div
+            aria-hidden="true"
+            className="mb-9 flex items-center gap-4 sm:mb-11 lg:mb-12"
+          >
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#D0BC84]/40 to-[#D0BC84]/60" />
+
+            <div className="h-1.5 w-1.5 shrink-0 rotate-45 bg-[#D0BC84]/80" />
+
+            <div className="h-px flex-1 bg-gradient-to-l from-transparent via-[#D0BC84]/40 to-[#D0BC84]/60" />
+          </div>
+
           {/* ENCABEZADO */}
           <div className="grid items-end gap-4 md:grid-cols-2 md:gap-10">
             <div>
@@ -49,7 +61,7 @@ export default function Clubes() {
             </p>
           </div>
 
-          {/* SEPARADOR */}
+          {/* SEPARADOR DEL ENCABEZADO */}
           <div className="my-7 h-px w-full bg-white/15 sm:my-8" />
 
           {/* TARJETAS */}
