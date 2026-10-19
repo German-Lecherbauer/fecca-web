@@ -6,7 +6,7 @@ const herramientas = [
     numero: 1,
     titulo: "Representación",
     texto:
-      "TU CLUB NO ESTÁ SOLO. Una voz colectiva frente a los desafíos del sector.",
+      "Tu club no está solo. Una voz colectiva frente a los desafíos del sector.",
   },
   {
     numero: 2,
@@ -53,7 +53,7 @@ export default function Beneficios() {
       {/* CONTENEDOR ALINEADO CON EL HERO */}
       <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
         {/* ENCABEZADO */}
-        <div className="grid items-end gap-4 lg:grid-cols-2 lg:gap-10">
+        <div>
           <h2
             id="titulo-herramientas"
             className="text-[30px] font-semibold leading-[1.1] tracking-tight sm:text-[34px] lg:text-[38px]"
@@ -62,11 +62,6 @@ export default function Beneficios() {
             <br />
             <span className="text-[#D0BC84]">tu club.</span>
           </h2>
-
-          <p className="max-w-[440px] text-[14px] leading-6 text-white/80 sm:text-[15px] lg:justify-self-end">
-            Salud, educación y acompañamiento para fortalecer a los
-            clubes que forman parte de la red federal de FECCA.
-          </p>
         </div>
 
         {/* SEPARADOR */}

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 const enlaces = [
   { href: "#institucional", texto: "Institucional" },
-  { href: "#clubes", texto: "Clubes" },
+  { href: "#herramientas", texto: "Clubes" },
   { href: "#herramientas", texto: "Beneficios" },
   { href: "#contacto", texto: "Contacto" },
   {
@@ -104,7 +104,7 @@ export default function Navbar() {
             <div className="hidden items-center gap-5 md:flex lg:gap-7">
               {enlaces.map((enlace) => (
                 <a
-                  key={enlace.href}
+                  key={`${enlace.texto}-${enlace.href}`}
                   href={enlace.href}
                   target={enlace.externo ? "_blank" : undefined}
                   rel={enlace.externo ? "noopener noreferrer" : undefined}
@@ -186,7 +186,7 @@ export default function Navbar() {
           <nav aria-label="Navegación móvil" className="mt-8">
             {enlaces.map((enlace) => (
               <a
-                key={enlace.href}
+                key={`${enlace.texto}-${enlace.href}`}
                 href={enlace.href}
                 target={enlace.externo ? "_blank" : undefined}
                 rel={enlace.externo ? "noopener noreferrer" : undefined}

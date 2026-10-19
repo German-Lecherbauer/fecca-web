@@ -73,44 +73,44 @@ export default function NuestraMision() {
           </div>
         </div>
 
-        {/* DOCUMENTO INSTITUCIONAL */}
+        {/* DOCUMENTO INSTITUCIONAL Y LINKTREE */}
         <div className="mt-8 max-w-[780px]">
-          <a
-            href="/documentos/institucional-fecca.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex w-full flex-col justify-between gap-4 rounded-xl border border-[#283524]/15 bg-white/40 p-5 transition-colors duration-300 hover:bg-white/75 sm:flex-row sm:items-center sm:p-6"
-          >
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#4D6645]">
-                Institucional
-              </p>
+          <div className="rounded-xl border border-[#283524]/15 bg-white/40 p-5 transition-colors duration-300 hover:bg-white/60 sm:p-6">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#4D6645]">
+              Institucional
+            </p>
 
-              <h3 className="mt-2 text-lg font-semibold tracking-tight text-[#283524] sm:text-xl">
-                Conocé más sobre FECCA
-              </h3>
+            <h3 className="mt-2 text-lg font-semibold tracking-tight text-[#283524] sm:text-xl">
+              Conocé más sobre FECCA
+            </h3>
 
-              <p className="mt-2 text-[13px] leading-5 text-[#283524]/70 sm:text-sm">
-                Accedé al documento institucional de la Federación.
-              </p>
+            <p className="mt-2 text-[13px] leading-5 text-[#283524]/70 sm:text-sm">
+              Accedé al documento institucional de la Federación.
+            </p>
+
+            {/* ENLACES INSTITUCIONALES */}
+            <div className="mt-5 flex flex-col items-start gap-4 border-t border-[#283524]/10 pt-5 sm:items-end">
+              {/* PDF */}
+              <a
+                href="/documentos/institucional-fecca.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-[13px] font-semibold text-[#4D6645] underline decoration-[#4D6645]/40 underline-offset-4 transition-colors duration-300 hover:text-[#283524] focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
+              >
+                Ver documento institucional (PDF)
+              </a>
+
+              {/* LINKTREE */}
+              <a
+                href="https://linktr.ee/fecca.oficial"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visitar Linktree oficial de FECCA"
+                className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#4D6645] px-6 py-2.5 text-[13px] font-semibold text-[#F1EFE8] transition-colors duration-300 hover:bg-[#3D5337] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
+              >
+                Linktree de FECCA
+              </a>
             </div>
-
-            <span className="inline-flex shrink-0 items-center text-[13px] font-semibold text-[#4D6645] underline decoration-[#4D6645]/40 underline-offset-4 transition-colors group-hover:text-[#283524]">
-              Ver documento institucional (PDF)
-            </span>
-          </a>
-
-          {/* LINKTREE */}
-          <div className="mt-4 flex justify-end">
-            <a
-              href="https://linktr.ee/fecca.oficial"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visitar Linktree oficial de FECCA"
-              className="inline-flex min-h-10 items-center justify-center rounded-lg bg-[#4D6645] px-6 py-2.5 text-[13px] font-semibold text-[#F1EFE8] transition-colors duration-300 hover:bg-[#3D5337] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
-            >
-              Linktree de FECCA
-            </a>
           </div>
         </div>
       </div>
