@@ -88,7 +88,7 @@ export default function Hero() {
 
           {/* LOGO MÁS SEPARADO Y ELEVADO */}
           <div className="relative z-10 flex w-full items-center justify-center">
-            <div className="fecca-logo-pulse w-[115%] max-w-none shrink-0 lg:translate-x-[35px] lg:-translate-y-[35px] xl:w-[120%] xl:translate-x-[45px]">
+            <div className="fecca-logo-pulse w-[115%] max-w-none shrink-0 lg:translate-x-[35px] lg:-translate-y-[65px] xl:w-[120%] xl:translate-x-[45px]">
               <Image
                 src="/images/logo/logo-fecca.svg"
                 alt="Federación de Clubes Cannábicos de Argentina"
