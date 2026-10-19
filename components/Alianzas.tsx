@@ -47,7 +47,7 @@ const marcasAliadas: MarcaAliada[] = [
     id: 6,
     nombre: "JB Acupuntura",
     logo: "/images/aliados/jb-acupuntura.png",
-    web: "https://wa.me/5491158869144?text=Hola.%20Soy%20asociado%20a%20FECCA%20y%20quer%C3%ADa%20consultar%20por%20el%20descuento%20para%20socios%20en%20las%20sesiones%20de%20acupuntura.",
+    web: "https://wa.me/5491158869144?text=Hola.%20Soy%20asociado%20a%20FECCA%20y%20quer%C3%ADa%20consultar%20por%20el%20descuento%20para%20socios%20en%20las%20sesiones%20de%20acupuntura",
   },
   {
     id: 7,
@@ -83,7 +83,7 @@ const marcasAliadas: MarcaAliada[] = [
 
 function TarjetaMarca({ marca }: { marca: MarcaAliada }) {
   const clases =
-    "flex h-[94px] w-[168px] shrink-0 items-center justify-center rounded-xl border border-[#D0BC84]/20 bg-[#F1EFE8] px-4 py-3 transition-all duration-300 sm:h-[105px] sm:w-[190px] sm:px-5 sm:py-4";
+    "flex h-[88px] w-[155px] shrink-0 items-center justify-center rounded-xl border border-[#D0BC84]/20 bg-[#F1EFE8] px-4 py-3 transition-all duration-300 sm:h-[96px] sm:w-[175px] sm:px-5";
 
   const logosMasGrandes = [2, 4, 7, 8];
 
@@ -111,7 +111,7 @@ function TarjetaMarca({ marca }: { marca: MarcaAliada }) {
         src={marca.logo}
         alt={`Logo de ${marca.nombre}`}
         fill
-        sizes="(max-width: 640px) 168px, 190px"
+        sizes="(max-width: 640px) 155px, 175px"
         className={`${escalaLogo} object-contain`}
       />
     </div>
@@ -153,40 +153,41 @@ export default function Alianzas() {
       <section
         id="beneficios"
         aria-labelledby="titulo-beneficios"
-        className="scroll-mt-24 bg-[#283524] pb-6 pt-0 text-white sm:pb-7 sm:pt-0 lg:pb-8 lg:pt-0"
+        className="scroll-mt-24 bg-[#283524] pb-10 pt-0 text-white sm:pb-12 lg:pb-14"
       >
-        <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-6 lg:px-8">
-          <div className="rounded-xl border border-white/15 bg-white/[0.04] p-5 sm:p-7">
+        {/* CONTENEDOR ALINEADO CON EL HERO */}
+        <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
+          <div className="rounded-xl border border-white/15 bg-white/[0.04] p-5 sm:p-6 lg:p-7">
             {/* ENCABEZADO */}
-            <div className="mb-7">
-              <div className="mb-4 flex items-center gap-3">
+            <div className="mb-5">
+              <div className="mb-3 flex items-center gap-2.5">
                 <span
                   aria-hidden="true"
-                  className="h-2 w-2 rounded-full bg-[#D0BC84]"
+                  className="h-2 w-2 shrink-0 rounded-full bg-[#D0BC84]"
                 />
 
-                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-[#D0BC84]">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D0BC84] sm:text-xs">
                   Alianzas
                 </span>
               </div>
 
               <h2
                 id="titulo-beneficios"
-                className="text-2xl font-semibold tracking-tight sm:text-3xl"
+                className="text-[24px] font-semibold leading-tight tracking-tight sm:text-[28px] lg:text-[30px]"
               >
                 Beneficios para tu club
               </h2>
             </div>
 
             {/* CARRUSEL INFINITO */}
-            <div className="rounded-xl border border-white/10 bg-[#203126] px-4 py-7 sm:px-6 sm:py-9">
+            <div className="rounded-xl border border-white/10 bg-[#203126] px-3 py-5 sm:px-5 sm:py-6">
               <div
-                className="marcas-carrusel relative mx-auto w-full max-w-[1450px] overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_0.5%,black_99.5%,transparent)]"
+                className="marcas-carrusel relative mx-auto w-full overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_1%,black_99%,transparent)]"
                 aria-label="Marcas aliadas de FECCA"
               >
                 <div className="marcas-pista flex w-max">
                   {/* PRIMERA VUELTA */}
-                  <div className="flex shrink-0 gap-4 pr-4 sm:gap-5 sm:pr-5">
+                  <div className="flex shrink-0 gap-3 pr-3 sm:gap-4 sm:pr-4">
                     {marcasAliadas.map((marca) => (
                       <TarjetaMarca
                         key={marca.id}
@@ -197,7 +198,7 @@ export default function Alianzas() {
 
                   {/* COPIA PARA MOVIMIENTO CONTINUO */}
                   <div
-                    className="flex shrink-0 gap-4 pr-4 sm:gap-5 sm:pr-5"
+                    className="flex shrink-0 gap-3 pr-3 sm:gap-4 sm:pr-4"
                     aria-hidden="true"
                     inert
                   >
@@ -213,18 +214,18 @@ export default function Alianzas() {
             </div>
 
             {/* INVITACIÓN PARA NUEVAS MARCAS */}
-            <div className="mt-7 border-t border-white/15 pt-7 sm:mt-8 sm:pt-8">
+            <div className="mt-6 border-t border-white/15 pt-6">
               <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-center md:gap-8">
                 <div className="max-w-2xl">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#D0BC84]">
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D0BC84] sm:text-xs">
                     Sumate a nuestra red
                   </p>
 
-                  <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                  <h3 className="text-lg font-semibold tracking-tight text-white sm:text-xl">
                     ¿Tenés una marca?
                   </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-white/75">
+                  <p className="mt-2 max-w-[580px] text-[13px] leading-6 text-white/75 sm:text-sm">
                     Sumate a la red de beneficios de FECCA y conectá
                     con nuestra comunidad de clubes federados.
                   </p>
@@ -233,7 +234,7 @@ export default function Alianzas() {
                 <button
                   type="button"
                   onClick={() => setModalAbierto(true)}
-                  className="inline-flex min-h-12 w-full shrink-0 items-center justify-center rounded-lg bg-[#D0BC84] px-7 py-3 text-sm font-semibold text-[#283524] transition-colors duration-300 hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto"
+                  className="inline-flex min-h-11 w-full shrink-0 items-center justify-center rounded-lg bg-[#D0BC84] px-6 py-2.5 text-[13px] font-semibold text-[#283524] transition-colors duration-300 hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto"
                 >
                   Quiero sumar mi marca
                 </button>
@@ -242,6 +243,7 @@ export default function Alianzas() {
           </div>
         </div>
 
+        {/* ANIMACIÓN DEL CARRUSEL */}
         <style jsx>{`
           .marcas-pista {
             animation: desplazar-marcas 38s linear infinite;
@@ -275,6 +277,7 @@ export default function Alianzas() {
         `}</style>
       </section>
 
+      {/* MODAL PARA NUEVAS ALIANZAS */}
       <AlianzasModal
         abierto={modalAbierto}
         onClose={cerrarModal}

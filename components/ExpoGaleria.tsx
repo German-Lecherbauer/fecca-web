@@ -152,36 +152,37 @@ export default function ExpoGaleria() {
 
   return (
     <>
-      <section
-        id="expo-galeria"
-        aria-labelledby="titulo-expo-galeria"
-        className="relative mt-0 overflow-hidden bg-[#E8E7DC] pb-8 pt-6 sm:mt-0 sm:pb-8 sm:pt-8 lg:-mt-14 lg:pb-7 lg:pt-0"
-      >
-        {/* CONTENEDOR AMPLIADO A 1600 PX */}
-        <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-6 lg:px-8">
+      {/* SECCIÓN GALERÍA */}
+     <section
+  id="expo-galeria"
+  aria-labelledby="titulo-expo-galeria"
+  className="relative z-10 -mt-8 overflow-hidden bg-[#E8E7DC] pb-8 pt-4 sm:-mt-12 sm:pb-10 sm:pt-5 lg:-mt-16 lg:pb-12 lg:pt-6"
+>
+        {/* CONTENEDOR ALINEADO CON EL HERO */}
+        <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
           {/* ENCABEZADO */}
-          <div className="flex flex-col gap-4 border-t border-[#283524]/15 pt-4 sm:flex-row sm:items-center sm:justify-between sm:pt-5">
+          <div className="flex flex-col gap-4 border-t border-[#283524]/15 pt-5 sm:flex-row sm:items-center sm:justify-between sm:pt-6">
             <div>
-              <div className="mb-2 flex items-center gap-3">
+              <div className="mb-3 flex items-center gap-2.5">
                 <span
                   aria-hidden="true"
-                  className="h-2 w-2 rounded-full bg-[#4D6645]"
+                  className="h-2 w-2 shrink-0 rounded-full bg-[#4D6645]"
                 />
 
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#4D6645]">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4D6645] sm:text-xs">
                   Ediciones anteriores
                 </span>
               </div>
 
               <h2
                 id="titulo-expo-galeria"
-                className="text-3xl font-semibold tracking-tight text-[#283524] sm:text-4xl"
+                className="text-[27px] font-semibold leading-tight tracking-tight text-[#283524] sm:text-3xl lg:text-[34px]"
               >
                 Así se vivió Expo Cannabis
               </h2>
             </div>
 
-            {/* BOTÓN PARA MOSTRAR U OCULTAR LA GALERÍA */}
+            {/* BOTÓN MOSTRAR / OCULTAR */}
             <button
               type="button"
               aria-expanded={galeriaAbierta}
@@ -189,27 +190,27 @@ export default function ExpoGaleria() {
               onClick={() =>
                 setGaleriaAbierta((actual) => !actual)
               }
-              className="inline-flex min-h-12 w-fit shrink-0 items-center justify-center rounded-lg bg-[#4D6645] px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#3D5337] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
+              className="inline-flex min-h-10 w-fit shrink-0 items-center justify-center rounded-lg bg-[#4D6645] px-5 py-2.5 text-[13px] font-semibold text-white transition-colors duration-300 hover:bg-[#3D5337] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
             >
               {galeriaAbierta ? "Ocultar galería" : "Ver galería"}
             </button>
           </div>
 
-          {/* CONTENIDO OCULTO INICIALMENTE */}
+          {/* CONTENIDO DE LA GALERÍA */}
           <div
             id="contenido-galeria-expo"
             hidden={!galeriaAbierta}
-            className={galeriaAbierta ? "pt-6 sm:pt-8" : "hidden"}
+            className={galeriaAbierta ? "pt-6 sm:pt-7" : "hidden"}
           >
             {/* MOSAICO DESKTOP */}
-            <div className="hidden auto-rows-[220px] grid-cols-4 gap-4 md:grid lg:auto-rows-[245px]">
+            <div className="hidden auto-rows-[170px] grid-cols-4 gap-3 md:grid lg:auto-rows-[200px] lg:gap-4">
               {fotos.map((foto, index) => (
                 <button
                   key={foto.src}
                   type="button"
                   onClick={() => abrir(index)}
                   aria-label={`Ampliar fotografía: ${foto.titulo}`}
-                  className={`group relative cursor-zoom-in overflow-hidden rounded-[20px] bg-[#283524] text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#4D6645] ${foto.clase}`}
+                  className={`group relative cursor-zoom-in overflow-hidden rounded-2xl bg-[#283524] text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#4D6645] ${foto.clase}`}
                 >
                   <Image
                     src={foto.src}
@@ -225,19 +226,19 @@ export default function ExpoGaleria() {
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
-                    <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.18em] text-white/65">
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <span className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.16em] text-white/65">
                       Expo Cannabis
                     </span>
 
-                    <p className="text-base font-semibold text-white">
+                    <p className="text-sm font-semibold text-white sm:text-base">
                       {foto.titulo}
                     </p>
                   </div>
 
                   <span
                     aria-hidden="true"
-                    className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-black/25 text-xl text-white opacity-0 backdrop-blur-sm transition group-hover:opacity-100 group-focus-visible:opacity-100"
+                    className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-black/25 text-lg text-white opacity-0 backdrop-blur-sm transition group-hover:opacity-100 group-focus-visible:opacity-100"
                   >
                     +
                   </span>
@@ -245,12 +246,12 @@ export default function ExpoGaleria() {
               ))}
             </div>
 
-            {/* CARRUSEL MOBILE */}
+            {/* CARRUSEL MÓVIL */}
             <div className="md:hidden">
               <div
                 ref={carruselRef}
                 onScroll={actualizarFotoMobile}
-                className="flex snap-x snap-mandatory gap-0 overflow-x-auto overscroll-x-contain rounded-[20px] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                className="flex snap-x snap-mandatory gap-0 overflow-x-auto overscroll-x-contain rounded-2xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               >
                 {fotos.map((foto, index) => (
                   <button
@@ -284,7 +285,7 @@ export default function ExpoGaleria() {
               </div>
 
               {/* CONTROLES DEL CARRUSEL */}
-              <div className="mt-5 flex items-center justify-between gap-4">
+              <div className="mt-4 flex items-center justify-between gap-4">
                 <p className="text-xs text-[#283524]/65">
                   Deslizá para explorar
                 </p>
@@ -340,6 +341,7 @@ export default function ExpoGaleria() {
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 px-4 py-20 backdrop-blur-md"
           onClick={cerrar}
         >
+          {/* CERRAR */}
           <button
             ref={cerrarRef}
             type="button"
@@ -350,6 +352,7 @@ export default function ExpoGaleria() {
             ×
           </button>
 
+          {/* ANTERIOR */}
           <button
             type="button"
             onClick={(event) => {
@@ -362,6 +365,7 @@ export default function ExpoGaleria() {
             ‹
           </button>
 
+          {/* FOTO */}
           <div
             className="relative h-full max-h-[75vh] w-full max-w-6xl"
             onClick={(event) => event.stopPropagation()}
@@ -376,6 +380,7 @@ export default function ExpoGaleria() {
             />
           </div>
 
+          {/* SIGUIENTE */}
           <button
             type="button"
             onClick={(event) => {
@@ -388,6 +393,7 @@ export default function ExpoGaleria() {
             ›
           </button>
 
+          {/* INFORMACIÓN */}
           <div className="pointer-events-none absolute bottom-6 left-1/2 w-full -translate-x-1/2 px-6 text-center">
             <p className="text-sm font-semibold text-white">
               {fotos[fotoActiva].titulo}

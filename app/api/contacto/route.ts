@@ -7,61 +7,192 @@ export const runtime = "nodejs";
 const EMAIL_GENERAL = "info@fecca.com.ar";
 const EMAIL_PRENSA = "prensa@fecca.com.ar";
 
+type TipoConsulta =
+  | "general"
+  | "prensa"
+  | "alianzas"
+  | "buscar-club";
+
 type TurnstileResponse = {
   success: boolean;
   "error-codes"?: string[];
 };
 
+const configuracionTipos: Record<
+  TipoConsulta,
+  { destinatario: string; etiqueta: string }
+> = {
+  general: {
+    destinatario: EMAIL_GENERAL,
+    etiqueta: "Contacto",
+  },
+  prensa: {
+    destinatario: EMAIL_PRENSA,
+    etiqueta: "Prensa",
+  },
+  alianzas: {
+    destinatario: EMAIL_PRENSA,
+    etiqueta: "Alianzas",
+  },
+  "buscar-club": {
+    destinatario: EMAIL_GENERAL,
+    etiqueta: "Buscar club",
+  },
+};
+
+function esTipoConsulta(valor: unknown): valor is TipoConsulta {
+  return (
+    typeof valor === "string" &&
+    Object.prototype.hasOwnProperty.call(
+      configuracionTipos,
+      valor
+    )
+  );
+}
+
+function campo(
+  body: Record<string, unknown>,
+  nombre: string,
+  maximo: number,
+  obligatorio = true
+): string | null {
+  const valor = body[nombre];
+
+  if (valor === undefined || valor === null) {
+    return obligatorio ? null : "";
+  }
+
+  if (typeof valor !== "string") return null;
+
+  const limpio = valor.trim();
+
+  if (limpio.length > maximo) return null;
+  if (obligatorio && !limpio) return null;
+
+  return limpio;
+}
+
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    let body: Record<string, unknown>;
 
-    const { tipo, nombre, email, asunto, mensaje } = body;
+    try {
+      const recibido: unknown = await request.json();
 
-    // Aceptamos ambos nombres por compatibilidad con el formulario.
-    const turnstileToken =
-      body.turnstileToken ?? body.turnstile_token;
+      if (
+        !recibido ||
+        typeof recibido !== "object" ||
+        Array.isArray(recibido)
+      ) {
+        return NextResponse.json(
+          { error: "Datos de formulario inválidos." },
+          { status: 400 }
+        );
+      }
 
-    // 1. Validar los campos obligatorios
-    if (
-      typeof nombre !== "string" ||
-      typeof email !== "string" ||
-      typeof asunto !== "string" ||
-      typeof mensaje !== "string" ||
-      !nombre.trim() ||
-      !email.trim() ||
-      !asunto.trim() ||
-      !mensaje.trim()
-    ) {
+      body = recibido as Record<string, unknown>;
+    } catch {
       return NextResponse.json(
-        { error: "Completá todos los campos." },
+        { error: "No se pudo interpretar el formulario." },
         { status: 400 }
       );
     }
 
-    // 2. Validar longitudes y formato del correo
-    if (
-      nombre.length > 120 ||
-      email.length > 254 ||
-      asunto.length > 150 ||
-      mensaje.length > 5000 ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-    ) {
-      return NextResponse.json(
-        { error: "Revisá los datos ingresados." },
-        { status: 400 }
-      );
-    }
+    // 1. Validar tipo de consulta
+    const tipo = body.tipo;
 
-    // 3. Validar el tipo de consulta
-    if (tipo !== "general" && tipo !== "prensa") {
+    if (!esTipoConsulta(tipo)) {
       return NextResponse.json(
         { error: "Tipo de consulta inválido." },
         { status: 400 }
       );
     }
 
-    // 4. Obtener credenciales del servidor
+    // 2. Validar datos generales
+    const nombre = campo(body, "nombre", 120);
+    const email = campo(body, "email", 254);
+
+    const asunto =
+      tipo === "general" || tipo === "prensa"
+        ? campo(body, "asunto", 150)
+        : tipo === "alianzas"
+          ? "Consulta de alianza comercial"
+          : "Solicitud para encontrar un club";
+
+    const mensaje =
+      tipo === "general" || tipo === "prensa"
+        ? campo(body, "mensaje", 5000)
+        : tipo === "alianzas"
+          ? campo(body, "mensaje", 3000)
+          : "";
+
+    if (
+      !nombre ||
+      !email ||
+      !asunto ||
+      mensaje === null ||
+      ((tipo === "general" ||
+        tipo === "prensa" ||
+        tipo === "alianzas") &&
+        !mensaje)
+    ) {
+      return NextResponse.json(
+        { error: "Completá todos los campos obligatorios." },
+        { status: 400 }
+      );
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return NextResponse.json(
+        { error: "Ingresá un correo electrónico válido." },
+        { status: 400 }
+      );
+    }
+
+    // 3. Datos adicionales
+    const detalles: string[] = [];
+
+    // ALIANZAS
+    if (tipo === "alianzas") {
+      const marca = campo(body, "marca", 120);
+      const telefono = campo(body, "telefono", 40, false);
+
+      if (!marca || telefono === null) {
+        return NextResponse.json(
+          { error: "Revisá los datos de tu marca." },
+          { status: 400 }
+        );
+      }
+
+      detalles.push(
+        `Marca: ${marca}`,
+        `Teléfono: ${telefono || "No informado"}`
+      );
+    }
+
+    // BUSCAR CLUB
+    if (tipo === "buscar-club") {
+      const telefono = campo(body, "telefono", 40);
+      const provincia = campo(body, "provincia", 120);
+      const localidad = campo(body, "localidad", 120);
+
+      if (!telefono || !provincia || !localidad) {
+        return NextResponse.json(
+          {
+            error: "Completá los datos de contacto y ubicación.",
+          },
+          { status: 400 }
+        );
+      }
+
+      detalles.push(
+        `Teléfono: ${telefono}`,
+        `Provincia: ${provincia}`,
+        `Localidad: ${localidad}`
+      );
+    }
+
+    // 4. Configuración del servidor
     const usuarioSMTP = process.env.SMTP_USER;
     const passwordSMTP = process.env.SMTP_PASSWORD;
     const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
@@ -70,12 +201,17 @@ export async function POST(request: Request) {
       console.error("Falta configuración SMTP o Turnstile.");
 
       return NextResponse.json(
-        { error: "El servicio de contacto no está disponible." },
+        {
+          error: "El servicio de contacto no está disponible.",
+        },
         { status: 503 }
       );
     }
 
-    // 5. Exigir el token de Cloudflare Turnstile
+    // 5. Verificación de seguridad
+    const turnstileToken =
+      body.turnstileToken ?? body.turnstile_token;
+
     if (
       typeof turnstileToken !== "string" ||
       !turnstileToken.trim()
@@ -88,7 +224,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // 6. Validar el token directamente con Cloudflare
     const datosVerificacion = new URLSearchParams({
       secret: turnstileSecret,
       response: turnstileToken,
@@ -120,13 +255,18 @@ export async function POST(request: Request) {
       );
 
       if (!respuestaCloudflare.ok) {
-        throw new Error("Cloudflare no respondió correctamente.");
+        throw new Error(
+          "Cloudflare no respondió correctamente."
+        );
       }
 
       resultadoTurnstile =
         (await respuestaCloudflare.json()) as TurnstileResponse;
     } catch (error) {
-      console.error("Error al verificar Turnstile:", error);
+      console.error(
+        "Error al verificar Turnstile:",
+        error
+      );
 
       return NextResponse.json(
         {
@@ -152,11 +292,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // 7. Elegir destinatario según el formulario
-    const destinatario =
-      tipo === "prensa" ? EMAIL_PRENSA : EMAIL_GENERAL;
+    // 6. Configuración del destinatario
+    const configuracion = configuracionTipos[tipo];
 
-    // 8. Configurar SMTP de Hostinger
+    // 7. SMTP Hostinger
     const transporter = nodemailer.createTransport({
       host: "smtp.hostinger.com",
       port: 465,
@@ -170,29 +309,33 @@ export async function POST(request: Request) {
       socketTimeout: 15000,
     });
 
-    // 9. Enviar correo únicamente después de validar Turnstile
+    // 8. Contenido del correo
+    const contenido = [
+      `Tipo de consulta: ${configuracion.etiqueta}`,
+      `Nombre: ${nombre}`,
+      `Email: ${email}`,
+      `Asunto: ${asunto}`,
+      ...detalles,
+      "",
+      ...(mensaje ? ["Mensaje:", mensaje] : []),
+    ].join("\n");
+
+    // 9. Enviar correo
     await transporter.sendMail({
       from: {
         name: "Formulario web FECCA",
         address: usuarioSMTP,
       },
-      to: destinatario,
+      to: configuracion.destinatario,
       replyTo: {
-        name: nombre.trim(),
-        address: email.trim(),
+        name: nombre,
+        address: email,
       },
-      subject: `[FECCA - ${
-        tipo === "prensa" ? "Prensa" : "Contacto"
-      }] ${asunto.trim().replace(/[\r\n]/g, " ")}`,
-      text: [
-        `Tipo de consulta: ${tipo}`,
-        `Nombre: ${nombre.trim()}`,
-        `Email: ${email.trim()}`,
-        `Asunto: ${asunto.trim()}`,
-        "",
-        "Mensaje:",
-        mensaje.trim(),
-      ].join("\n"),
+      subject: `[FECCA - ${configuracion.etiqueta}] ${asunto.replace(
+        /[\r\n]/g,
+        " "
+      )}`,
+      text: contenido,
     });
 
     return NextResponse.json({

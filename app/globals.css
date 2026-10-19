@@ -12,6 +12,7 @@
   --font-heading: var(--font-be-vietnam-pro), Arial, sans-serif;
 }
 
+/* Configuración general */
 * {
   box-sizing: border-box;
 }
@@ -19,6 +20,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 110px;
+  font-size: 16px;
 }
 
 body {
@@ -66,6 +68,15 @@ a {
 .fecca-logo-pulse {
   transform-origin: center;
   animation: feccaLogoPulse 5s ease-in-out infinite;
+}
+
+/* Ajuste de escala para escritorio */
+@media (min-width: 1024px) {
+  html {
+  font-size: 95%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 110px;
+}
 }
 
 /* Accesibilidad */

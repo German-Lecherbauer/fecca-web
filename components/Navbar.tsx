@@ -69,7 +69,7 @@ export default function Navbar() {
   };
 
   const enlaceDesktop =
-    "text-base font-medium text-white/85 transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]";
+    "text-sm font-medium text-white/85 transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]";
 
   const enlaceMobile =
     "block border-b border-white/10 py-5 text-base font-medium text-white/85 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D0BC84]";
@@ -77,10 +77,10 @@ export default function Navbar() {
   return (
     <>
       {/* NAVBAR */}
-      <header className="absolute left-0 top-0 z-50 w-full md:-translate-y-[15px]">
+      <header className="absolute left-0 top-0 z-50 w-full">
         <nav
           aria-label="Navegación principal"
-          className="mx-auto w-full max-w-[1600px] px-5 py-5 sm:px-6 md:py-6 lg:px-8"
+          className="mx-auto w-full max-w-[1200px] px-5 py-5 sm:px-6 md:py-6 lg:px-8"
         >
           <div className="flex items-center justify-between">
             {/* LOGO */}
@@ -96,12 +96,12 @@ export default function Navbar() {
                 width={140}
                 height={100}
                 priority
-                className="h-auto w-[88px] sm:w-[105px] md:w-[125px]"
+                className="h-auto w-[88px] sm:w-[95px] md:w-[105px]"
               />
             </a>
 
             {/* MENÚ DESKTOP */}
-            <div className="hidden items-center gap-6 md:flex lg:gap-9">
+            <div className="hidden items-center gap-5 md:flex lg:gap-7">
               {enlaces.map((enlace) => (
                 <a
                   key={enlace.href}

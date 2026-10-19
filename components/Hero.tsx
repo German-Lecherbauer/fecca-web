@@ -15,53 +15,53 @@ export default function Hero() {
       <div className="absolute left-0 top-0 h-full w-px bg-white/5" />
 
       {/* Contenedor principal */}
-      <div className="relative z-10 mx-auto grid w-full max-w-[1600px] items-center gap-10 px-5 pb-12 pt-36 sm:px-6 sm:pb-14 sm:pt-40 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-16 lg:px-8 lg:pb-24 lg:pt-52">
+      <div className="relative z-10 mx-auto grid w-full max-w-[1200px] items-center gap-10 px-5 pb-12 pt-36 sm:px-6 sm:pb-14 sm:pt-40 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-12 lg:px-8 lg:pb-20 lg:pt-44">
         {/* CONTENIDO PRINCIPAL */}
         <div className="relative z-20 min-w-0">
-          <h1 className="text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl lg:text-[4rem]">
-            <span className="block lg:whitespace-nowrap">
-              La Federación de Clubes{" "}
+          <h1 className="text-[2.5rem] font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:text-5xl md:text-6xl lg:text-[clamp(2.5rem,3.15vw,3.25rem)]">
+            <span className="block">
+              La Federación de Clubes
             </span>
 
-            <span className="block lg:whitespace-nowrap">
-              Cannábicos de Argentina{" "}
+            <span className="block">
+              Cannábicos de Argentina
             </span>
 
-            <span className="block text-[#D0BC84] lg:whitespace-nowrap">
+            <span className="block text-[#D0BC84]">
               está activa.
             </span>
           </h1>
 
           {/* Subtítulo */}
-          <p className="mt-7 max-w-2xl text-[16px] leading-[1.6] text-white/85 sm:mt-8 sm:text-lg">
+          <p className="mt-7 max-w-2xl text-[16px] leading-[1.6] text-white/85 sm:mt-8 sm:text-base">
             Unidos por una cultura cannábica responsable y sustentable.
           </p>
 
           {/* Botones */}
-          <div className="mt-8 flex w-full flex-col gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:gap-4">
+          <div className="mt-8 flex w-full flex-col gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:gap-3">
             <a
               href="#beneficios"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#D0BC84] px-6 text-center text-base font-semibold text-[#283524] transition-colors duration-300 hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[#D0BC84] px-5 text-center text-sm font-semibold text-[#283524] transition-colors duration-300 hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto"
             >
               Beneficios para tu club
             </a>
 
             <a
               href="#contacto"
-              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-white/30 px-6 text-center text-base font-semibold text-white transition-colors duration-300 hover:border-white/60 hover:bg-white/10 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-lg border border-white/30 px-5 text-center text-sm font-semibold text-white transition-colors duration-300 hover:border-white/60 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto"
             >
               Sumá tu club a la Federación
             </a>
           </div>
 
           {/* Métricas */}
-          <div className="mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-t border-white/15 pt-6 sm:mt-14 sm:flex sm:gap-12 sm:pt-7">
+          <div className="mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-4 border-t border-white/15 pt-6 sm:mt-12 sm:flex sm:gap-10 sm:pt-6">
             <div>
               <p className="text-xl font-semibold text-white sm:text-2xl">
                 +200
               </p>
 
-              <p className="mt-1 text-xs uppercase leading-5 tracking-wider text-white/75">
+              <p className="mt-1 text-[11px] uppercase leading-5 tracking-wider text-white/75">
                 Clubes federados
               </p>
             </div>
@@ -73,7 +73,7 @@ export default function Hero() {
                 Federal
               </p>
 
-              <p className="mt-1 text-xs uppercase leading-5 tracking-wider text-white/75">
+              <p className="mt-1 text-[11px] uppercase leading-5 tracking-wider text-white/75">
                 Presencia nacional
               </p>
             </div>
@@ -81,16 +81,16 @@ export default function Hero() {
         </div>
 
         {/* LOGO PROTAGONISTA - ESCRITORIO */}
-        <div className="relative hidden min-h-[420px] min-w-0 items-center justify-center lg:flex">
+        <div className="relative hidden min-h-[360px] min-w-0 items-center justify-center lg:flex">
           {/* Luces detrás del logo */}
-          <div className="pointer-events-none absolute right-[-90px] top-[-20px] h-[520px] w-[520px] rounded-full bg-[#4D6645]/20 blur-[110px]" />
+          <div className="pointer-events-none absolute right-[-90px] top-[-20px] h-[420px] w-[420px] rounded-full bg-[#4D6645]/20 blur-[110px]" />
 
-          <div className="pointer-events-none absolute right-[-40px] top-[30px] h-[340px] w-[340px] rounded-full bg-[#D0BC84]/10 blur-[90px]" />
+          <div className="pointer-events-none absolute right-[-40px] top-[30px] h-[300px] w-[300px] rounded-full bg-[#D0BC84]/10 blur-[90px]" />
 
           <div className="pointer-events-none absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#4D6645]/20 blur-[70px]" />
 
-          {/* Logo responsive, desplazado hacia la derecha */}
-          <div className="relative z-10 w-full max-w-[490px] -translate-y-8 lg:translate-x-6 xl:-translate-y-12 xl:translate-x-8">
+          {/* Logo desplazado a la derecha */}
+          <div className="relative z-10 w-full max-w-[380px] -translate-y-8 lg:translate-x-[60px] lg:-translate-y-12 xl:translate-x-[80px] xl:-translate-y-16">
             <div className="fecca-logo-pulse w-full">
               <Image
                 src="/images/logo/logo-fecca.svg"
