@@ -1,4 +1,6 @@
 
+import Image from "next/image";
+
 export default function NuestraMision() {
   return (
     <section
@@ -8,30 +10,30 @@ export default function NuestraMision() {
     >
       {/* CONTENEDOR ALINEADO CON EL HERO */}
       <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
-        {/* NUESTRA MISIÓN */}
-        <div>
-          {/* ETIQUETA */}
-          <div className="mb-4 flex items-center gap-2.5">
-            <span
-              aria-hidden="true"
-              className="h-2 w-2 shrink-0 rounded-full bg-[#4D6645]"
-            />
+        {/* ETIQUETA */}
+        <div className="mb-4 flex items-center gap-2.5">
+          <span
+            aria-hidden="true"
+            className="h-2 w-2 shrink-0 rounded-full bg-[#4D6645]"
+          />
 
-            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4D6645] sm:text-xs">
-              Institucional
-            </span>
-          </div>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4D6645] sm:text-xs">
+            Institucional
+          </span>
+        </div>
 
-          {/* TÍTULO */}
-          <h2
-            id="titulo-mision"
-            className="mb-7 text-[27px] font-semibold leading-tight tracking-tight sm:text-3xl lg:text-[34px]"
-          >
-            Nuestra misión
-          </h2>
+        {/* TÍTULO */}
+        <h2
+          id="titulo-mision"
+          className="mb-7 text-[27px] font-semibold leading-tight tracking-tight sm:text-3xl lg:mb-9 lg:text-[34px]"
+        >
+          Nuestra misión
+        </h2>
 
-          {/* TEXTO INSTITUCIONAL */}
-          <div className="max-w-[780px] space-y-5 text-[15px] leading-[1.75] sm:text-base">
+        {/* TEXTO + FOTOGRAFÍA */}
+        <div className="grid items-start gap-9 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)] lg:gap-10 xl:gap-12">
+          {/* CONTENIDO INSTITUCIONAL */}
+          <div className="min-w-0 space-y-5 text-[15px] leading-[1.75] sm:text-base">
             <p>
               Somos la Federación de Clubes Cannábicos de Argentina.
               Nacemos para reunir, acompañar y fortalecer a los clubes
@@ -71,10 +73,34 @@ export default function NuestraMision() {
               Somos la red.
             </p>
           </div>
+
+          {/* FOTOGRAFÍA DE LA SEDE */}
+          <figure className="min-w-0">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#283524]/15 bg-[#283524] shadow-[0_16px_40px_rgba(40,53,36,0.10)] sm:aspect-[16/10] lg:aspect-auto lg:h-[620px] xl:h-[650px]">
+              <Image
+                src="/images/institucional/sede-fecca.png"
+                alt="Interior de la sede de FECCA, con su recepción, escalera y cartel institucional"
+                fill
+                sizes="(max-width: 1023px) 100vw, 38vw"
+                className="object-cover object-[65%_center]"
+              />
+
+              {/* SOMBRA SUAVE INFERIOR */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#17291C]/45 to-transparent" />
+            </div>
+
+            <figcaption className="mt-3 flex items-center gap-2 text-[12px] font-medium text-[#283524]/65">
+              <span
+                aria-hidden="true"
+                className="h-1.5 w-1.5 rounded-full bg-[#D0BC84]"
+              />
+              Sede de FECCA
+            </figcaption>
+          </figure>
         </div>
 
         {/* DOCUMENTO INSTITUCIONAL Y LINKTREE */}
-        <div className="mt-8 max-w-[780px]">
+        <div className="mt-9 lg:mt-11">
           <div className="rounded-xl border border-[#283524]/15 bg-white/40 p-5 transition-colors duration-300 hover:bg-white/60 sm:p-6">
             <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#4D6645]">
               Institucional
@@ -89,7 +115,7 @@ export default function NuestraMision() {
             </p>
 
             {/* ENLACES INSTITUCIONALES */}
-            <div className="mt-5 flex flex-col items-start gap-4 border-t border-[#283524]/10 pt-5 sm:items-end">
+            <div className="mt-5 flex flex-col items-start gap-4 border-t border-[#283524]/10 pt-5 sm:flex-row sm:items-center sm:justify-end">
               {/* PDF */}
               <a
                 href="/documentos/institucional-fecca.pdf"
