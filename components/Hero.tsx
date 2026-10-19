@@ -15,7 +15,7 @@ export default function Hero() {
       <div className="absolute left-0 top-0 h-full w-px bg-white/5" />
 
       {/* CONTENEDOR PRINCIPAL */}
-      <div className="relative z-10 mx-auto grid w-full max-w-[1200px] items-center gap-10 px-5 pb-14 pt-36 sm:px-6 sm:pb-16 sm:pt-40 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.6fr)] lg:gap-10 lg:px-8 lg:pb-24 lg:pt-48">
+      <div className="relative z-10 mx-auto grid w-full max-w-[1200px] items-center gap-10 px-5 pb-14 pt-36 sm:px-6 sm:pb-16 sm:pt-40 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] lg:gap-8 lg:px-8 lg:pb-24 lg:pt-48">
         {/* CONTENIDO PRINCIPAL */}
         <div className="relative z-20 min-w-0">
           {/* TÍTULO PRINCIPAL */}
@@ -78,25 +78,25 @@ export default function Hero() {
         </div>
 
         {/* LOGO PROTAGONISTA - ESCRITORIO */}
-        <div className="relative hidden min-h-[400px] min-w-0 items-center justify-center lg:flex">
+        <div className="relative hidden min-h-[440px] min-w-0 items-center justify-center lg:flex">
           {/* LUCES DETRÁS DEL LOGO */}
-          <div className="pointer-events-none absolute right-[-90px] top-[-20px] h-[420px] w-[420px] rounded-full bg-[#4D6645]/20 blur-[110px]" />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#4D6645]/20 blur-[110px]" />
 
-          <div className="pointer-events-none absolute right-[-40px] top-[30px] h-[300px] w-[300px] rounded-full bg-[#D0BC84]/10 blur-[90px]" />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D0BC84]/10 blur-[90px]" />
 
           <div className="pointer-events-none absolute -right-16 -top-8 h-[180px] w-[180px] rounded-full bg-[#4D6645]/20 blur-[70px]" />
 
-          {/* LOGO */}
-          <div className="relative z-10 w-full max-w-[420px] -translate-y-8 lg:translate-x-[15px] lg:-translate-y-10 xl:translate-x-[25px] xl:-translate-y-12">
-            <div className="fecca-logo-pulse w-full">
+          {/* LOGO MÁS GRANDE Y CENTRADO */}
+          <div className="relative z-10 flex w-full items-center justify-center">
+            <div className="fecca-logo-pulse w-[115%] max-w-none shrink-0 lg:translate-x-2 xl:w-[120%] xl:translate-x-3">
               <Image
                 src="/images/logo/logo-fecca.svg"
                 alt="Federación de Clubes Cannábicos de Argentina"
-                width={500}
-                height={358}
+                width={600}
+                height={430}
                 priority
-                sizes="(max-width: 1200px) 35vw, 420px"
-                className="h-auto w-full max-w-full object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.35)]"
+                sizes="(max-width: 1200px) 40vw, 480px"
+                className="h-auto w-full object-contain drop-shadow-[0_30px_50px_rgba(0,0,0,0.35)]"
               />
             </div>
           </div>
