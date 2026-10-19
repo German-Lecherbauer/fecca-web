@@ -153,7 +153,7 @@ export default function Alianzas() {
       <section
         id="beneficios"
         aria-labelledby="titulo-beneficios"
-        className="scroll-mt-24 bg-[#283524] pb-10 pt-0 text-white sm:pb-12 lg:pb-14"
+        className="scroll-mt-24 bg-[#283524] pb-5 pt-0 text-white sm:pb-6 lg:pb-7"
       >
         {/* CONTENEDOR ALINEADO CON EL HERO */}
         <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">

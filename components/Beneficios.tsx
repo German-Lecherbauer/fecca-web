@@ -48,7 +48,7 @@ export default function Beneficios() {
     <section
       id="herramientas"
       aria-labelledby="titulo-herramientas"
-      className="scroll-mt-24 bg-[#283524] pb-10 pt-10 text-white sm:pb-12 sm:pt-12 lg:pb-14 lg:pt-14"
+      className="scroll-mt-24 bg-[#283524] pb-5 pt-10 text-white sm:pb-6 sm:pt-12 lg:pb-7 lg:pt-14"
     >
       {/* CONTENEDOR ALINEADO CON EL HERO */}
       <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
@@ -74,8 +74,9 @@ export default function Beneficios() {
               key={herramienta.numero}
               className="flex min-h-[165px] flex-col rounded-xl border border-white/15 bg-white/[0.04] p-5 transition-colors duration-300 hover:bg-white/[0.07] sm:min-h-[175px] sm:p-6"
             >
+              {/* NUMERACIÓN SIN CEROS ADELANTE */}
               <span className="text-[12px] font-semibold text-[#D0BC84]">
-                {String(herramienta.numero).padStart(2, "0")}
+                {herramienta.numero}
               </span>
 
               <div className="mt-auto pt-6">

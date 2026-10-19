@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 const enlaces = [
   { href: "#institucional", texto: "Institucional" },
   { href: "#herramientas", texto: "Clubes" },
-  { href: "#herramientas", texto: "Beneficios" },
+  { href: "#beneficios", texto: "Beneficios" },
   { href: "#contacto", texto: "Contacto" },
   {
     href: "https://estudio4veinte.com/",
@@ -69,10 +69,10 @@ export default function Navbar() {
   };
 
   const enlaceDesktop =
-    "text-sm font-medium text-white/85 transition-colors hover:text-white focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]";
+    "text-[15px] font-semibold text-white/85 transition-colors duration-200 hover:text-[#D0BC84] focus-visible:rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]";
 
   const enlaceMobile =
-    "block border-b border-white/10 py-5 text-base font-medium text-white/85 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D0BC84]";
+    "block border-b border-white/10 py-5 text-[17px] font-medium text-white/85 transition-colors hover:text-[#D0BC84] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#D0BC84]";
 
   return (
     <>
@@ -80,28 +80,28 @@ export default function Navbar() {
       <header className="absolute left-0 top-0 z-50 w-full">
         <nav
           aria-label="Navegación principal"
-          className="mx-auto w-full max-w-[1200px] px-5 py-5 sm:px-6 md:py-6 lg:px-8"
+          className="mx-auto w-full max-w-[1200px] px-5 py-5 sm:px-6 md:py-7 lg:px-8"
         >
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-6">
             {/* LOGO */}
             <a
               href="#inicio"
               onClick={cerrarMenu}
               aria-label="FECCA - Ir al inicio"
-              className="flex min-h-11 items-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]"
+              className="flex min-h-11 shrink-0 items-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]"
             >
               <Image
                 src="/images/logo/logo-fecca.svg"
                 alt="FECCA"
-                width={140}
-                height={100}
+                width={160}
+                height={115}
                 priority
-                className="h-auto w-[88px] sm:w-[95px] md:w-[105px]"
+                className="h-auto w-[98px] sm:w-[108px] md:w-[115px] lg:w-[125px]"
               />
             </a>
 
             {/* MENÚ DESKTOP */}
-            <div className="hidden items-center gap-5 md:flex lg:gap-7">
+            <div className="hidden items-center gap-5 md:flex lg:gap-8">
               {enlaces.map((enlace) => (
                 <a
                   key={`${enlace.texto}-${enlace.href}`}
@@ -123,7 +123,7 @@ export default function Navbar() {
               aria-label="Abrir menú"
               aria-controls="menu-mobile"
               aria-expanded={menuAbierto}
-              className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg border border-white/20 px-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84] md:hidden"
+              className="inline-flex min-h-12 min-w-12 items-center justify-center gap-2 rounded-lg border border-white/20 px-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84] md:hidden"
             >
               <span>Menú</span>
 
@@ -166,9 +166,9 @@ export default function Navbar() {
             <Image
               src="/images/logo/logo-fecca.svg"
               alt="FECCA"
-              width={110}
-              height={80}
-              className="h-auto w-[92px]"
+              width={130}
+              height={95}
+              className="h-auto w-[105px]"
             />
 
             <button

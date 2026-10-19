@@ -12,7 +12,7 @@ export default function Clubes() {
       <section
         id="clubes"
         aria-labelledby="titulo-clubes"
-        className="scroll-mt-24 bg-[#283524] pb-10 pt-5 text-white sm:pb-12 sm:pt-6 lg:pb-12 lg:pt-8"
+        className="scroll-mt-24 bg-[#283524] pb-10 pt-2 text-white sm:pb-12 sm:pt-3 lg:pb-12 lg:pt-4"
       >
         {/* CONTENEDOR ALINEADO CON EL HERO */}
         <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
