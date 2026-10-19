@@ -75,8 +75,8 @@ export default function NuestraMision() {
           </div>
 
           {/* FOTOGRAFÍA DE LA SEDE */}
-          <figure className="min-w-0">
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#283524]/15 bg-[#283524] shadow-[0_16px_40px_rgba(40,53,36,0.10)] sm:aspect-[16/10] lg:aspect-auto lg:h-[620px] xl:h-[650px]">
+          <figure className="min-w-0 lg:-mt-8">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#283524]/15 bg-[#283524] shadow-[0_16px_40px_rgba(40,53,36,0.10)] sm:aspect-[16/10] lg:aspect-auto lg:h-[550px] xl:h-[570px]">
               <Image
                 src="/images/institucional/sede-fecca.png"
                 alt="Interior de la sede de FECCA, con su recepción, escalera y cartel institucional"
