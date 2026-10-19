@@ -1,8 +1,9 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
+import { Turnstile, type TurnstileInstance } from "@marsidev/react-turnstile";
 
 type ContactoModalProps = {
   abierto: boolean;
@@ -18,6 +19,11 @@ export default function ContactoModal({
   const [enviando, setEnviando] = useState(false);
   const [estado, setEstado] = useState<"exito" | "error" | null>(null);
   const [mensajeEstado, setMensajeEstado] = useState("");
+  const [tokenTurnstile, setTokenTurnstile] = useState<string | null>(null);
+
+  const turnstileRef = useRef<TurnstileInstance>(null);
+
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   const esPrensa = tipo === "prensa";
 
@@ -62,6 +68,14 @@ export default function ContactoModal({
 
     if (enviando) return;
 
+    if (!tokenTurnstile) {
+      setEstado("error");
+      setMensajeEstado(
+        "Esperá a que termine la verificación de seguridad e intentá nuevamente."
+      );
+      return;
+    }
+
     const formulario = event.currentTarget;
     const formData = new FormData(formulario);
 
@@ -81,6 +95,7 @@ export default function ContactoModal({
           email: formData.get("email"),
           asunto: formData.get("asunto"),
           mensaje: formData.get("mensaje"),
+          turnstileToken: tokenTurnstile,
         }),
       });
 
@@ -107,6 +122,11 @@ export default function ContactoModal({
       );
     } finally {
       setEnviando(false);
+
+      // Los tokens de Turnstile son de un solo uso.
+      // Generamos uno nuevo para el próximo intento.
+      setTokenTurnstile(null);
+      turnstileRef.current?.reset();
     }
   };
 
@@ -145,7 +165,6 @@ export default function ContactoModal({
           <div>
             <div className="mb-4 flex items-center gap-2.5 sm:mb-5 sm:gap-3">
               <span className="h-2 w-2 shrink-0 rounded-full bg-[#6ce17c]" />
-
               <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/40 sm:text-xs sm:tracking-[0.18em]">
                 {etiqueta}
               </span>
@@ -260,6 +279,43 @@ export default function ContactoModal({
               </div>
             </div>
 
+            {/* VERIFICACIÓN TURNSTILE */}
+            <div className="mt-6">
+              <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45 sm:text-xs">
+                Verificación de seguridad
+              </p>
+
+              {siteKey ? (
+                <div className="max-w-full overflow-hidden">
+                  <Turnstile
+                    ref={turnstileRef}
+                    siteKey={siteKey}
+                    options={{
+                      theme: "dark",
+                      size: "flexible",
+                    }}
+                    onSuccess={(token) => {
+                      setTokenTurnstile(token);
+                    }}
+                    onExpire={() => {
+                      setTokenTurnstile(null);
+                    }}
+                    onError={() => {
+                      setTokenTurnstile(null);
+                      setEstado("error");
+                      setMensajeEstado(
+                        "No se pudo completar la verificación de seguridad. Intentá nuevamente."
+                      );
+                    }}
+                  />
+                </div>
+              ) : (
+                <p className="text-sm text-red-200">
+                  La verificación de seguridad no está configurada.
+                </p>
+              )}
+            </div>
+
             {/* MENSAJE DE RESULTADO */}
             {estado && (
               <div
@@ -289,7 +345,7 @@ export default function ContactoModal({
 
               <button
                 type="submit"
-                disabled={enviando}
+                disabled={enviando || !tokenTurnstile || !siteKey}
                 className="inline-flex w-full items-center justify-center rounded-full bg-[#6ce17c] px-8 py-4 text-sm font-bold text-[#172519] transition duration-300 hover:-translate-y-0.5 hover:bg-[#7bea89] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
               >
                 {enviando ? "Enviando..." : "Enviar mensaje"}

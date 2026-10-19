@@ -7,13 +7,22 @@ export const runtime = "nodejs";
 const EMAIL_GENERAL = "info@fecca.com.ar";
 const EMAIL_PRENSA = "prensa@fecca.com.ar";
 
+type TurnstileResponse = {
+  success: boolean;
+  "error-codes"?: string[];
+};
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
     const { tipo, nombre, email, asunto, mensaje } = body;
 
-    // Validar los campos obligatorios
+    // Aceptamos ambos nombres por compatibilidad con el formulario.
+    const turnstileToken =
+      body.turnstileToken ?? body.turnstile_token;
+
+    // 1. Validar los campos obligatorios
     if (
       typeof nombre !== "string" ||
       typeof email !== "string" ||
@@ -30,7 +39,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validar longitudes y formato del correo
+    // 2. Validar longitudes y formato del correo
     if (
       nombre.length > 120 ||
       email.length > 254 ||
@@ -44,7 +53,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Solo permitimos los dos tipos de contacto
+    // 3. Validar el tipo de consulta
     if (tipo !== "general" && tipo !== "prensa") {
       return NextResponse.json(
         { error: "Tipo de consulta inválido." },
@@ -52,26 +61,102 @@ export async function POST(request: Request) {
       );
     }
 
-    // Credenciales guardadas en variables de entorno
+    // 4. Obtener credenciales del servidor
     const usuarioSMTP = process.env.SMTP_USER;
     const passwordSMTP = process.env.SMTP_PASSWORD;
+    const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
 
-    if (!usuarioSMTP || !passwordSMTP) {
-      console.error("Faltan las credenciales SMTP.");
+    if (!usuarioSMTP || !passwordSMTP || !turnstileSecret) {
+      console.error("Falta configuración SMTP o Turnstile.");
+
+      return NextResponse.json(
+        { error: "El servicio de contacto no está disponible." },
+        { status: 503 }
+      );
+    }
+
+    // 5. Exigir el token de Cloudflare Turnstile
+    if (
+      typeof turnstileToken !== "string" ||
+      !turnstileToken.trim()
+    ) {
+      return NextResponse.json(
+        {
+          error: "Completá la verificación de seguridad.",
+        },
+        { status: 400 }
+      );
+    }
+
+    // 6. Validar el token directamente con Cloudflare
+    const datosVerificacion = new URLSearchParams({
+      secret: turnstileSecret,
+      response: turnstileToken,
+    });
+
+    const ipCliente = request.headers
+      .get("x-forwarded-for")
+      ?.split(",")[0]
+      ?.trim();
+
+    if (ipCliente) {
+      datosVerificacion.set("remoteip", ipCliente);
+    }
+
+    let resultadoTurnstile: TurnstileResponse;
+
+    try {
+      const respuestaCloudflare = await fetch(
+        "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: datosVerificacion.toString(),
+          cache: "no-store",
+          signal: AbortSignal.timeout(10000),
+        }
+      );
+
+      if (!respuestaCloudflare.ok) {
+        throw new Error("Cloudflare no respondió correctamente.");
+      }
+
+      resultadoTurnstile =
+        (await respuestaCloudflare.json()) as TurnstileResponse;
+    } catch (error) {
+      console.error("Error al verificar Turnstile:", error);
 
       return NextResponse.json(
         {
-          error: "El servicio de contacto no está disponible.",
+          error:
+            "No pudimos verificar la seguridad. Intentá nuevamente.",
         },
         { status: 503 }
       );
     }
 
-    // Elegir destinatario según el formulario
+    if (!resultadoTurnstile.success) {
+      console.warn(
+        "Verificación Turnstile rechazada:",
+        resultadoTurnstile["error-codes"] ?? []
+      );
+
+      return NextResponse.json(
+        {
+          error:
+            "La verificación de seguridad expiró o no es válida. Intentá nuevamente.",
+        },
+        { status: 403 }
+      );
+    }
+
+    // 7. Elegir destinatario según el formulario
     const destinatario =
       tipo === "prensa" ? EMAIL_PRENSA : EMAIL_GENERAL;
 
-    // Configuración SMTP de Hostinger
+    // 8. Configurar SMTP de Hostinger
     const transporter = nodemailer.createTransport({
       host: "smtp.hostinger.com",
       port: 465,
@@ -85,7 +170,7 @@ export async function POST(request: Request) {
       socketTimeout: 15000,
     });
 
-    // Enviar correo
+    // 9. Enviar correo únicamente después de validar Turnstile
     await transporter.sendMail({
       from: {
         name: "Formulario web FECCA",
