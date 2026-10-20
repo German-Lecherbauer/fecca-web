@@ -37,7 +37,7 @@ export default function Hero() {
           {/* BOTONES */}
           <div className="mt-8 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:gap-3">
             <a
-              href="#beneficios"
+              href="#herramientas"
               className="inline-flex min-h-[52px] w-full items-center justify-center rounded-lg bg-[#D0BC84] px-6 text-center text-sm font-semibold text-[#283524] transition-colors duration-300 hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:w-auto"
             >
               Beneficios para tu club

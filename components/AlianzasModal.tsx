@@ -200,7 +200,7 @@ export default function AlianzasModal({
                     required
                     maxLength={120}
                     autoComplete="name"
-                    placeholder="Tu nombre"
+                    placeholder="Tu nombre y apellido"
                     className={inputClassName}
                   />
                 </div>

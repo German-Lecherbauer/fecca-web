@@ -8,7 +8,7 @@ export default function ExpoBanner() {
     <section
       id="expo-cannabis"
       aria-labelledby="titulo-expo"
-      className="relative w-full overflow-hidden bg-[#E8E7DC] pb-5 pt-9 sm:pb-6 sm:pt-10 lg:pb-8 lg:pt-12"
+      className="relative w-full min-w-0 overflow-hidden bg-[#E8E7DC] pb-3 pt-7 sm:pb-4 sm:pt-8 lg:pb-5 lg:pt-9"
     >
       <style>{`
         @keyframes expoEntrada {
@@ -56,7 +56,7 @@ export default function ExpoBanner() {
       `}</style>
 
       {/* CONTENEDOR ALINEADO CON EL HERO */}
-      <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full min-w-0 max-w-[1200px] px-5 sm:px-6 lg:px-8">
         {/* ETIQUETA */}
         <div className="mb-4 flex items-center gap-2.5">
           <span
@@ -84,15 +84,15 @@ export default function ExpoBanner() {
         </div>
 
         {/* BANNER */}
-        <div className="expo-entrada relative z-0 mt-6 w-full sm:mt-7 lg:mt-8">
+        <div className="expo-entrada relative z-0 mt-4 w-full min-w-0 sm:mt-5 lg:mt-5">
           <a
             href={ENTRADAS_URL}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Conseguir entradas para Expo Cannabis 2026"
-            className="expo-banner group mx-auto block w-full max-w-[1100px] focus-visible:rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
+            className="expo-banner group mx-auto block w-full min-w-0 max-w-[1100px] focus-visible:rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#283524]"
           >
-            <div className="expo-flotar w-full">
+            <div className="expo-flotar w-full min-w-0">
               {/* BANNER DESKTOP */}
               <div className="hidden w-full md:block">
                 <Image
@@ -107,14 +107,14 @@ export default function ExpoBanner() {
               </div>
 
               {/* BANNER MOBILE */}
-              <div className="mx-auto w-full max-w-[380px] md:hidden">
+              <div className="mx-auto w-full min-w-0 max-w-[360px] px-1 md:hidden">
                 <Image
                   src="/images/expo/expo-mobile.png"
                   alt="Expo Cannabis 2026. 23, 24 y 25 de octubre en La Rural."
                   width={1080}
                   height={1350}
                   unoptimized
-                  sizes="(max-width: 767px) calc(100vw - 40px), 380px"
+                  sizes="(max-width: 767px) calc(100vw - 48px), 360px"
                   className="block h-auto w-full max-w-full rounded-2xl object-contain"
                 />
               </div>

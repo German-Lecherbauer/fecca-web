@@ -127,7 +127,7 @@ export default function BuscarClubModal({
         aria-modal="true"
         aria-labelledby="buscar-club-title"
         onMouseDown={(event) => event.stopPropagation()}
-        className="relative max-h-[calc(100dvh-24px)] w-full max-w-[600px] overflow-x-hidden overflow-y-auto overscroll-contain rounded-xl border border-white/10 bg-[#172519] shadow-[0_30px_100px_rgba(0,0,0,0.5)] sm:max-h-[92dvh] sm:rounded-2xl"
+        className="relative max-h-[calc(100dvh-24px)] w-full max-w-[760px] overflow-x-hidden overflow-y-auto overscroll-contain rounded-xl border border-white/10 bg-[#172519] shadow-[0_30px_100px_rgba(0,0,0,0.5)] sm:max-h-[92dvh] sm:rounded-2xl"
       >
         {/* DECORACIÓN */}
         <div className="pointer-events-none absolute -right-32 -top-32 h-[280px] w-[280px] rounded-full bg-[#4D6645]/15 blur-[90px]" />
@@ -145,7 +145,7 @@ export default function BuscarClubModal({
 
         <div className="relative z-10 p-5 pt-14 sm:p-7 sm:pt-7 lg:p-8">
           {/* ENCABEZADO */}
-          <div className="max-w-[490px] pr-5">
+          <div className="pr-0 sm:pr-12">
             <div className="mb-3 flex items-center gap-2.5">
               <span
                 aria-hidden="true"
@@ -159,7 +159,7 @@ export default function BuscarClubModal({
 
             <h2
               id="buscar-club-title"
-              className="text-[27px] font-semibold leading-[1.15] tracking-tight text-white sm:text-[30px]"
+              className="text-[27px] font-semibold leading-[1.15] tracking-tight text-white sm:text-[28px] lg:whitespace-nowrap lg:text-[26px]"
             >
               ¿Estás buscando un club{" "}
               <span className="text-[#D0BC84]">
@@ -167,7 +167,7 @@ export default function BuscarClubModal({
               </span>
             </h2>
 
-            <p className="mt-3 text-[13px] leading-6 text-white/70 sm:text-sm">
+            <p className="mt-3 max-w-[540px] text-[13px] leading-6 text-white/70 sm:text-sm">
               Envianos tu localidad y tus datos de contacto para
               ayudarte a encontrar un club de la red.
             </p>

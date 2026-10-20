@@ -215,9 +215,8 @@ export default function Footer() {
               </p>
 
               <p className="mt-2 max-w-2xl text-[13px] leading-6 text-[#172519]/70 sm:text-sm">
-                Presentando los requisitos solicitados podés
-                solicitar ser miembro. Tu club debe contar con
-                estatuto y designación de autoridades.
+                Si tu club cuenta con estatuto y autoridades designadas, 
+                podés solicitar su incorporación a FECCA presentando la documentación requerida.
               </p>
             </div>
 

@@ -99,8 +99,8 @@ export default function ExpoGaleria() {
     if (fotoActiva === null) return;
 
     const overflowAnterior = document.body.style.overflow;
-
     document.body.style.overflow = "hidden";
+
     cerrarRef.current?.focus();
 
     function manejarTeclado(event: KeyboardEvent) {
@@ -153,15 +153,15 @@ export default function ExpoGaleria() {
   return (
     <>
       {/* SECCIÓN GALERÍA */}
-     <section
-  id="expo-galeria"
-  aria-labelledby="titulo-expo-galeria"
-  className="relative z-10 -mt-8 overflow-hidden bg-[#E8E7DC] pb-8 pt-4 sm:-mt-12 sm:pb-10 sm:pt-5 lg:-mt-16 lg:pb-12 lg:pt-6"
->
+      <section
+        id="expo-galeria"
+        aria-labelledby="titulo-expo-galeria"
+        className="relative z-10 bg-[#E8E7DC] pb-5 pt-3 sm:pb-6 sm:pt-4 lg:pb-7 lg:pt-4"
+      >
         {/* CONTENEDOR ALINEADO CON EL HERO */}
         <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-6 lg:px-8">
-          {/* ENCABEZADO */}
-          <div className="flex flex-col gap-4 border-t border-[#283524]/15 pt-5 sm:flex-row sm:items-center sm:justify-between sm:pt-6">
+          {/* ENCABEZADO COMPACTO */}
+          <div className="flex flex-col gap-3 border-t border-[#283524]/15 pt-4 sm:min-h-[105px] sm:flex-row sm:items-center sm:justify-between sm:pt-4">
             <div>
               <div className="mb-3 flex items-center gap-2.5">
                 <span

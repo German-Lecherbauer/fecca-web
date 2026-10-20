@@ -68,13 +68,32 @@ export default function Beneficios() {
         <div className="my-7 h-px w-full bg-white/15 sm:my-8" />
 
         {/* SEIS TARJETAS */}
-        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+        <div
+          aria-label="Herramientas para tu club"
+          className="
+            flex w-full min-w-0 snap-x snap-mandatory gap-3
+            overflow-x-auto overscroll-x-contain
+            pb-3
+            [scrollbar-width:none]
+            [&::-webkit-scrollbar]:hidden
+            sm:grid sm:grid-cols-2 sm:gap-4
+            sm:overflow-visible sm:pb-0
+            lg:grid-cols-3
+          "
+        >
           {herramientas.map((herramienta) => (
             <div
               key={herramienta.numero}
-              className="flex min-h-[165px] flex-col rounded-xl border border-white/15 bg-white/[0.04] p-5 transition-colors duration-300 hover:bg-white/[0.07] sm:min-h-[175px] sm:p-6"
+              className="
+                flex min-h-[185px] w-[82%] shrink-0
+                snap-start flex-col rounded-xl
+                border border-white/15 bg-white/[0.04]
+                p-5 transition-colors duration-300
+                hover:bg-white/[0.07]
+                sm:min-h-[175px] sm:w-auto sm:p-6
+              "
             >
-              {/* NUMERACIÓN SIN CEROS ADELANTE */}
+              {/* NUMERACIÓN */}
               <span className="text-[12px] font-semibold text-[#D0BC84]">
                 {herramienta.numero}
               </span>
@@ -90,6 +109,13 @@ export default function Beneficios() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* INDICADOR SOLO EN MOBILE */}
+        <div className="mt-2 flex items-center justify-center gap-2 text-[11px] font-medium tracking-wide text-white/55 sm:hidden">
+          <span aria-hidden="true">←</span>
+          <span>Deslizá para ver más</span>
+          <span aria-hidden="true">→</span>
         </div>
 
         {/* ACOMPAÑAMIENTO REPROCANN */}
