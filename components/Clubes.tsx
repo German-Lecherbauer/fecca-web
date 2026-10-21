@@ -4,6 +4,14 @@
 import { useState } from "react";
 import BuscarClubModal from "./BuscarClubModal";
 
+const NUMERO_WHATSAPP_ESTUDIO = "5491151656918";
+
+const MENSAJE_WHATSAPP =
+  "Hola, estoy interesado en abrir mi club. ¿Qué requisitos se necesitan?";
+
+const WHATSAPP_ESTUDIO_URL =
+  `https://wa.me/${NUMERO_WHATSAPP_ESTUDIO}?text=${encodeURIComponent(MENSAJE_WHATSAPP)}`;
+
 export default function Clubes() {
   const [buscarClubAbierto, setBuscarClubAbierto] = useState(false);
 
@@ -64,7 +72,41 @@ export default function Clubes() {
           {/* SEPARADOR DEL ENCABEZADO */}
           <div className="my-7 h-px w-full bg-white/15 sm:my-8" />
 
-          {/* TARJETAS */}
+          {/* NUEVA TARJETA: FORMAR UN CLUB */}
+          <div className="mb-4 flex flex-col gap-6 rounded-xl border border-[#D0BC84]/30 bg-[#34432D] p-5 sm:p-6 md:flex-row md:items-center md:justify-between md:gap-8">
+            <div className="min-w-0">
+              <div className="mb-4 flex items-center gap-2.5">
+                <span
+                  aria-hidden="true"
+                  className="h-2 w-2 shrink-0 rounded-full bg-[#D0BC84]"
+                />
+
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D0BC84] sm:text-xs">
+                  Para nuevos proyectos
+                </span>
+              </div>
+
+              <h3 className="text-xl font-semibold tracking-tight sm:text-[22px]">
+                ¿Querés formar un club?
+              </h3>
+
+              <p className="mt-3 max-w-[620px] text-[13px] leading-6 text-white/75 sm:text-sm">
+                Comunicate con nosotros y recibí orientación sobre
+                los requisitos para comenzar tu proyecto.
+              </p>
+            </div>
+
+            <a
+              href={WHATSAPP_ESTUDIO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 w-full shrink-0 items-center justify-center rounded-lg bg-[#D0BC84] px-6 py-2.5 text-[13px] font-semibold text-[#283524] transition-colors duration-300 hover:bg-[#C7B57A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:w-auto"
+            >
+              Consultar por WhatsApp
+            </a>
+          </div>
+
+          {/* TARJETAS EXISTENTES */}
           <div className="grid gap-4 md:grid-cols-2">
             {/* PARA PERSONAS */}
             <div className="flex h-full flex-col rounded-xl border border-white/15 bg-[#20382D] p-5 sm:p-6">
