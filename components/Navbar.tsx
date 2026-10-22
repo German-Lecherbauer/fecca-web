@@ -119,14 +119,14 @@ export default function Navbar() {
                 </a>
               ))}
 
-              {/* LOGO ESTUDIO 420 - EXTREMO DERECHO */}
+              {/* LOGO ESTUDIO 420 - TAMAÑO AJUSTADO */}
               <a
                 href={ESTUDIO_420_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visitar Estudio 420"
                 title="Estudio 420"
-                className="ml-1 inline-flex h-[48px] w-[116px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#D0BC84]/40 bg-[#F1EFE8] px-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D0BC84] hover:bg-white hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84] lg:h-[52px] lg:w-[130px]"
+                className="ml-2 inline-flex h-[40px] w-[96px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#D0BC84]/30 bg-[#F1EFE8] px-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D0BC84] hover:bg-white hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84] lg:h-[44px] lg:w-[108px]"
               >
                 <Image
                   src={ESTUDIO_420_LOGO}
@@ -220,7 +220,7 @@ export default function Navbar() {
               </a>
             ))}
 
-            {/* LOGO ESTUDIO 420 - AL FINAL DEL MENÚ */}
+            {/* LOGO ESTUDIO 420 - MENÚ MÓVIL */}
             <a
               href={ESTUDIO_420_URL}
               target="_blank"

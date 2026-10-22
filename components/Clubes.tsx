@@ -55,6 +55,7 @@ function EstadisticasRed() {
   const [visible, setVisible] = useState(false);
 
   const clubes = useContador(200, visible);
+  const provincias = useContador(8, visible);
   const marcas = useContador(17, visible);
 
   useEffect(() => {
@@ -97,10 +98,10 @@ function EstadisticasRed() {
         </span>
       </div>
 
-      {/* PROVINCIAS: PENDIENTE DE CONFIRMAR */}
+      {/* PROVINCIAS CON PRESENCIA */}
       <div className="flex min-h-[112px] flex-col items-center justify-center rounded-xl border border-[#D0BC84]/30 bg-[#34432D] px-2 py-4 text-center sm:min-h-[124px] sm:px-3">
         <span className="text-[27px] font-bold leading-none tracking-tight text-[#D0BC84] sm:text-[34px] lg:text-[38px]">
-          XX
+          {provincias}
         </span>
 
         <span className="mt-3 text-[10px] font-medium leading-[1.4] text-white/80 sm:text-xs">
