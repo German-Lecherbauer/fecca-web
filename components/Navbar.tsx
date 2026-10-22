@@ -4,13 +4,18 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
+const ESTUDIO_420_URL = "https://estudio4veinte.com/";
+
+const ESTUDIO_420_LOGO =
+  "/images/logo/estudio420-v04-negro-3000px.png";
+
 const enlaces = [
   { href: "#institucional", texto: "Institucional" },
   { href: "#herramientas", texto: "Clubes" },
   { href: "#beneficios", texto: "Beneficios" },
   { href: "#contacto", texto: "Contacto" },
   {
-    href: "https://estudio4veinte.com/",
+    href: ESTUDIO_420_URL,
     texto: "Sumá tu club",
     externo: true,
   },
@@ -83,7 +88,7 @@ export default function Navbar() {
           className="mx-auto w-full max-w-[1200px] px-5 py-5 sm:px-6 md:py-7 lg:px-8"
         >
           <div className="flex items-center justify-between gap-6">
-            {/* LOGO */}
+            {/* LOGO FECCA */}
             <a
               href="#inicio"
               onClick={cerrarMenu}
@@ -101,7 +106,7 @@ export default function Navbar() {
             </a>
 
             {/* MENÚ DESKTOP */}
-            <div className="hidden items-center gap-5 md:flex lg:gap-8">
+            <div className="hidden items-center gap-4 md:flex lg:gap-6">
               {enlaces.map((enlace) => (
                 <a
                   key={`${enlace.texto}-${enlace.href}`}
@@ -113,6 +118,24 @@ export default function Navbar() {
                   {enlace.texto}
                 </a>
               ))}
+
+              {/* LOGO ESTUDIO 420 - EXTREMO DERECHO */}
+              <a
+                href={ESTUDIO_420_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Visitar Estudio 420"
+                title="Estudio 420"
+                className="ml-1 inline-flex h-[48px] w-[116px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#D0BC84]/40 bg-[#F1EFE8] px-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D0BC84] hover:bg-white hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84] lg:h-[52px] lg:w-[130px]"
+              >
+                <Image
+                  src={ESTUDIO_420_LOGO}
+                  alt="Estudio 420"
+                  width={300}
+                  height={150}
+                  className="h-full w-full object-contain"
+                />
+              </a>
             </div>
 
             {/* BOTÓN MENÚ MÓVIL */}
@@ -196,6 +219,24 @@ export default function Navbar() {
                 {enlace.texto}
               </a>
             ))}
+
+            {/* LOGO ESTUDIO 420 - AL FINAL DEL MENÚ */}
+            <a
+              href={ESTUDIO_420_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={cerrarMenu}
+              aria-label="Visitar Estudio 420"
+              className="mt-7 flex h-[64px] w-[180px] items-center justify-center overflow-hidden rounded-lg border border-[#D0BC84]/40 bg-[#F1EFE8] px-3 transition-colors duration-300 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]"
+            >
+              <Image
+                src={ESTUDIO_420_LOGO}
+                alt="Estudio 420"
+                width={300}
+                height={150}
+                className="h-full w-full object-contain"
+              />
+            </a>
           </nav>
 
           {/* INFORMACIÓN INSTITUCIONAL MÓVIL */}
