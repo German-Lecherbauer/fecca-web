@@ -119,14 +119,14 @@ export default function Navbar() {
                 </a>
               ))}
 
-              {/* LOGO ESTUDIO 420 - TAMAÑO AJUSTADO */}
+              {/* LOGO ESTUDIO 420 - TAMAÑO REDUCIDO */}
               <a
                 href={ESTUDIO_420_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visitar Estudio 420"
                 title="Estudio 420"
-                className="ml-2 inline-flex h-[40px] w-[96px] shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[#D0BC84]/30 bg-[#F1EFE8] px-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D0BC84] hover:bg-white hover:shadow-[0_8px_24px_rgba(0,0,0,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84] lg:h-[44px] lg:w-[108px]"
+                className="ml-1 inline-flex h-[30px] w-[70px] shrink-0 items-center justify-center overflow-hidden rounded-md border border-[#D0BC84]/30 bg-[#F1EFE8] px-1.5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#D0BC84] hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]"
               >
                 <Image
                   src={ESTUDIO_420_LOGO}
@@ -220,14 +220,14 @@ export default function Navbar() {
               </a>
             ))}
 
-            {/* LOGO ESTUDIO 420 - MENÚ MÓVIL */}
+            {/* LOGO ESTUDIO 420 - TAMAÑO REDUCIDO MÓVIL */}
             <a
               href={ESTUDIO_420_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={cerrarMenu}
               aria-label="Visitar Estudio 420"
-              className="mt-7 flex h-[64px] w-[180px] items-center justify-center overflow-hidden rounded-lg border border-[#D0BC84]/40 bg-[#F1EFE8] px-3 transition-colors duration-300 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]"
+              className="mt-6 inline-flex h-[36px] w-[90px] shrink-0 items-center justify-center self-start overflow-hidden rounded-md border border-[#D0BC84]/30 bg-[#F1EFE8] px-1.5 transition-colors duration-300 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#D0BC84]"
             >
               <Image
                 src={ESTUDIO_420_LOGO}
