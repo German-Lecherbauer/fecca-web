@@ -1,42 +1,57 @@
 
 "use client";
 
+import {
+  UsersRound,
+  Info,
+  Scale,
+  Network,
+  GraduationCap,
+  Cannabis,
+} from "lucide-react";
+
 const herramientas = [
   {
     numero: 1,
     titulo: "Representación",
     texto:
       "Tu club no está solo. Una voz colectiva frente a los desafíos del sector.",
+    Icono: UsersRound,
   },
   {
     numero: 2,
     titulo: "Información",
     texto:
       "Información institucional, normativa y herramientas para el funcionamiento de los clubes.",
+    Icono: Info,
   },
   {
     numero: 3,
     titulo: "Derechos",
     texto:
       "Conocer tus derechos. Acompañamiento legal y defensa de los derechos de usuarios, cultivadores y clubes.",
+    Icono: Scale,
   },
   {
     numero: 4,
     titulo: "Red federal",
     texto:
       "Conectate con otros clubes. Compartí experiencias, conocimientos y oportunidades en todo el territorio.",
+    Icono: Network,
   },
   {
     numero: 5,
     titulo: "Formación y cultura",
     texto:
       "Charlas, capacitaciones, encuentros y contenidos sobre cannabis, salud, cultivo y organización.",
+    Icono: GraduationCap,
   },
   {
     numero: 6,
     titulo: "Beneficios",
     texto:
       "Acceso a alianzas, servicios, descuentos y herramientas para el crecimiento de los clubes.",
+    Icono: Cannabis,
   },
 ];
 
@@ -81,34 +96,51 @@ export default function Beneficios() {
             lg:grid-cols-3
           "
         >
-          {herramientas.map((herramienta) => (
-            <div
-              key={herramienta.numero}
-              className="
-                flex min-h-[185px] w-[82%] shrink-0
-                snap-start flex-col rounded-xl
-                border border-white/15 bg-white/[0.04]
-                p-5 transition-colors duration-300
-                hover:bg-white/[0.07]
-                sm:min-h-[175px] sm:w-auto sm:p-6
-              "
-            >
-              {/* NUMERACIÓN */}
-              <span className="text-[12px] font-semibold text-[#D0BC84]">
-                {herramienta.numero}
-              </span>
+          {herramientas.map((herramienta) => {
+            const Icono = herramienta.Icono;
 
-              <div className="mt-auto pt-6">
-                <h3 className="text-[17px] font-semibold tracking-tight text-white sm:text-lg">
-                  {herramienta.titulo}
-                </h3>
+            return (
+              <div
+                key={herramienta.numero}
+                className="
+                  flex min-h-[250px] w-[82%] shrink-0
+                  snap-start flex-col rounded-xl
+                  border border-white/15 bg-white/[0.04]
+                  p-5 transition-colors duration-300
+                  hover:bg-white/[0.07]
+                  sm:min-h-[240px] sm:w-auto sm:p-6
+                "
+              >
+                {/* ICONO */}
+                <div className="flex items-start">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-[#D0BC84]/55 bg-[#20382D]">
+                    <Icono
+                      size={27}
+                      strokeWidth={1.8}
+                      className="text-white"
+                      aria-hidden="true"
+                    />
+                  </div>
+                </div>
 
-                <p className="mt-2 text-[13px] leading-[1.65] text-white/80 sm:text-sm">
-                  {herramienta.texto}
-                </p>
+                {/* TÍTULO Y DESCRIPCIÓN */}
+                <div className="mt-6 flex flex-1 flex-col">
+                  <h3 className="min-h-[28px] text-[17px] font-semibold tracking-tight text-white sm:text-lg">
+                    {herramienta.titulo}
+                  </h3>
+
+                  <div
+                    aria-hidden="true"
+                    className="mt-3 h-[2px] w-9 rounded-full bg-[#D0BC84]/75"
+                  />
+
+                  <p className="mt-3 text-[13px] leading-[1.65] text-white/80 sm:text-sm">
+                    {herramienta.texto}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* INDICADOR SOLO EN MOBILE */}

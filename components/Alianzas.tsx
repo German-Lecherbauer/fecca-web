@@ -10,118 +10,174 @@ type MarcaAliada = {
   nombre: string;
   logo: string;
   web: string | null;
+  disponible: boolean;
+  escala?: string;
 };
 
 const marcasAliadas: MarcaAliada[] = [
   {
     id: 1,
-    nombre: "Verde Agua",
+    nombre: "Verde Agua Hidroponia",
     logo: "/images/aliados/verde-agua-hidroponia.png",
     web: "https://www.verdeagua.com.ar/",
+    disponible: true,
+    escala: "scale-[2.5]",
   },
   {
     id: 2,
     nombre: "OMAIGAT",
     logo: "/images/aliados/omaigat.png",
     web: "https://www.omaigat.com.ar/",
+    disponible: true,
+    escala: "scale-[2.1]",
   },
   {
     id: 3,
     nombre: "Le Caburé",
     logo: "/images/aliados/le-cabure.png",
     web: "https://lecabure.com.ar/",
+    disponible: true,
   },
   {
     id: 4,
     nombre: "Revegetar",
     logo: "/images/aliados/revegetar.png",
     web: "https://revegetar.com.ar/",
+    disponible: true,
+    escala: "scale-[2.1]",
   },
   {
     id: 5,
     nombre: "Parameter",
     logo: "/images/aliados/parameter.png",
     web: "https://www.instagram.com/parameter.app/",
+    disponible: true,
   },
   {
     id: 6,
     nombre: "JB Acupuntura",
     logo: "/images/aliados/jb-acupuntura.png",
     web: "https://wa.me/5491158869144?text=Hola.%20Soy%20asociado%20a%20FECCA%20y%20quer%C3%ADa%20consultar%20por%20el%20descuento%20para%20socios%20en%20las%20sesiones%20de%20acupuntura",
+    disponible: true,
   },
   {
     id: 7,
     nombre: "Morevap",
     logo: "/images/aliados/morevap.png",
     web: "https://morevap.empretienda.com.ar/",
+    disponible: true,
+    escala: "scale-[2.1]",
   },
   {
     id: 8,
-    nombre: "Tu Merchandising",
+    nombre: "TuMerch",
     logo: "/images/aliados/tumerch.png",
     web: "https://tumerchandising.ar/catalogo/",
+    disponible: true,
+    escala: "scale-[2.1]",
   },
   {
     id: 9,
     nombre: "Novatra",
     logo: "/images/aliados/novatra.png",
     web: null,
+    disponible: true,
   },
   {
     id: 10,
-    nombre: "Kief",
+    nombre: "Kief Bioinsumos",
     logo: "/images/aliados/kief.png",
     web: null,
+    disponible: true,
+    escala: "scale-[1.1]",
   },
   {
     id: 11,
-    nombre: "La Maga Red",
+    nombre: "La Maga",
     logo: "/images/aliados/la-maga-redondo.png",
     web: null,
+    disponible: true,
+    escala: "scale-[1.25]",
+  },
+  {
+    id: 12,
+    nombre: "Mar Verde Distribuidora",
+    logo: "/images/aliados/mar-verde.png",
+    web: null,
+    disponible: true,
+    escala: "scale-[1.15]",
+  },
+  {
+    id: 13,
+    nombre: "Rosenberger Bar",
+    logo: "/images/aliados/rosenberger-bar.png",
+    web: null,
+    disponible: true,
+    escala: "scale-[1.25]",
+  },
+  {
+    id: 14,
+    nombre: "Poco Humo",
+    logo: "/images/aliados/poco-humo-v2.png",
+    web: null,
+    disponible: true,
+    escala: "scale-[1.1]",
+  },
+  {
+    id: 15,
+    nombre: "El Agu 33 Grow Shop",
+    logo: "/images/aliados/el-agu-33.png",
+    web: null,
+    disponible: true,
+    escala: "scale-[1.15]",
+  },
+  {
+    id: 16,
+    nombre: "Yopuro Jugos",
+    logo: "/images/aliados/yopuro-jugos.png",
+    web: null,
+    disponible: true,
+    escala: "scale-[1.5]",
+  },
+  {
+    id: 17,
+    nombre: "DMG Computación",
+    logo: "/images/aliados/dmg-computacion.png",
+    web: null,
+    disponible: true,
+    escala: "scale-[1.15]",
   },
 ];
 
 function TarjetaMarca({ marca }: { marca: MarcaAliada }) {
   const clases =
-    "flex h-[88px] w-[155px] shrink-0 items-center justify-center rounded-xl border border-[#D0BC84]/20 bg-[#F1EFE8] px-4 py-3 transition-all duration-300 sm:h-[96px] sm:w-[175px] sm:px-5";
+    "flex h-[88px] w-[155px] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#D0BC84]/20 bg-[#F1EFE8] px-4 py-3 transition-all duration-300 sm:h-[96px] sm:w-[175px] sm:px-5";
 
-  const logosMasGrandes = [2, 4, 7, 8];
-
-  let escalaLogo = "scale-[1.65]";
-
-  if (logosMasGrandes.includes(marca.id)) {
-    escalaLogo = "scale-[2.1]";
-  }
-
-  if (marca.id === 1) {
-    escalaLogo = "scale-[2.5]";
-  }
-
-  if (marca.id === 10) {
-    escalaLogo = "scale-[1.1]";
-  }
-
-  if (marca.id === 11) {
-    escalaLogo = "scale-[1.25]";
-  }
-
-  const contenido = (
+  const contenido = marca.disponible ? (
     <div className="relative h-full w-full">
       <Image
         src={marca.logo}
         alt={`Logo de ${marca.nombre}`}
         fill
         sizes="(max-width: 640px) 155px, 175px"
-        className={`${escalaLogo} object-contain`}
+        className={`${marca.escala ?? "scale-[1.65]"} object-contain`}
       />
     </div>
+  ) : (
+    <span className="px-2 text-center text-[13px] font-semibold leading-snug text-[#283524]">
+      {marca.nombre}
+    </span>
   );
 
   if (!marca.web) {
     return (
       <div
         className={clases}
-        title={`${marca.nombre} - Enlace próximamente`}
+        title={
+          marca.disponible
+            ? `${marca.nombre} - Enlace próximamente`
+            : `${marca.nombre} - Logo pendiente`
+        }
       >
         {contenido}
       </div>

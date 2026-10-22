@@ -20,12 +20,10 @@ export default function Hero() {
         <div className="relative z-20 min-w-0">
           {/* TÍTULO PRINCIPAL */}
           <h1 className="text-[2.5rem] font-semibold leading-[1.04] tracking-[-0.045em] text-white sm:text-5xl md:text-[3.5rem] lg:text-[clamp(3rem,4vw,3.75rem)]">
-            La Federación de Clubes
+            Federación de Clubes
             <br className="hidden sm:block" />
-            Cannábicos de Argentina
-            <br />
             <span className="text-[#D0BC84]">
-              está activa.
+              {" "}Cannábicos de Argentina
             </span>
           </h1>
 
