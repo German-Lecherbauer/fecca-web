@@ -154,9 +154,9 @@ const marcasAliadas: MarcaAliada[] = [
   logo: "/images/aliados/consultorio-420.png",
   web: "https://wa.me/5491127831516",
   disponible: true,
-  escala: "scale-[0.85]",
+  escala: "scale-[1.15]",
 },
-{
+
   id: 19,
   nombre: "Estudio 420",
   logo: "/images/aliados/estudio-420.png",
