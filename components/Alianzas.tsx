@@ -147,22 +147,22 @@ const marcasAliadas: MarcaAliada[] = [
     disponible: true,
     escala: "scale-[1.15]",
   },
-  {
-    id: 18,
-    nombre: "Consultorio 420",
-    logo: "/images/aliados/consultorio-420.png",
-    web: "https://wa.me/5491127831516",
-    disponible: true,
-    escala: "scale-[1.15]",
-  },
-  {
-    id: 19,
-    nombre: "Estudio 420",
-    logo: "/images/aliados/estudio-420.png",
-    web: "https://estudio4veinte.com/",
-    disponible: true,
-    escala: "scale-[1.15]",
-  },
+{
+  id: 18,
+  nombre: "Consultorio 420",
+  logo: "/images/aliados/consultorio-420.png",
+  web: "https://wa.me/5491127831516",
+  disponible: true,
+  escala: "scale-[1.5]",
+},
+{
+  id: 19,
+  nombre: "Estudio 420",
+  logo: "/images/aliados/estudio-420.png",
+  web: "https://estudio4veinte.com/",
+  disponible: true,
+  escala: "scale-[0.85]",
+},
 ];
 
 function TarjetaMarca({ marca }: { marca: MarcaAliada }) {
