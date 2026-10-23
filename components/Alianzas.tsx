@@ -147,13 +147,14 @@ const marcasAliadas: MarcaAliada[] = [
     disponible: true,
     escala: "scale-[1.15]",
   },
+
 {
   id: 18,
   nombre: "Consultorio 420",
   logo: "/images/aliados/consultorio-420.png",
   web: "https://wa.me/5491127831516",
   disponible: true,
-  escala: "scale-[1.55]",
+  escala: "scale-[0.85]",
 },
 {
   id: 19,
@@ -163,6 +164,7 @@ const marcasAliadas: MarcaAliada[] = [
   disponible: true,
   escala: "scale-[0.85]",
 },
+
 ];
 
 function TarjetaMarca({ marca }: { marca: MarcaAliada }) {
