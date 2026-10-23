@@ -153,7 +153,7 @@ const marcasAliadas: MarcaAliada[] = [
   logo: "/images/aliados/consultorio-420.png",
   web: "https://wa.me/5491127831516",
   disponible: true,
-  escala: "scale-[1.7]",
+  escala: "scale-[1.55]",
 },
 {
   id: 19,
