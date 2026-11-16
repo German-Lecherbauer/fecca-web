@@ -3,7 +3,6 @@ import Alianzas from "@/components/Alianzas";
 import Beneficios from "@/components/Beneficios";
 import Clubes from "@/components/Clubes";
 import Contacto from "@/components/Contacto";
-import ExpoBanner from "@/components/ExpoBanner";
 import ExpoGaleria from "@/components/ExpoGaleria";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -18,7 +17,6 @@ export default function Home() {
       <main>
         <Hero />
         <NuestraMision />
-        <ExpoBanner />
         <ExpoGaleria />
         <Beneficios />
         <Alianzas />

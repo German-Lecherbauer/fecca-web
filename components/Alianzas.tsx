@@ -47,13 +47,6 @@ const marcasAliadas: MarcaAliada[] = [
     escala: "scale-[2.1]",
   },
   {
-    id: 5,
-    nombre: "Parameter",
-    logo: "/images/aliados/parameter.png",
-    web: "https://www.instagram.com/parameter.app/",
-    disponible: true,
-  },
-  {
     id: 6,
     nombre: "JB Acupuntura",
     logo: "/images/aliados/jb-acupuntura.png",
@@ -75,13 +68,6 @@ const marcasAliadas: MarcaAliada[] = [
     web: "https://tumerchandising.ar/catalogo/",
     disponible: true,
     escala: "scale-[2.1]",
-  },
-  {
-    id: 9,
-    nombre: "Novatra",
-    logo: "/images/aliados/novatra.png",
-    web: "https://www.instagram.com/novatrasrl/",
-    disponible: true,
   },
   {
     id: 10,
